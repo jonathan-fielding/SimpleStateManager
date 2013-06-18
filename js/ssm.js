@@ -42,7 +42,7 @@
 	//Enable a debug mode
 	ssm.enableDebug = function(){
 		debug = true;
-		document.body.innerHTML += '<div id="ssmDebug" style="position: absolute; bottom: 0px, right: 0px; width: 100px; line-height: 30px; font-size: 12px; background: #fff; border: 1px solid #000; text-align: center;">'+ browserWidth +'px</div>';
+		document.body.innerHTML += '<div id="ssmDebug" style="position: absolute; bottom: 0px; right: 0px; width: 100px; line-height: 30px; font-size: 12px; background: #fff; border: 1px solid #000; text-align: center;">'+ browserWidth +'px</div>';
 	};
 
 	//Add a new state 
