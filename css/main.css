@@ -1,0 +1,9 @@
+body{
+	font-size: 62.5%;
+}
+p, li, a{
+	font-size: 1.2em;
+}
+li p, li a, p a{
+	font-size: 1em
+}
