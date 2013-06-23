@@ -42,7 +42,22 @@ ssm.removeState('mobile');
 
 <h2>Ready</h2>
 
-<p>Once you have finished setting up your states you should run ssm.ready() which will setup the states.</p>
+<p>Once you have finished setting up your states you should run <code>ssm.ready()</code> which will setup the states.</p>
+
+<pre>
+ssm.ready()
+</pre>
+
+<p>As SSM is chaninable you can even fire the <code>ssm.ready()</code> method by simply adding <code>.ready()</code> onto your original command</p>
+
+<pre>
+ssm.addStates([
+    {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
+    {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
+    {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
+]).ready();
+</pre>
+
 
 <h2>Debug Mode</h2>
 
@@ -57,11 +72,27 @@ ssm.enableDebug();
 <table>
     <tr>
         <th>Method</th>
-        <th>What is does</th>
+        <th>Description</th>
     </tr>
     <tr>
         <td>ssm.addState</td>
-        <td></td>
+        <td>Add a new state, expects an object literal, properties avaliable -  id (optional), width (required), onEnter (optional), onResize (optional), onLeave (optional)</td>
+    </tr>
+    <tr>
+        <td>ssm.addStates</td>
+        <td>Add multiple new states, expects an array of object literals, properties avaliable -  id (optional), width (required), onEnter (optional), onResize (optional), onLeave (optional)</td>
+    </tr>
+    <tr>
+        <td>ssm.removeState</td>
+        <td>Remove a state, expects one property, the id of the state to be removed.</td>
+    </tr>
+    <tr>
+        <td>ssm.ready</td>
+        <td>Tells the page that states have been added and we can fire the onEnter event for the current state.</td>
+    </tr>
+    <tr>
+        <td>ssm.enableDebug</td>
+        <td>Enables a debug mode which shows a width meter to the corner of the page.</td>
     </tr>
 </table>
 
