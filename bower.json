@@ -1,0 +1,10 @@
+{
+  "name": "SimpleStateManager",
+  "version": "1.0.0",
+  "main": "js/ssm.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
