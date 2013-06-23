@@ -6,7 +6,74 @@
     </head>
     <body>
     	<div class="container">
-            
+            <header>
+                <h1>Simple State Manager</h1>
+            </header>
+            <section role="main">
+
+<p>Simple State Manager (SSM for short) is a responsive state manager which allows you to target javascript at different browser widths.</p>
+
+<h2>Add States</h2>
+<p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. It is important to remember that the <strong>width</strong> you provide is the upper limit of your responsive state width, the lower limit is defined simply by defining another state with a <strong>width</strong> which is lower.</p>
+
+<pre>
+ssm.addState({id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}});
+ssm.addState({width: 1023, onEnter: function(){console.log('enter tablet')}});
+ssm.addState({width: 9999, onEnter: function(){console.log('enter desktop')}});
+</pre>
+
+<p>If you wish to use one command to add multiple states using one command you can use ssm.addStates to which you should pass an array of states.</p>
+
+<pre>
+ssm.addStates([
+    {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
+    {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
+    {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
+]);
+</pre>
+
+<h2>Remove States</h2>
+
+<p>Sometimes it may be necessary to remove a state, if we have the <strong>id</strong> for the state we can easily remove the state, to remove the mobile state from our above example we simply use:</p>
+
+<pre>
+ssm.removeState('mobile');
+</pre>
+
+<h2>Ready</h2>
+
+<p>Once you have finished setting up your states you should run ssm.ready() which will setup the states.</p>
+
+<h2>Debug Mode</h2>
+
+<p>To enable the debug mode you simply need to run <code>ssm.enableDebug()</code>, this will add a width meter to the bottom right corner of the viewport area.</p>
+
+<pre>
+ssm.enableDebug();
+</pre>
+
+<h2>Full API</h2>
+
+<table>
+    <tr>
+        <th>Method</th>
+        <th>What is does</th>
+    </tr>
+    <tr>
+        <td>ssm.addState</td>
+        <td></td>
+    </tr>
+</table>
+
+<h2>Planned Features</h2>
+
+<p>Enable multiple methods to be attached to each state</p>
+<p>Allow overlapping states so that JS can span multiple states</p>
+
+
+            </section>
+            <footer>
+            </footer>
     	</div>
 
         <script src="js/ssm.js"></script>

@@ -1,9 +1,22 @@
 body{
 	font-size: 62.5%;
 }
-p, li, a{
-	font-size: 1.2em;
+p, li, a,pre,code, th, td{
+	font-size: 1.4em;
 }
-li p, li a, p a{
+li p, li a, p a, p code{
 	font-size: 1em
+}
+
+.container{
+	max-width: 1024px;
+	margin: 0 auto;
+}
+
+table{
+	width: 100%;
+}
+
+td,th{
+	border: 1px solid #000;
 }
