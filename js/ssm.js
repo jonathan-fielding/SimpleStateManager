@@ -42,7 +42,9 @@
 	//Enable a debug mode
 	ssm.enableDebug = function(){
 		debug = true;
-		document.body.innerHTML += '<div id="ssmDebug" style="position: absolute; bottom: 0px; right: 0px; width: 100px; line-height: 30px; font-size: 12px; background: #fff; border: 1px solid #000; text-align: center;">'+ browserWidth +'px</div>';
+		document.body.innerHTML += '<div id="ssmDebug" style="z-index: 99999999; position: absolute; bottom: 0px; right: 0px; width: 100px; line-height: 30px; font-size: 12px; background: #fff; border: 1px solid #000; text-align: center;">'+ browserWidth +'px</div>';
+	
+		return this;
 	};
 
 	//Add a new state 
@@ -60,7 +62,9 @@
 
 		states.push(options);
 
-		states = sortByKey(states,'width')
+		states = sortByKey(states,'width');
+
+		return this;
 	};
 
 	//Find and remove the state from the array
@@ -70,6 +74,8 @@
 				states.splice(i,1);
 			}
 		};
+
+		return this;
 	};
 
 	//Add multiple states from an array
@@ -77,7 +83,25 @@
 		for (var i = statesArray.length - 1; i >= 0; i--) {
 			ssm.addState(statesArray[i])
 		};
+
+		return this;
 	};
+
+	ssm.ready = function(){
+		var state = null;
+		
+		for (var i = 0; i < states.length; i++) {
+			state = states[i];
+
+			if(states[i].width >= browserWidth){
+				currentState = states[i];
+				currentState.onEnter();
+				break;
+			}
+		};
+
+		return this;
+	}
 
 	//Return an array of all the states
 	ssm.states = function(){
