@@ -1,18 +1,26 @@
 ;(function (window, document, undefined ) {
 	"use strict";
 
-	var _ssm = window.ssm,
-	ssm = {},
+	var ssm = {},
 	states = [],
 	debug = false,
 	browserWidth = 0,
 	currentState = null,
+	debounceCounter = 0,
+	debounceLimit = 10,
 	browserResize = function(){
-		var state = null;
+		var state = null,
+			totalStates;
 
+		if (debounceCounter++ < debounceLimit) {
+			return;
+		}
+
+		debounceCounter = 0;
+		totalStates = states.length;
 		browserWidth = getWidth();
 
-		for (var i = 0; i < states.length; i++) {
+		for (var i = 0; i < totalStates; i++) {
 			state = states[i];
 
 			if(states[i].width >= browserWidth){
@@ -32,7 +40,7 @@
 				states[i].onResize();
 				break;
 			}
-		};
+		}
 
 		if(debug){
 			document.getElementById('ssmDebug').innerHTML = browserWidth +'px';
@@ -43,11 +51,11 @@
 	ssm.enableDebug = function(){
 		debug = true;
 		document.body.innerHTML += '<div id="ssmDebug" style="z-index: 99999999; position: fixed; bottom: 0px; right: 0px; width: 100px; line-height: 30px; font-size: 12px; background: #fff; border: 1px solid #000; text-align: center;">'+ browserWidth +'px</div>';
-	
+
 		return this;
 	};
 
-	//Add a new state 
+	//Add a new state
 	ssm.addState = function(options){
 		var defaultOptions = {
 			id: makeID(),
@@ -73,7 +81,7 @@
 			if(states[i].id === stateId){
 				states.splice(i,1);
 			}
-		};
+		}
 
 		return this;
 	};
@@ -81,16 +89,17 @@
 	//Add multiple states from an array
 	ssm.addStates = function(statesArray){
 		for (var i = statesArray.length - 1; i >= 0; i--) {
-			ssm.addState(statesArray[i])
-		};
+			ssm.addState(statesArray[i]);
+		}
 
 		return this;
 	};
 
 	ssm.ready = function(){
-		var state = null;
+		var state = null,
+			totalStates = states.length;
 
-		for (var i = 0; i < states.length; i++) {
+		for (var i = 0; i < totalStates; i++) {
 			state = states[i];
 
 			if(states[i].width >= browserWidth){
@@ -98,16 +107,16 @@
 				currentState.onEnter();
 				break;
 			}
-		};
+		}
 
 		return this;
-	}
+	};
 
 	//Return an array of all the states
 	ssm.states = function(){
 
 		return states;
-	}
+	};
 
 	var makeID = function(){
 		var text = "";
@@ -117,7 +126,7 @@
 			text += possible.charAt(Math.floor(Math.random() * possible.length));
 		}
 		return text;
-	}
+	};
 
 	var getWidth = function(){
 		var x = 0;
@@ -138,15 +147,15 @@
 
 	var mergeOptions = function (obj1,obj2){
 		var obj3 = {};
-		
+
 		for (var attrname in obj1) {
 			obj3[attrname] = obj1[attrname];
 		}
-		
+
 		for (var attrname in obj2) {
-			obj3[attrname] = obj2[attrname]; 
+			obj3[attrname] = obj2[attrname];
 		}
-		
+
 		return obj3;
 	};
 
