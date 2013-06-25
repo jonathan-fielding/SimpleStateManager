@@ -32,7 +32,7 @@
 				states[i].onResize();
 				break;
 			}
-		};
+		}
 
 		if(debug){
 			document.getElementById('ssmDebug').innerHTML = browserWidth +'px';
@@ -73,7 +73,7 @@
 			if(states[i].id === stateId){
 				states.splice(i,1);
 			}
-		};
+		}
 
 		return this;
 	};
@@ -82,7 +82,7 @@
 	ssm.addStates = function(statesArray){
 		for (var i = statesArray.length - 1; i >= 0; i--) {
 			ssm.addState(statesArray[i])
-		};
+		}
 
 		return this;
 	};
@@ -99,7 +99,7 @@
 				currentState.onEnter();
 				break;
 			}
-		};
+		}
 
 		return this;
 	}
