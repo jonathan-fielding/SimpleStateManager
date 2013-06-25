@@ -81,7 +81,7 @@
 	//Add multiple states from an array
 	ssm.addStates = function(statesArray){
 		for (var i = statesArray.length - 1; i >= 0; i--) {
-			ssm.addState(statesArray[i])
+			ssm.addState(statesArray[i]);
 		}
 
 		return this;
@@ -102,13 +102,13 @@
 		}
 
 		return this;
-	}
+	};
 
 	//Return an array of all the states
 	ssm.states = function(){
 
 		return states;
-	}
+	};
 
 	var makeID = function(){
 		var text = "";
@@ -118,7 +118,7 @@
 			text += possible.charAt(Math.floor(Math.random() * possible.length));
 		}
 		return text;
-	}
+	};
 
 	var getWidth = function(){
 		var x = 0;
