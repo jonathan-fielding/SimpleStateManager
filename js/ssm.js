@@ -1,8 +1,7 @@
 ;(function (window, document, undefined ) {
 	"use strict";
 
-	var _ssm = window.ssm,
-	ssm = {},
+	var ssm = {},
 	states = [],
 	debug = false,
 	browserWidth = 0,
@@ -43,11 +42,11 @@
 	ssm.enableDebug = function(){
 		debug = true;
 		document.body.innerHTML += '<div id="ssmDebug" style="z-index: 99999999; position: fixed; bottom: 0px; right: 0px; width: 100px; line-height: 30px; font-size: 12px; background: #fff; border: 1px solid #000; text-align: center;">'+ browserWidth +'px</div>';
-	
+
 		return this;
 	};
 
-	//Add a new state 
+	//Add a new state
 	ssm.addState = function(options){
 		var defaultOptions = {
 			id: makeID(),
@@ -138,15 +137,15 @@
 
 	var mergeOptions = function (obj1,obj2){
 		var obj3 = {};
-		
+
 		for (var attrname in obj1) {
 			obj3[attrname] = obj1[attrname];
 		}
-		
+
 		for (var attrname in obj2) {
-			obj3[attrname] = obj2[attrname]; 
+			obj3[attrname] = obj2[attrname];
 		}
-		
+
 		return obj3;
 	};
 
