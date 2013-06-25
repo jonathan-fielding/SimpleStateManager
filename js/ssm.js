@@ -7,7 +7,7 @@
 	browserWidth = 0,
 	currentState = null,
 	debounceCounter = 0,
-	debounceLimit = 30,
+	debounceLimit = 10,
 	browserResize = function(){
 		var state = null,
 			totalStates;
@@ -16,6 +16,7 @@
 			return;
 		}
 
+		debounceCounter = 0;
 		totalStates = states.length;
 		browserWidth = getWidth();
 
