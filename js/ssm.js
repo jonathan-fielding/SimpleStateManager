@@ -7,11 +7,12 @@
 	browserWidth = 0,
 	currentState = null,
 	browserResize = function(){
-		var state = null;
+		var state = null,
+			totalStates = states.length;
 
 		browserWidth = getWidth();
 
-		for (var i = 0; i < states.length; i++) {
+		for (var i = 0; i < totalStates; i++) {
 			state = states[i];
 
 			if(states[i].width >= browserWidth){
@@ -87,9 +88,10 @@
 	};
 
 	ssm.ready = function(){
-		var state = null;
+		var state = null,
+			totalStates = states.length;
 
-		for (var i = 0; i < states.length; i++) {
+		for (var i = 0; i < totalStates; i++) {
 			state = states[i];
 
 			if(states[i].width >= browserWidth){
