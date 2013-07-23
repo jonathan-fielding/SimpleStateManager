@@ -168,9 +168,6 @@
 
 	browserWidth = getWidth();
 
-	//Expose Simple State Manager
-	window.ssm = ssm;
-
 	//Attach event
 	if(window.attachEvent) {
 		window.attachEvent('onresize', browserResize);
@@ -181,5 +178,15 @@
 	else {
 		//The browser does not support Javascript event binding
 	}
+
+	//Expose Simple State Manager
+	window.ssm = ssm;
+
+	if (typeof window.define === "function" && window.define.amd) {
+		window.define("ssm", [], function() {
+			return window.responsiveImage;
+		});
+	}
+
 
 })(window, document);

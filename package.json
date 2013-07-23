@@ -3,7 +3,7 @@
   "gitHead": "c554fa6b395876080136093228938a37316abf89",
   "name": "SimpleStateManager",
   "description": "SimpleStateManager ==================",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
