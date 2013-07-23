@@ -184,7 +184,7 @@
 
 	if (typeof window.define === "function" && window.define.amd) {
 		window.define("ssm", [], function() {
-			return window.responsiveImage;
+			return window.ssm;
 		});
 	}
 
