@@ -1,8 +1,10 @@
 body{
-	font-size: 62.5%;
+	font-size: 100%;
+	margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 p, li, a,pre,code, th, td{
-	font-size: 1.4em;
+	font-size: 0.9em;
 }
 li p, li a, p a, p code{
 	font-size: 1em
@@ -19,4 +21,16 @@ table{
 
 td,th{
 	border: 1px solid #000;
+}
+
+header{
+	background-color: #EF5131;
+	padding: 30px;
+	border-bottom: #EF8570 10px solid;
+	margin-bottom: 20px;
+}
+
+header h1{
+	color: #fff;
+	margin: 0px;
 }
