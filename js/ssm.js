@@ -6,17 +6,18 @@
 	debug = false,
 	browserWidth = 0,
 	currentState = null,
-	debounceCounter = 0,
-	debounceLimit = 10,
-	browserResize = function(){
+	resizeTimeout = 100,
+	resizeTimer = null;
+
+	var browserResizePre = function(){
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(browserResize, resizeTimeout);
+	};
+
+	var browserResize = function(){
 		var state = null,
 			totalStates;
 
-		if (debounceCounter++ < debounceLimit) {
-			return;
-		}
-
-		debounceCounter = 0;
 		totalStates = states.length;
 		browserWidth = getWidth();
 
@@ -95,6 +96,11 @@
 		return this;
 	};
 
+	//Change the timeout before firing the resize function
+	ssm.setResizeTimeout = function(milliSeconds){
+		resizeTimeout = milliSeconds;
+	};
+
 	ssm.ready = function(){
 		var state = null,
 			totalStates = states.length;
@@ -170,10 +176,10 @@
 
 	//Attach event
 	if(window.attachEvent) {
-		window.attachEvent('onresize', browserResize);
+		window.attachEvent('onresize', browserResizePre);
 	}
 	else if(window.addEventListener) {
-		window.addEventListener('resize', browserResize, true);
+		window.addEventListener('resize', browserResizePre, true);
 	}
 	else {
 		//The browser does not support Javascript event binding
