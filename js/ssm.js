@@ -6,7 +6,7 @@
 	debug = false,
 	browserWidth = 0,
 	currentState = null,
-	resizeTimeout = 100,
+	resizeTimeout = 50,
 	resizeTimer = null;
 
 	var browserResizePre = function(){
