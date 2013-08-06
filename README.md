@@ -123,7 +123,7 @@ browsers we will update this list
   
 ##Release Log
 
-###1.0.2 - August 7, 2013
+###1.0.2 - August 6, 2013
 * AMD Support
 * Replaced Debounce with timeout
 * New Site
