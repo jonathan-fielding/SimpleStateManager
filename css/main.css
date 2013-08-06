@@ -45,16 +45,8 @@ table{
 }
 
 td,th{
-	border: 0px solid #000;
+	border: 1px solid #f8c2b7;
     padding: 5px;
-}
-
-tr td, tr th{
-    border-right: 1px solid #f8c2b7;
-}
-
-tr td:first-child, tr th:first-child{
-    border-left: 1px solid #f8c2b7;
 }
 
 tr:nth-child(even){
