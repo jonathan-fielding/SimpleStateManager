@@ -1,9 +1,16 @@
 # Simple State Manager
 
-Simple State Manager (SSM for short) is a responsive state manager which
-allows you to target javascript at different browser widths.
+Simple State Manager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, has no dependencies (except javascript of course) and aims to be really easy to simply drop into your project ready to use.
 
-## Add States
+As a state manager, SSM allows you to target different javascript towards different states of your site. It allows you to define as many states as your site requires and allows you to have independent Enter, Leave and Resize events for each of the states.
+
+##Getting started
+
+To get started with SSM the first step is to include it in your project, you can do this in two ways
+
+* Download and add the ssm.js (or ssm.min.js) file to your site
+
+### Add States
 
 With Simple State Manager you can add multiple states based on your needs, the
 most simple way to add a state is to simply pass the information about your
@@ -31,7 +38,7 @@ can use ssm.addStates to which you should pass an array of states.
     ]);
     
 
-## Remove States
+### Remove States
 
 Sometimes it may be necessary to remove a state, if we have the **id** for the
 state we can easily remove the state, to remove the mobile state from our
@@ -42,7 +49,7 @@ above example we simply use:
     ssm.removeState('mobile');
     
 
-## Ready
+### Ready
 
 Once you have finished setting up your states you should run `ssm.ready()`
 which will setup the states.
@@ -64,7 +71,7 @@ adding `.ready()` onto your original command
     ]).ready();
     
 
-## Debug Mode
+### Debug Mode
 
 To enable the debug mode you simply need to run `ssm.enableDebug()`, this will
 add a width meter to the bottom right corner of the viewport area.
@@ -74,7 +81,7 @@ add a width meter to the bottom right corner of the viewport area.
     ssm.enableDebug();
     
 
-## Full API
+### Full API
 
 Method Description
 
@@ -110,12 +117,25 @@ browsers we will update this list
 
   * Chrome
   * Firefox
-  * Internet Explorer 8+ (6 & 7 are untested)
+  * Internet Explorer 7+ (IE6 untested)
   * Safari
   * Opera
+  
+##Release Log
+
+###1.0.2 - August 7, 2013
+* AMD Support
+* Replaced Debounce with timeout
+* New Site
+
+###1.0.1 - Jun 24, 2013
+* Added Debounce to SSM (Thanks Kevin)
+
+###1.0.0 - Jun 22, 2013
+* Initial release
 
 ## Planned Features
 
-Enable multiple methods to be attached to each state
+* Enable multiple methods to be attached to each state
 
-Allow overlapping states so that JS can span multiple states
+* Allow overlapping states so that JS can span multiple states
