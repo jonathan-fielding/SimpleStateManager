@@ -1,10 +1,8 @@
 {
-    "readmeFilename": "README.md",
-    "gitHead": "c554fa6b395876080136093228938a37316abf89",
     "name": "SimpleStateManager",
     "description": "SimpleStateManager ==================",
     "version": "1.0.2",
-    "main": "Gruntfile.js",
+    "main": "js/ssm.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -18,6 +16,10 @@
         "Resize"
     ],
     "author": "Jonathan Fielding",
+    "contributors": {
+        "name": "Iszak Bryan",
+        "url": "http://iszak.net/"
+    },
     "license": "BSD",
     "devDependencies": {
         "grunt": "~0.4.1",
