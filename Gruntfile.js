@@ -15,7 +15,7 @@ module.exports = function (grunt) {
 
         watch: {
             build: {
-                files: ['js/ssm.js'],
+                files: ['src/ssm.js'],
                 tasks: ['uglify']
             }
         }
