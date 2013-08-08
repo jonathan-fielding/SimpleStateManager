@@ -1,26 +1,26 @@
 {
-  "readmeFilename": "README.md",
-  "gitHead": "c554fa6b395876080136093228938a37316abf89",
-  "name": "SimpleStateManager",
-  "description": "SimpleStateManager ==================",
-  "version": "1.0.2",
-  "main": "Gruntfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://jonathan-fielding@github.com/jonathan-fielding/SimpleStateManager.git"
-  },
-  "keywords": [
-    "Responsive",
-    "State",
-    "Resize"
-  ],
-  "author": "Jonathan Fielding",
-  "license": "BSD",
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.2"
-  }
+    "readmeFilename": "README.md",
+    "gitHead": "c554fa6b395876080136093228938a37316abf89",
+    "name": "SimpleStateManager",
+    "description": "SimpleStateManager ==================",
+    "version": "1.0.2",
+    "main": "Gruntfile.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://jonathan-fielding@github.com/jonathan-fielding/SimpleStateManager.git"
+    },
+    "keywords": [
+        "Responsive",
+        "State",
+        "Resize"
+    ],
+    "author": "Jonathan Fielding",
+    "license": "BSD",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-uglify": "~0.2.2"
+    }
 }
