@@ -39,19 +39,19 @@
                     <p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. It is important to remember that the <strong>width</strong> you provide is the upper limit of your responsive state width, the lower limit is defined simply by defining another state with a <strong>width</strong> which is lower.</p>
 
                     <pre>
-                    ssm.addState({id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}});
-                    ssm.addState({width: 1023, onEnter: function(){console.log('enter tablet')}});
-                    ssm.addState({width: 9999, onEnter: function(){console.log('enter desktop')}});
+ssm.addState({id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}});
+ssm.addState({width: 1023, onEnter: function(){console.log('enter tablet')}});
+ssm.addState({width: 9999, onEnter: function(){console.log('enter desktop')}});
                     </pre>
 
                     <p>If you wish to use one command to add multiple states using one command you can use ssm.addStates to which you should pass an array of states.</p>
 
                     <pre>
-                    ssm.addStates([
-                        {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
-                        {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
-                        {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
-                    ]);
+ssm.addStates([
+    {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
+    {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
+    {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
+]);
                     </pre>
 
                     <h3>Remove States</h3>
@@ -59,7 +59,7 @@
                     <p>Sometimes it may be necessary to remove a state, if we have the <strong>id</strong> for the state we can easily remove the state, to remove the mobile state from our above example we simply use:</p>
 
                     <pre>
-                    ssm.removeState('mobile');
+ssm.removeState('mobile');
                     </pre>
 
                     <h3>Ready</h3>
@@ -67,17 +67,17 @@
                     <p>Once you have finished setting up your states you should run <code>ssm.ready()</code> which will setup the states.</p>
 
                     <pre>
-                    ssm.ready()
+ssm.ready()
                     </pre>
 
                     <p>As SSM is chaninable you can even fire the <code>ssm.ready()</code> method by simply adding <code>.ready()</code> onto your original command</p>
 
                     <pre>
-                    ssm.addStates([
-                        {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
-                        {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
-                        {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
-                    ]).ready();
+ssm.addStates([
+    {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
+    {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
+    {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
+]).ready();
                     </pre>
 
 
@@ -86,7 +86,7 @@
                     <p>To enable the debug mode you simply need to run <code>ssm.enableDebug()</code>, this will add a width meter to the bottom right corner of the viewport area.</p>
 
                     <pre>
-                    ssm.enableDebug();
+ssm.enableDebug();
                     </pre>
 
                     <h3>Full API</h3>
@@ -175,7 +175,7 @@
                 </div>
             </footer>
 
-        <script src="dist/ssm.js"></script>
+        <script src="dist/ssm.min.js"></script>
         <script src="docs/js/script.js"></script>
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
