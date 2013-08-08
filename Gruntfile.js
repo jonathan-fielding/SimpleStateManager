@@ -1,23 +1,31 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+    // Project configuration.
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
 
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      build: {
-        src: 'js/ssm.js',
-        dest: 'js/ssm.min.js'
-      }
-    }
-  });
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build: {
+                src: 'src/ssm.js',
+                dest: 'dist/ssm.min.js'
+            }
+        },
 
-  // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+        watch: {
+            build: {
+                files: ['src/ssm.js'],
+                tasks: ['uglify']
+            }
+        }
+    });
 
-  // Default task(s).
-  grunt.registerTask('default', ['uglify']);
 
+    // Required task(s)
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
+    // Default task(s)
+    grunt.registerTask('default', ['uglify']);
 };
