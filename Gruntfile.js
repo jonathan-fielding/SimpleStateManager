@@ -13,6 +13,10 @@ module.exports = function (grunt) {
             }
         },
 
+        qunit: {
+            all: ['test/**/*.html']
+        },
+
         watch: {
             build: {
                 files: ['src/ssm.js'],
@@ -24,6 +28,7 @@ module.exports = function (grunt) {
 
     // Required task(s)
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task(s)
