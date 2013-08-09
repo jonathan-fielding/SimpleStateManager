@@ -86,6 +86,13 @@
         return this;
     };
 
+        //Find and remove the state from the array
+    ssm.removeAllStates = function (stateId) {
+        states = [];
+
+        return this;
+    };
+
     //Add multiple states from an array
     ssm.addStates = function (statesArray) {
         for (var i = statesArray.length - 1; i >= 0; i--) {

@@ -109,6 +109,10 @@ ssm.enableDebug();
                             <td>Remove a state, expects one property, the id of the state to be removed.</td>
                         </tr>
                         <tr>
+                            <td>ssm.removeAllStates</td>
+                            <td>Clears all states from SSM</td>
+                        </tr>
+                        <tr>
                             <td>ssm.ready</td>
                             <td>Tells the page that states have been added and we can fire the onEnter event for the current state.</td>
                         </tr>
@@ -129,6 +133,12 @@ ssm.enableDebug();
                     </ul>
 
                     <h2>Release Log</h2>
+                    <small>SimpleStateManager follows <a href="http://semver.org/">Semantic Versioning 2.0.0</a></small>
+
+                    <h3>1.1.0 - August 9, 2013</h3>
+                    <ul>
+                        <li>Added .removeAllStates method</li>
+                    </ul>
                     <h3>1.0.2 - August 6, 2013</h3>
                     <ul>
                         <li>AMD Support</li>
