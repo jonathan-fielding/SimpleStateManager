@@ -86,6 +86,15 @@
         return this;
     };
 
+    //Remove multiple states from an array
+    ssm.removeStates = function (statesArray) {
+        for (var i = statesArray.length - 1; i >= 0; i--) {
+            ssm.removeState(statesArray[i]);
+        }
+
+        return this;
+    };
+
         //Find and remove the state from the array
     ssm.removeAllStates = function (stateId) {
         states = [];

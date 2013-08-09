@@ -85,6 +85,13 @@ above example we simply use:
     ssm.removeState('mobile');
 
 
+
+Or if you want to remove multiple at the same time
+
+    ssm.removeStates(['tablet', 'mobile']);
+
+
+
 ### Ready
 
 Once you have finished setting up your states you should run `ssm.ready()`

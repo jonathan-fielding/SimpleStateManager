@@ -62,6 +62,12 @@ ssm.addStates([
 ssm.removeState('mobile');
                     </pre>
 
+                    <p>Or if you want to remove multiple at the same time</p>
+
+                    <pre>
+ssm.removeStates(['tablet', 'mobile']);
+                    </pre>
+
                     <h3>Ready</h3>
 
                     <p>Once you have finished setting up your states you should run <code>ssm.ready()</code> which will setup the states.</p>
@@ -107,6 +113,10 @@ ssm.enableDebug();
                         <tr>
                             <td>ssm.removeState</td>
                             <td>Remove a state, expects one property, the id of the state to be removed.</td>
+                        </tr>
+                        <tr>
+                            <td>ssm.removeStates</td>
+                            <td>Remove multiple states, expects an array of strings</td>
                         </tr>
                         <tr>
                             <td>ssm.removeAllStates</td>
