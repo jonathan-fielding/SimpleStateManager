@@ -102,6 +102,10 @@
         return this;
     };
 
+    ssm.getState = function(){
+        return currentState;
+    };
+
     //Change the timeout before firing the resize function
     ssm.setResizeTimeout = function (milliSeconds) {
         resizeTimeout = milliSeconds;
