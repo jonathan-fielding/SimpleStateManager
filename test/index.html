@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>QUnit Example</title>
+        <link rel="stylesheet" href="resources/qunit.css">
+    </head>
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+
+        <script src="resources/qunit.js"></script>
+        <script src="../src/ssm.js"></script>
+        <script>
+            test("add state", function() {
+                var id = 'test',
+                    width = 100,
+                    onEnter = function() {},
+                    onLeave = function() {},
+                    onResize = function() {};
+
+                ssm.addState({
+                    id: id,
+                    width: width,
+                    onEnter: onEnter,
+                    onLeave: onLeave,
+                    onResize: onResize
+                });
+
+
+                var state = ssm.states().shift();
+
+                ok(state.id === id, "Passed");
+                ok(state.width === width, "Passed");
+                ok(state.onEnter === onEnter, "Passed");
+                ok(state.onResize === onResize, "Passed");
+
+                ssm.removeAllStates();
+            });
+
+
+
+            test("remove state", function() {
+                ssm.addState({
+                    id: 'desktop'
+                });
+
+                ssm.removeState('desktop');
+
+                ok(ssm.states().length === 0, "Passed");
+
+                ssm.removeAllStates();
+            });
+
+
+
+            test("get states", function() {
+                ssm.addStates([
+                    {
+                        id: 'desktop'
+                    }, {
+                        id: 'tablet'
+                    }, {
+                        id: 'mobile'
+                    }
+                ]);
+
+                ok(ssm.states().length === 3, "Passed");
+
+                ssm.removeAllStates();
+            });
+
+
+
+            test("remove all states", function() {
+                ssm.addStates([
+                    {
+                        id: 'desktop'
+                    }, {
+                        id: 'tablet'
+                    }
+                ]);
+
+                ok(ssm.states().length === 2, "Passed");
+
+                ssm.removeAllStates();
+
+                ok(ssm.states().length === 0, "Passed");
+            });
+        </script>
+    </body>
+</html>
