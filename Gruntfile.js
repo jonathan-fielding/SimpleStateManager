@@ -5,12 +5,16 @@ module.exports = function (grunt) {
 
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                banner: '/*! <%= pkg.name %> | license: MIT | version: <%= pkg.version %> | build date: <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
                 src: 'src/ssm.js',
                 dest: 'dist/ssm.min.js'
             }
+        },
+
+        qunit: {
+            all: ['test/**/*.html']
         },
 
         watch: {
@@ -24,8 +28,12 @@ module.exports = function (grunt) {
 
     // Required task(s)
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task(s)
     grunt.registerTask('default', ['uglify']);
+
+    // Travis CI tests
+    grunt.registerTask('travis', ['qunit']);
 };
