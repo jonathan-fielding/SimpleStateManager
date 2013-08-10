@@ -20,7 +20,7 @@
         "name": "Iszak Bryan",
         "url": "http://iszak.net/"
     },
-    "license": "BSD",
+    "license": "MIT",
     "devDependencies": {
         "grunt": "~0.4.1",
         "grunt-contrib-qunit": "~0.2.2",

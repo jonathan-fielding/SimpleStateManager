@@ -200,3 +200,7 @@ browsers we will update this list
 * Enable multiple methods to be attached to each state
 
 * Allow overlapping states so that JS can span multiple states
+
+## License
+
+License: MIT (http://www.opensource.org/licenses/mit-license.php)
