@@ -123,6 +123,9 @@ ssm.enableDebug();
                             <td>Clears all states from SSM</td>
                         </tr>
                         <tr>
+                            <td>ssm.getState</td>
+                            <td>Gets the current state</td>
+                        <tr>
                             <td>ssm.ready</td>
                             <td>Tells the page that states have been added and we can fire the onEnter event for the current state.</td>
                         </tr>
@@ -145,6 +148,18 @@ ssm.enableDebug();
                     <h2>Release Log</h2>
                     <small>SimpleStateManager follows <a href="http://semver.org/">Semantic Versioning 2.0.0</a></small>
 
+                    <h3>1.3.0 - August 10, 2013</h3>
+                    <ul>
+                        <li>Added .removeStates method</li>
+                        <li>Added unit tests using QUnit</li>
+                        <li>Integrated Travis CI</li>
+                    </ul>
+
+                    <h3>1.2.0 - August 9, 2013</h3>
+                    <ul>
+                        <li>Added .getState method</li>
+                    </ul>
+
                     <h3>1.1.0 - August 9, 2013</h3>
                     <ul>
                         <li>Added .removeAllStates method</li>
@@ -157,7 +172,7 @@ ssm.enableDebug();
                     </ul>
                     <h3>1.0.1 - Jun 24, 2013</h3>
                     <ul>
-                        <li>Added Debounce to SSM (Thanks <a href="http://www.kevinsweeney.info/">Kevin</a>)</li>
+                        <li>Added Debounce</li>
                     </ul>
                     <h3>1.0.0 - Jun 22, 2013</h3>
                     <ul>

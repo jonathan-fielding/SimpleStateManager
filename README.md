@@ -1,5 +1,7 @@
 # Simple State Manager
 
+[![Build Status](https://travis-ci.org/jonathan-fielding/SimpleStateManager.png?branch=master)](https://travis-ci.org/jonathan-fielding/SimpleStateManager)
+
 Simple State Manager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, has no dependencies (except javascript of course) and aims to be really easy to simply drop into your project ready to use.
 
 As a state manager, SSM allows you to target different javascript towards different states of your site. It allows you to define as many states as your site requires and allows you to have independent Enter, Leave and Resize events for each of the states.
@@ -183,6 +185,17 @@ browsers we will update this list
   * Opera
 
 ##Release Log
+
+###1.3.0 - August 10, 2013
+* Added .removeStates method
+* Added unit tests using QUnit
+* Integrated Travis CI
+
+###1.2.0 - August 9, 2013
+* Added .getState method
+
+###.1.0 - August 9, 2013
+* Added .removeAllStates method
 
 ###1.0.2 - August 6, 2013
 * AMD Support

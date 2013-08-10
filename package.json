@@ -1,7 +1,7 @@
 {
     "name": "SimpleStateManager",
     "description": "SimpleStateManager ==================",
-    "version": "1.0.2",
+    "version": "1.3.0",
     "main": "src/ssm.js",
     "scripts": {
         "test": "grunt travis --verbose"
