@@ -87,6 +87,18 @@
 
                 ok(ssm.states().length === 0, "Passed");
             });
+
+
+
+            test("enable debug", function() {
+                ssm.enableDebug();
+
+                ok(ssm.getDebug(), "Passed");
+
+                ssm.disableDebug();
+
+                ok(ssm.getDebug() === false, "Passed");
+            });
         </script>
     </body>
 </html>

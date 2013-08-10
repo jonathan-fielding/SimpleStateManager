@@ -43,15 +43,24 @@
         }
 
         if (debug) {
-            document.getElementById('ssmDebug').innerHTML = browserWidth + 'px';
+           console.log(browserWidth);
         }
     };
 
     //Enable a debug mode
     ssm.enableDebug = function () {
         debug = true;
-        document.body.innerHTML += '<div id="ssmDebug" style="z-index: 99999999; position: fixed; bottom: 0px; right: 0px; width: 100px; line-height: 30px; font-size: 12px; background: #fff; border: 1px solid #000; text-align: center;">' + browserWidth + 'px</div>';
+        return this;
+    };
 
+    //Get the debug value
+    ssm.getDebug = function () {
+        return debug;
+    };
+
+    //Disable a debug mode
+    ssm.disableDebug = function () {
+        debug = false;    
         return this;
     };
 
@@ -111,7 +120,9 @@
         return this;
     };
 
-    ssm.getState = function(){
+    ssm.getState = function(id){
+
+
         return currentState;
     };
 
@@ -139,7 +150,6 @@
 
     //Return an array of all the states
     ssm.states = function () {
-
         return states;
     };
 
@@ -209,6 +219,5 @@
             return window.ssm;
         });
     }
-
 
 })(window, document);
