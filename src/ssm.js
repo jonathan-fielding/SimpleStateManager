@@ -121,9 +121,12 @@
     };
 
     ssm.getState = function(id){
-
-
-        return currentState;
+        if(typeof(id) === "undefined"){
+            return currentState;
+        }
+        else{
+            return getStateByID(id);
+        }
     };
 
     //Change the timeout before firing the resize function
@@ -198,6 +201,15 @@
             var y = b[key];
             return ((x < y) ? -1 : ((x > y) ? 1 : 0));
         });
+    };
+
+    //Method to get a state based on the ID
+    var getStateByID = function(id){
+        for (var i = states.length - 1; i >= 0; i--) {
+            if(states[i].id === id){
+                return states[i];
+            }
+        };
     };
 
     browserWidth = getWidth();
