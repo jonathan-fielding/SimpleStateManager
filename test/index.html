@@ -28,7 +28,7 @@
                 });
 
 
-                var state = ssm.states().shift();
+                var state = ssm.getStates().shift();
 
                 ok(state.id === id, "Passed");
                 ok(state.width === width, "Passed");
@@ -47,7 +47,7 @@
 
                 ssm.removeState('desktop');
 
-                ok(ssm.states().length === 0, "Passed");
+                ok(ssm.getStates().length === 0, "Passed");
 
                 ssm.removeAllStates();
             });
@@ -65,7 +65,7 @@
                     }
                 ]);
 
-                ok(ssm.states().length === 3, "Passed");
+                ok(ssm.getStates().length === 3, "Passed");
 
                 ssm.removeAllStates();
             });
@@ -81,11 +81,11 @@
                     }
                 ]);
 
-                ok(ssm.states().length === 2, "Passed");
+                ok(ssm.getStates().length === 2, "Passed");
 
                 ssm.removeAllStates();
 
-                ok(ssm.states().length === 0, "Passed");
+                ok(ssm.getStates().length === 0, "Passed");
             });
 
 

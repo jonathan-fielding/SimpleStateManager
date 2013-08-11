@@ -157,7 +157,7 @@
     };
 
     //Return an array of all the states
-    ssm.states = function () {
+    ssm.getStates = function () {
         return states;
     };
 
