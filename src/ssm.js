@@ -134,6 +134,11 @@
         resizeTimeout = milliSeconds;
     };
 
+    //Change the timeout before firing the resize function
+    ssm.getResizeTimeout = function () {
+        return resizeTimeout;
+    };
+
     ssm.ready = function () {
         var state = null,
             totalStates = states.length;

@@ -89,6 +89,12 @@
             });
 
 
+            test("Set Resize Timeout", function() {
+                ssm.setResizeTimeout(100);
+
+                ok(ssm.getResizeTimeout() === 100, "Passed");
+            });
+
 
             test("enable debug", function() {
                 ssm.enableDebug();
