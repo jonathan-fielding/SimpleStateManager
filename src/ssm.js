@@ -156,13 +156,19 @@
 
     var getWidth = function () {
         var x = 0;
-        if (self.innerHeight) {
-            x = self.innerWidth;
-        } else if (document.documentElement && document.documentElement.clientHeight) {
-            x = document.documentElement.clientWidth;
-        } else if (document.body) {
+        if (typeof(document.body.clientWidth) == 'number') {
+            // newest gen browsers
             x = document.body.clientWidth;
         }
+        else if( typeof( window.innerWidth ) == 'number' ) {
+            //Non-IE
+            x = window.innerWidth;
+        }
+        else if( document.documentElement && document.documentElement.clientWidth ) {
+            //IE 6+ in 'standards compliant mode'
+            x = document.documentElement.clientWidth;
+        }
+
         return x;
     };
 
