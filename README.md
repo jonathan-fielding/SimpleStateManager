@@ -186,6 +186,9 @@ browsers we will update this list
 
 ##Release Log
 
+###1.3.1 - August 12, 2013
+* Fixed browser width calculation bug in Firefox
+
 ###1.3.0 - August 10, 2013
 * Added .removeStates method
 * Added unit tests using QUnit
