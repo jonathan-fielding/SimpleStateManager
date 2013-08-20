@@ -6802,3 +6802,1530 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+/*
+ * Bootstrap Responsive v2.3.2
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+@-ms-viewport {
+  width: device-width;
+}
+
+/* line 15, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+/* line 23, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.visible-phone {
+  display: none !important;
+}
+
+/* line 24, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.visible-tablet {
+  display: none !important;
+}
+
+/* line 27, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.hidden-desktop {
+  display: none !important;
+}
+
+/* line 28, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.visible-desktop {
+  display: inherit !important;
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  /* line 33, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .hidden-desktop {
+    display: inherit !important;
+  }
+
+  /* line 34, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .visible-desktop {
+    display: none !important;
+  }
+
+  /* line 36, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .visible-tablet {
+    display: inherit !important;
+  }
+
+  /* line 38, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .hidden-tablet {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
+  /* line 44, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .hidden-desktop {
+    display: inherit !important;
+  }
+
+  /* line 45, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .visible-desktop {
+    display: none !important;
+  }
+
+  /* line 47, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .visible-phone {
+    display: inherit !important;
+  }
+
+  /* line 49, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .hidden-phone {
+    display: none !important;
+  }
+}
+/* line 53, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.visible-print {
+  display: none !important;
+}
+
+@media print {
+  /* line 57, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .visible-print {
+    display: inherit !important;
+  }
+
+  /* line 58, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+  .hidden-print {
+    display: none !important;
+  }
+}
+/* line 62, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.clearfix {
+  *zoom: 1;
+}
+/* line 15, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+.clearfix:before, .clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+/* line 22, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 67, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+/* line 72, ../bower_components/sass-bootstrap/lib/_responsive-utilities.scss */
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1200px) {
+  /* line 567, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row {
+    margin-left: -30px;
+    *zoom: 1;
+  }
+  /* line 15, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row:before, .row:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  /* line 22, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row:after {
+    clear: both;
+  }
+
+  /* line 572, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  [class*="span"] {
+    float: left;
+    min-height: 1px;
+    margin-left: 30px;
+  }
+
+  /* line 582, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .container,
+  .navbar-static-top .container,
+  .navbar-fixed-top .container,
+  .navbar-fixed-bottom .container {
+    width: 1170px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span1 {
+    width: 70px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span2 {
+    width: 170px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span3 {
+    width: 270px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span4 {
+    width: 370px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span5 {
+    width: 470px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span6 {
+    width: 570px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span7 {
+    width: 670px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span8 {
+    width: 770px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span9 {
+    width: 870px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span10 {
+    width: 970px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span11 {
+    width: 1070px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span12 {
+    width: 1170px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset1 {
+    margin-left: 130px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset2 {
+    margin-left: 230px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset3 {
+    margin-left: 330px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset4 {
+    margin-left: 430px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset5 {
+    margin-left: 530px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset6 {
+    margin-left: 630px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset7 {
+    margin-left: 730px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset8 {
+    margin-left: 830px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset9 {
+    margin-left: 930px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset10 {
+    margin-left: 1030px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset11 {
+    margin-left: 1130px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset12 {
+    margin-left: 1230px;
+  }
+
+  /* line 614, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid {
+    width: 100%;
+    *zoom: 1;
+  }
+  /* line 15, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid:before, .row-fluid:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  /* line 22, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid:after {
+    clear: both;
+  }
+  /* line 617, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid [class*="span"] {
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    margin-left: 2.5641%;
+    *margin-left: 2.51091%;
+  }
+  /* line 623, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid [class*="span"]:first-child {
+    margin-left: 0;
+  }
+  /* line 628, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .controls-row [class*="span"] + [class*="span"] {
+    margin-left: 2.5641%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span1 {
+    width: 5.98291%;
+    *width: 5.92971%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span2 {
+    width: 14.52991%;
+    *width: 14.47672%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span3 {
+    width: 23.07692%;
+    *width: 23.02373%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span4 {
+    width: 31.62393%;
+    *width: 31.57074%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span5 {
+    width: 40.17094%;
+    *width: 40.11775%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span6 {
+    width: 48.71795%;
+    *width: 48.66476%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span7 {
+    width: 57.26496%;
+    *width: 57.21177%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span8 {
+    width: 65.81197%;
+    *width: 65.75877%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span9 {
+    width: 74.35897%;
+    *width: 74.30578%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span10 {
+    width: 82.90598%;
+    *width: 82.85279%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span11 {
+    width: 91.45299%;
+    *width: 91.3998%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span12 {
+    width: 100%;
+    *width: 99.94681%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset1 {
+    margin-left: 11.11111%;
+    *margin-left: 11.00473%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset1:first-child {
+    margin-left: 8.54701%;
+    *margin-left: 8.44063%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset2 {
+    margin-left: 19.65812%;
+    *margin-left: 19.55174%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset2:first-child {
+    margin-left: 17.09402%;
+    *margin-left: 16.98763%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset3 {
+    margin-left: 28.20513%;
+    *margin-left: 28.09875%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset3:first-child {
+    margin-left: 25.64103%;
+    *margin-left: 25.53464%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset4 {
+    margin-left: 36.75214%;
+    *margin-left: 36.64575%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset4:first-child {
+    margin-left: 34.18803%;
+    *margin-left: 34.08165%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset5 {
+    margin-left: 45.29915%;
+    *margin-left: 45.19276%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset5:first-child {
+    margin-left: 42.73504%;
+    *margin-left: 42.62866%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset6 {
+    margin-left: 53.84615%;
+    *margin-left: 53.73977%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset6:first-child {
+    margin-left: 51.28205%;
+    *margin-left: 51.17567%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset7 {
+    margin-left: 62.39316%;
+    *margin-left: 62.28678%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset7:first-child {
+    margin-left: 59.82906%;
+    *margin-left: 59.72268%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset8 {
+    margin-left: 70.94017%;
+    *margin-left: 70.83379%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset8:first-child {
+    margin-left: 68.37607%;
+    *margin-left: 68.26969%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset9 {
+    margin-left: 79.48718%;
+    *margin-left: 79.3808%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset9:first-child {
+    margin-left: 76.92308%;
+    *margin-left: 76.81669%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset10 {
+    margin-left: 88.03419%;
+    *margin-left: 87.92781%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset10:first-child {
+    margin-left: 85.47009%;
+    *margin-left: 85.3637%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset11 {
+    margin-left: 96.5812%;
+    *margin-left: 96.47481%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset11:first-child {
+    margin-left: 94.01709%;
+    *margin-left: 93.91071%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset12 {
+    margin-left: 105.12821%;
+    *margin-left: 105.02182%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset12:first-child {
+    margin-left: 102.5641%;
+    *margin-left: 102.45772%;
+  }
+
+  /* line 671, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input,
+  textarea,
+  .uneditable-input {
+    margin-left: 0;
+  }
+
+  /* line 676, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .controls-row [class*="span"] + [class*="span"] {
+    margin-left: 30px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span1,
+  textarea.span1,
+  .uneditable-input.span1 {
+    width: 56px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span2,
+  textarea.span2,
+  .uneditable-input.span2 {
+    width: 156px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span3,
+  textarea.span3,
+  .uneditable-input.span3 {
+    width: 256px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span4,
+  textarea.span4,
+  .uneditable-input.span4 {
+    width: 356px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span5,
+  textarea.span5,
+  .uneditable-input.span5 {
+    width: 456px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span6,
+  textarea.span6,
+  .uneditable-input.span6 {
+    width: 556px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span7,
+  textarea.span7,
+  .uneditable-input.span7 {
+    width: 656px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span8,
+  textarea.span8,
+  .uneditable-input.span8 {
+    width: 756px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span9,
+  textarea.span9,
+  .uneditable-input.span9 {
+    width: 856px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span10,
+  textarea.span10,
+  .uneditable-input.span10 {
+    width: 956px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span11,
+  textarea.span11,
+  .uneditable-input.span11 {
+    width: 1056px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span12,
+  textarea.span12,
+  .uneditable-input.span12 {
+    width: 1156px;
+  }
+
+  /* line 18, ../bower_components/sass-bootstrap/lib/_responsive-1200px-min.scss */
+  .thumbnails {
+    margin-left: -30px;
+  }
+
+  /* line 21, ../bower_components/sass-bootstrap/lib/_responsive-1200px-min.scss */
+  .thumbnails > li {
+    margin-left: 30px;
+  }
+
+  /* line 24, ../bower_components/sass-bootstrap/lib/_responsive-1200px-min.scss */
+  .row-fluid .thumbnails {
+    margin-left: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  /* line 567, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row {
+    margin-left: -20px;
+    *zoom: 1;
+  }
+  /* line 15, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row:before, .row:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  /* line 22, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row:after {
+    clear: both;
+  }
+
+  /* line 572, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  [class*="span"] {
+    float: left;
+    min-height: 1px;
+    margin-left: 20px;
+  }
+
+  /* line 582, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .container,
+  .navbar-static-top .container,
+  .navbar-fixed-top .container,
+  .navbar-fixed-bottom .container {
+    width: 724px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span1 {
+    width: 42px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span2 {
+    width: 104px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span3 {
+    width: 166px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span4 {
+    width: 228px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span5 {
+    width: 290px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span6 {
+    width: 352px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span7 {
+    width: 414px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span8 {
+    width: 476px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span9 {
+    width: 538px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span10 {
+    width: 600px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span11 {
+    width: 662px;
+  }
+
+  /* line 593, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .span12 {
+    width: 724px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset1 {
+    margin-left: 82px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset2 {
+    margin-left: 144px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset3 {
+    margin-left: 206px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset4 {
+    margin-left: 268px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset5 {
+    margin-left: 330px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset6 {
+    margin-left: 392px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset7 {
+    margin-left: 454px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset8 {
+    margin-left: 516px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset9 {
+    margin-left: 578px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset10 {
+    margin-left: 640px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset11 {
+    margin-left: 702px;
+  }
+
+  /* line 599, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .offset12 {
+    margin-left: 764px;
+  }
+
+  /* line 614, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid {
+    width: 100%;
+    *zoom: 1;
+  }
+  /* line 15, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid:before, .row-fluid:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  /* line 22, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid:after {
+    clear: both;
+  }
+  /* line 617, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid [class*="span"] {
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    margin-left: 2.76243%;
+    *margin-left: 2.70924%;
+  }
+  /* line 623, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid [class*="span"]:first-child {
+    margin-left: 0;
+  }
+  /* line 628, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .controls-row [class*="span"] + [class*="span"] {
+    margin-left: 2.76243%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span1 {
+    width: 5.8011%;
+    *width: 5.74791%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span2 {
+    width: 14.36464%;
+    *width: 14.31145%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span3 {
+    width: 22.92818%;
+    *width: 22.87499%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span4 {
+    width: 31.49171%;
+    *width: 31.43852%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span5 {
+    width: 40.05525%;
+    *width: 40.00206%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span6 {
+    width: 48.61878%;
+    *width: 48.56559%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span7 {
+    width: 57.18232%;
+    *width: 57.12913%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span8 {
+    width: 65.74586%;
+    *width: 65.69266%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span9 {
+    width: 74.30939%;
+    *width: 74.2562%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span10 {
+    width: 82.87293%;
+    *width: 82.81974%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span11 {
+    width: 91.43646%;
+    *width: 91.38327%;
+  }
+  /* line 640, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .span12 {
+    width: 100%;
+    *width: 99.94681%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset1 {
+    margin-left: 11.32597%;
+    *margin-left: 11.21958%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset1:first-child {
+    margin-left: 8.56354%;
+    *margin-left: 8.45715%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset2 {
+    margin-left: 19.8895%;
+    *margin-left: 19.78312%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset2:first-child {
+    margin-left: 17.12707%;
+    *margin-left: 17.02069%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset3 {
+    margin-left: 28.45304%;
+    *margin-left: 28.34666%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset3:first-child {
+    margin-left: 25.69061%;
+    *margin-left: 25.58422%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset4 {
+    margin-left: 37.01657%;
+    *margin-left: 36.91019%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset4:first-child {
+    margin-left: 34.25414%;
+    *margin-left: 34.14776%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset5 {
+    margin-left: 45.58011%;
+    *margin-left: 45.47373%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset5:first-child {
+    margin-left: 42.81768%;
+    *margin-left: 42.7113%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset6 {
+    margin-left: 54.14365%;
+    *margin-left: 54.03726%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset6:first-child {
+    margin-left: 51.38122%;
+    *margin-left: 51.27483%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset7 {
+    margin-left: 62.70718%;
+    *margin-left: 62.6008%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset7:first-child {
+    margin-left: 59.94475%;
+    *margin-left: 59.83837%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset8 {
+    margin-left: 71.27072%;
+    *margin-left: 71.16434%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset8:first-child {
+    margin-left: 68.50829%;
+    *margin-left: 68.4019%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset9 {
+    margin-left: 79.83425%;
+    *margin-left: 79.72787%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset9:first-child {
+    margin-left: 77.07182%;
+    *margin-left: 76.96544%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset10 {
+    margin-left: 88.39779%;
+    *margin-left: 88.29141%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset10:first-child {
+    margin-left: 85.63536%;
+    *margin-left: 85.52898%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset11 {
+    margin-left: 96.96133%;
+    *margin-left: 96.85494%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset11:first-child {
+    margin-left: 94.1989%;
+    *margin-left: 94.09251%;
+  }
+  /* line 646, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset12 {
+    margin-left: 105.52486%;
+    *margin-left: 105.41848%;
+  }
+  /* line 647, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .row-fluid .offset12:first-child {
+    margin-left: 102.76243%;
+    *margin-left: 102.65605%;
+  }
+
+  /* line 671, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input,
+  textarea,
+  .uneditable-input {
+    margin-left: 0;
+  }
+
+  /* line 676, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  .controls-row [class*="span"] + [class*="span"] {
+    margin-left: 20px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span1,
+  textarea.span1,
+  .uneditable-input.span1 {
+    width: 28px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span2,
+  textarea.span2,
+  .uneditable-input.span2 {
+    width: 90px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span3,
+  textarea.span3,
+  .uneditable-input.span3 {
+    width: 152px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span4,
+  textarea.span4,
+  .uneditable-input.span4 {
+    width: 214px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span5,
+  textarea.span5,
+  .uneditable-input.span5 {
+    width: 276px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span6,
+  textarea.span6,
+  .uneditable-input.span6 {
+    width: 338px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span7,
+  textarea.span7,
+  .uneditable-input.span7 {
+    width: 400px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span8,
+  textarea.span8,
+  .uneditable-input.span8 {
+    width: 462px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span9,
+  textarea.span9,
+  .uneditable-input.span9 {
+    width: 524px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span10,
+  textarea.span10,
+  .uneditable-input.span10 {
+    width: 586px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span11,
+  textarea.span11,
+  .uneditable-input.span11 {
+    width: 648px;
+  }
+
+  /* line 688, ../bower_components/sass-bootstrap/lib/_mixins.scss */
+  input.span12,
+  textarea.span12,
+  .uneditable-input.span12 {
+    width: 710px;
+  }
+}
+@media (max-width: 767px) {
+  /* line 9, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* line 16, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .navbar-fixed-top,
+  .navbar-fixed-bottom,
+  .navbar-static-top {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+  /* line 21, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .container-fluid {
+    padding: 0;
+  }
+
+  /* line 29, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .dl-horizontal dt {
+    float: none;
+    clear: none;
+    width: auto;
+    text-align: left;
+  }
+  /* line 35, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .dl-horizontal dd {
+    margin-left: 0;
+  }
+
+  /* line 43, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .container {
+    width: auto;
+  }
+
+  /* line 47, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .row-fluid {
+    width: 100%;
+  }
+
+  /* line 52, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .row,
+  .thumbnails {
+    margin-left: 0;
+  }
+
+  /* line 55, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .thumbnails > li {
+    float: none;
+    margin-left: 0;
+  }
+
+  /* line 62, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  [class*="span"],
+  .uneditable-input[class*="span"],
+  .row-fluid [class*="span"] {
+    float: none;
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  /* line 70, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .span12,
+  .row-fluid .span12 {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  /* line 74, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .row-fluid [class*="offset"]:first-child {
+    margin-left: 0;
+  }
+
+  /* line 87, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .input-large,
+  .input-xlarge,
+  .input-xxlarge,
+  input[class*="span"],
+  select[class*="span"],
+  textarea[class*="span"],
+  .uneditable-input {
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  /* line 94, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .input-prepend input,
+  .input-append input,
+  .input-prepend input[class*="span"],
+  .input-append input[class*="span"] {
+    display: inline-block;
+    width: auto;
+  }
+
+  /* line 98, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .controls-row [class*="span"] + [class*="span"] {
+    margin-left: 0;
+  }
+
+  /* line 103, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .modal {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    width: auto;
+    margin: 0;
+  }
+  /* line 110, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .modal.fade {
+    top: -100px;
+  }
+  /* line 111, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .modal.fade.in {
+    top: 20px;
+  }
+}
+@media (max-width: 480px) {
+  /* line 124, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .nav-collapse {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  /* line 129, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .page-header h1 small {
+    display: block;
+    line-height: 20px;
+  }
+
+  /* line 136, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  input[type="checkbox"],
+  input[type="radio"] {
+    border: 1px solid #ccc;
+  }
+
+  /* line 142, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .form-horizontal .control-label {
+    float: none;
+    width: auto;
+    padding-top: 0;
+    text-align: left;
+  }
+  /* line 149, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .form-horizontal .controls {
+    margin-left: 0;
+  }
+  /* line 153, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .form-horizontal .control-list {
+    padding-top: 0;
+  }
+  /* line 157, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .form-horizontal .form-actions {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* line 166, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .media .pull-left,
+  .media .pull-right {
+    float: none;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* line 172, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .media-object {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  /* line 178, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .modal {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  /* line 183, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .modal-header .close {
+    padding: 10px;
+    margin: -10px;
+  }
+
+  /* line 189, ../bower_components/sass-bootstrap/lib/_responsive-767px-max.scss */
+  .carousel-caption {
+    position: static;
+  }
+}
+@media (max-width: 979px) {
+  /* line 13, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  body {
+    padding-top: 0;
+  }
+
+  /* line 18, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar-fixed-top,
+  .navbar-fixed-bottom {
+    position: static;
+  }
+
+  /* line 21, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar-fixed-top {
+    margin-bottom: 20px;
+  }
+
+  /* line 24, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar-fixed-bottom {
+    margin-top: 20px;
+  }
+
+  /* line 28, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar-fixed-top .navbar-inner,
+  .navbar-fixed-bottom .navbar-inner {
+    padding: 5px;
+  }
+
+  /* line 31, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar .container {
+    width: auto;
+    padding: 0;
+  }
+
+  /* line 36, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar .brand {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 0 0 -5px;
+  }
+
+  /* line 45, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse {
+    clear: both;
+  }
+
+  /* line 49, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .nav {
+    float: none;
+    margin: 0 0 10px;
+  }
+
+  /* line 53, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .nav > li {
+    float: none;
+  }
+
+  /* line 56, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .nav > li > a {
+    margin-bottom: 2px;
+  }
+
+  /* line 59, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .nav > .divider-vertical {
+    display: none;
+  }
+
+  /* line 62, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .nav .nav-header {
+    color: #777777;
+    text-shadow: none;
+  }
+
+  /* line 68, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .nav > li > a,
+  .nav-collapse .dropdown-menu a {
+    padding: 9px 15px;
+    font-weight: bold;
+    color: #777777;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+
+  /* line 75, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .btn {
+    padding: 4px 10px 4px;
+    font-weight: normal;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+
+  /* line 80, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .dropdown-menu li + li a {
+    margin-bottom: 2px;
+  }
+
+  /* line 86, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .nav > li > a:hover,
+  .nav-collapse .nav > li > a:focus,
+  .nav-collapse .dropdown-menu a:hover,
+  .nav-collapse .dropdown-menu a:focus {
+    background-color: #f2f2f2;
+  }
+
+  /* line 90, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar-inverse .nav-collapse .nav > li > a,
+  .navbar-inverse .nav-collapse .dropdown-menu a {
+    color: #999999;
+  }
+
+  /* line 96, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar-inverse .nav-collapse .nav > li > a:hover,
+  .navbar-inverse .nav-collapse .nav > li > a:focus,
+  .navbar-inverse .nav-collapse .dropdown-menu a:hover,
+  .navbar-inverse .nav-collapse .dropdown-menu a:focus {
+    background-color: #111111;
+  }
+
+  /* line 100, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse.in .btn-group {
+    margin-top: 5px;
+    padding: 0;
+  }
+
+  /* line 105, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .dropdown-menu {
+    position: static;
+    top: auto;
+    left: auto;
+    float: none;
+    display: none;
+    max-width: none;
+    margin: 0 15px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  /* line 119, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .open > .dropdown-menu {
+    display: block;
+  }
+
+  /* line 124, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .dropdown-menu:before,
+  .nav-collapse .dropdown-menu:after {
+    display: none;
+  }
+
+  /* line 127, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .dropdown-menu .divider {
+    display: none;
+  }
+
+  /* line 132, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .nav > li > .dropdown-menu:before, .nav-collapse .nav > li > .dropdown-menu:after {
+    display: none;
+  }
+
+  /* line 138, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse .navbar-form,
+  .nav-collapse .navbar-search {
+    float: none;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* line 147, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar-inverse .nav-collapse .navbar-form,
+  .navbar-inverse .nav-collapse .navbar-search {
+    border-top-color: #111111;
+    border-bottom-color: #111111;
+  }
+
+  /* line 152, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar .nav-collapse .nav.pull-right {
+    float: none;
+    margin-left: 0;
+  }
+
+  /* line 158, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse,
+  .nav-collapse.collapse {
+    overflow: hidden;
+    height: 0;
+  }
+
+  /* line 163, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar .btn-navbar {
+    display: block;
+  }
+
+  /* line 169, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .navbar-static .navbar-inner {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+@media (min-width: 980px) {
+  /* line 184, ../bower_components/sass-bootstrap/lib/_responsive-navbar.scss */
+  .nav-collapse.collapse {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+/* line 4, ../sass/styles.scss */
+header {
+  padding: 30px;
+  margin-bottom: 30px;
+  font-size: 22.5px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #e8a631;
+  text-align: center;
+}
+
+/* line 15, ../sass/styles.scss */
+header h1 {
+  line-height: 1;
+  color: inherit;
+}
+
+/* line 20, ../sass/styles.scss */
+header p {
+  line-height: 1.4;
+}
+
+@media screen and (min-width: 768px) {
+  /* line 25, ../sass/styles.scss */
+  header {
+    padding: 50px 60px;
+  }
+
+  /* line 28, ../sass/styles.scss */
+  header h1 {
+    font-size: 67.5px;
+  }
+}

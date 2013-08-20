@@ -1,3 +1,31 @@
 @import "../bower_components/sass-bootstrap/lib/bootstrap.scss";
 @import "../bower_components/sass-bootstrap/lib/responsive.scss";
 
+header {
+  padding: 30px;
+  margin-bottom: 30px;
+  font-size: 22.5px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #e8a631;
+  text-align: center;
+}
+
+header h1 {
+  line-height: 1;
+  color: inherit;
+}
+
+header p {
+  line-height: 1.4;
+}
+
+@media screen and (min-width: 768px) {
+  header {
+    padding: 50px 60px;
+  }
+  header h1 {
+    font-size: 67.5px;
+  }
+}
