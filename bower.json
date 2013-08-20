@@ -1,10 +1,13 @@
 {
-    "name": "SimpleStateManager",
-    "version": "1.0.2",
-    "main": "src/ssm.js",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "components"
-    ]
+  "name": "SimpleStateManager",
+  "version": "1.0.2",
+  "main": "src/ssm.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "sass-bootstrap": "~2.3.2"
+  }
 }
