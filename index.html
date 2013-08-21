@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="docs/css/styles.css">
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     </head>
-    <body>
+    <body data-spy="scroll" data-target=".navbar">
         <a class="github-ribbon hide-for-print" href="https://github.com/jonathan-fielding/SimpleStateManager">
             <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
         </a>
@@ -18,23 +18,26 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="./index.html">Simple State Manager</a>
+          <a class="brand" href="#home">Simple State Manager</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active">
-                <a href="./index.html">Home</a>
+                <a href="#home">Home</a>
               </li>
               <li class="">
-                <a href="./getting-started.html">Get started</a>
+                <a href="#getstarted">Get started</a>
               </li>
               <li class="">
-                <a href="./base-css.html">API</a>
+                <a href="#api">API</a>
+              </li>
+              <li class="">
+                <a href="#extend">Extend</a>
               </li>
               <li class="">
                 <a href="./components.html">Debugger</a>
               </li>
               <li class="">
-                <a href="./javascript.html">Release Log</a>
+                <a href="#log">Release Log</a>
               </li>
               <li class="">
                 <a href="#licence">Licence</a>
@@ -44,7 +47,7 @@
         </div>
       </div>
     </div>
-            <header>
+            <header id="home">
                 <div class="container">
                     <img src="docs/images/ssm-logo.png" class="logo">
 
@@ -66,7 +69,7 @@
                         <li>You need to adjust your site using JS after it switches between states (mobile, tablet, desktop)</li>
                     </ul>
 
-                    <h2>Getting started</h2>
+                    <h2 id="getstarted">Getting started</h2>
                     <p>To get started with SSM the first step is to include it in your project, you can do this in two ways</p>
                     <ul>
                         <li>Download and add the ssm.js (or ssm.min.js) file to your site</li>
@@ -76,66 +79,52 @@
                     <h3>Add States</h3>
                     <p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. It is important to remember that the <strong>width</strong> you provide is the upper limit of your responsive state width, the lower limit is defined simply by defining another state with a <strong>width</strong> which is lower.</p>
 
-                    <pre>
-ssm.addState({id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}});
+                    <pre>ssm.addState({id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}});
 ssm.addState({width: 1023, onEnter: function(){console.log('enter tablet')}});
-ssm.addState({width: 9999, onEnter: function(){console.log('enter desktop')}});
-                    </pre>
+ssm.addState({width: 9999, onEnter: function(){console.log('enter desktop')}});</pre>
 
                     <p>If you wish to use one command to add multiple states using one command you can use ssm.addStates to which you should pass an array of states.</p>
 
-                    <pre>
-ssm.addStates([
+                    <pre>ssm.addStates([
     {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
     {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
     {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
-]);
-                    </pre>
+]);</pre>
 
                     <h3>Remove States</h3>
 
                     <p>Sometimes it may be necessary to remove a state, if we have the <strong>id</strong> for the state we can easily remove the state, to remove the mobile state from our above example we simply use:</p>
 
-                    <pre>
-ssm.removeState('mobile');
-                    </pre>
+                    <pre>ssm.removeState('mobile');</pre>
 
                     <p>Or if you want to remove multiple at the same time</p>
 
-                    <pre>
-ssm.removeStates(['tablet', 'mobile']);
-                    </pre>
+                    <pre>ssm.removeStates(['tablet', 'mobile']);</pre>
 
                     <h3>Ready</h3>
 
                     <p>Once you have finished setting up your states you should run <code>ssm.ready()</code> which will setup the states.</p>
 
-                    <pre>
-ssm.ready()
-                    </pre>
+                    <pre>ssm.ready();</pre>
 
                     <p>As SSM is chaninable you can even fire the <code>ssm.ready()</code> method by simply adding <code>.ready()</code> onto your original command</p>
 
-                    <pre>
-ssm.addStates([
+                    <pre>ssm.addStates([
     {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
     {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
     {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
-]).ready();
-                    </pre>
+]).ready();</pre>
 
 
                     <h3>Debug Mode</h3>
 
                     <p>To enable the debug mode you simply need to run <code>ssm.enableDebug()</code>, this will add a width meter to the bottom right corner of the viewport area.</p>
 
-                    <pre>
-ssm.enableDebug();
-                    </pre>
+                    <pre>ssm.enableDebug();</pre>
 
-                    <h3>Full API</h3>
+                    <h2 id="api">Full API</h3>
 
-                    <table>
+                    <table  class="table table-hover table-condensed table-bordered">
                         <tr>
                             <th>Method</th>
                             <th>Description</th>
@@ -173,6 +162,10 @@ ssm.enableDebug();
                         </tr>
                     </table>
 
+                    <h2 id="extend">Extend</h2>
+
+                    <p>One of the core features we integrated into SimpleStateManager 2.x is that we expose a lot more API's to access some of the values that are used everyday in responsive sites. The benefit of this is that it means SSM can be extended with new plugins that add extra functionality with ease.</p>
+
                     <h2>Browser Support</h2>
                     <p>There are a number of browsers that we have tested support, as we test more browsers we will update this list</p>
                     <ul>
@@ -183,7 +176,7 @@ ssm.enableDebug();
                         <li>Opera</li>
                     </ul>
 
-                    <h2>Release Log</h2>
+                    <h2 id="log">Release Log</h2>
                     <p>SimpleStateManager follows <a href="http://semver.org/">Semantic Versioning 2.0.0</a></p>
 
                     <h3>1.3.0 - August 10, 2013</h3>
@@ -265,11 +258,13 @@ ssm.enableDebug();
             </section>
             <footer>
                 <div class="container">
-                    <p>Simple State Manager is an Open Source Project</p>
+                    <p>Simple State Manager is an Open Source Project licenced under the MIT licence</p>
                 </div>
             </footer>
 
         <script src="src/ssm.js"></script>
+        <script src="docs/bower_components/jquery/jquery.min.js"></script>
+        <script src="docs/bower_components/sass-bootstrap/js/bootstrap-scrollspy.js"></script>
         <script src="docs/js/script.js"></script>
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

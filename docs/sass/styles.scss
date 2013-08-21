@@ -1,6 +1,11 @@
 @import "../bower_components/sass-bootstrap/lib/bootstrap.scss";
 @import "../bower_components/sass-bootstrap/lib/responsive.scss";
 
+body {
+  position: relative;
+  padding-top: 40px;
+}
+
 header {
   padding: 30px;
   margin-bottom: 30px;

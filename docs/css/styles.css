@@ -8296,6 +8296,12 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
   }
 }
 /* line 4, ../sass/styles.scss */
+body {
+  position: relative;
+  padding-top: 40px;
+}
+
+/* line 9, ../sass/styles.scss */
 header {
   padding: 30px;
   margin-bottom: 30px;
@@ -8308,32 +8314,32 @@ header {
   font-family: 'Lato', sans-serif;
 }
 
-/* line 16, ../sass/styles.scss */
+/* line 21, ../sass/styles.scss */
 header h1 {
   line-height: 1;
   color: inherit;
   font-weight: normal;
 }
 
-/* line 22, ../sass/styles.scss */
+/* line 27, ../sass/styles.scss */
 header p {
   line-height: 1.4;
 }
 
 @media screen and (min-width: 768px) {
-  /* line 27, ../sass/styles.scss */
+  /* line 32, ../sass/styles.scss */
   header {
     padding: 50px 60px;
   }
 
-  /* line 30, ../sass/styles.scss */
+  /* line 35, ../sass/styles.scss */
   header h1 {
     font-size: 67.5px;
   }
 }
 /* Footer
 -------------------------------------------------- */
-/* line 38, ../sass/styles.scss */
+/* line 43, ../sass/styles.scss */
 footer {
   text-align: center;
   padding: 30px 0;
@@ -8342,7 +8348,7 @@ footer {
   background-color: #f5f5f5;
 }
 
-/* line 46, ../sass/styles.scss */
+/* line 51, ../sass/styles.scss */
 footer p {
   margin-bottom: 0;
   color: #777;
