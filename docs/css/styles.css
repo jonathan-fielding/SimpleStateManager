@@ -8331,3 +8331,19 @@ header p {
     font-size: 67.5px;
   }
 }
+/* Footer
+-------------------------------------------------- */
+/* line 38, ../sass/styles.scss */
+footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 70px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
+}
+
+/* line 46, ../sass/styles.scss */
+footer p {
+  margin-bottom: 0;
+  color: #777;
+}
