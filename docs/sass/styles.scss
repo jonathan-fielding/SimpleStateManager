@@ -7,7 +7,6 @@ body {
 }
 
 header {
-  padding: 30px;
   margin-bottom: 30px;
   font-size: 22.5px;
   font-weight: 200;
@@ -16,6 +15,13 @@ header {
   background-color: #e8a631;
   text-align: center;
   font-family: 'Lato', sans-serif;
+
+  .container{
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;
+      padding: 30px;
+  }
 }
 
 header h1 {
@@ -28,12 +34,31 @@ header p {
   line-height: 1.4;
 }
 
-@media screen and (min-width: 768px) {
-  header {
-    padding: 50px 60px;
+@media screen and (min-width: 768px) and (max-width:1023px) {
+
+  body{
+    padding-top: 0px;
+  }
+  .navbar-fixed-top {
+  margin-bottom: 0px;
   }
   header h1 {
     font-size: 67.5px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+  body{
+    padding-top: 0px;
+  }
+  
+  header{
+    margin: 0 -20px 20px;
+  }
+
+  .navbar-fixed-top {
+    margin-bottom: 0px;
   }
 }
 
