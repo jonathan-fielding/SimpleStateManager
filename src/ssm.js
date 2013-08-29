@@ -5,9 +5,10 @@
         states = [],
         debug = false,
         browserWidth = 0,
-        currentState = null,
+        currentStates = [],
         resizeTimeout = 50,
-        resizeTimer = null;
+        resizeTimer = null,
+        stateCounter = 0;
 
     var browserResizePre = function () {
         clearTimeout(resizeTimer);
@@ -16,70 +17,79 @@
 
     var browserResize = function () {
         var state = null,
-            totalStates;
+            totalStates,
+            newBrowserWidth = getWidth();
 
         totalStates = states.length;
-        browserWidth = getWidth();
 
         for (var i = 0; i < totalStates; i++) {
-            state = states[i];
-
-            if (states[i].width >= browserWidth) {
-
-                if (currentState !== null) {
-                    if (currentState.id !== states[i].id) {
-                        currentState.onLeave();
-                        currentState = states[i];
-                        currentState.onEnter();
-                    }
-                } else {
-                    currentState = states[i];
-                    currentState.onEnter();
+            if(browserWidth >= states[i].minWidth && browserWidth <= states[i].maxWidth){
+                
+                if(objectInArray(currentStates, states[i])){
+                    states[i].onResize();
                 }
+                else{
+                    currentStates.push(states[i]);
+                    states[i].onEnter();
+                }
+            }
+            else{
+                if(objectInArray(currentStates, states[i])){
+                    states[i].onLeave();
+                    currentStates = removeObjectInArray(currentStates,states[i]);
+                }
+            }
+        };
 
-                states[i].onResize();
+        browserWidth = newBrowserWidth;
+    };
+
+    var objectInArray = function(arr, obj){
+        for (var i = 0; i < arr.length; i++) {
+            if(arr[i] === obj){
+                return true;
                 break;
+            }
+        };
+    }
+
+    var removeObjectInArray = function(arr,obj){
+        var length = arr.length - 1;
+
+        for (var i = 0; i < length; i++) {
+            if (arr[i] === obj) {
+                arr.splice(i, 1);
             }
         }
 
-        if (debug) {
-           console.log(browserWidth);
-        }
-    };
+        return arr;
+    }
 
-    //Enable a debug mode
-    ssm.enableDebug = function () {
-        debug = true;
-        return this;
-    };
-
-    //Get the debug value
-    ssm.getDebug = function () {
-        return debug;
-    };
-
-    //Disable a debug mode
-    ssm.disableDebug = function () {
-        debug = false;    
-        return this;
+    ssm.getBrowserWidth = function(){
+        return browserWidth;
     };
 
     //Add a new state
     ssm.addState = function (options) {
+        //Setting sensible defaults for a state
+        //Max width is set to 99999 for comparative purposes, is bigger than any display on market
         var defaultOptions = {
             id: makeID(),
-            width: 0,
+            minWidth: 0,
+            maxWidth: 99999,
             onEnter: function () {},
             onLeave: function () {},
             onResize: function () {}
         };
 
+        //Merge options with defaults
         options = mergeOptions(defaultOptions, options);
-        //options.range = options.maxWidth - options.minWidth;
 
+        //Add state to the master states array
         states.push(options);
 
-        states = sortByKey(states, 'width');
+        //Sort 
+        states = sortByKey(states, 'minWidth');
 
         return this;
     };
@@ -122,7 +132,7 @@
 
     ssm.getState = function(id){
         if(typeof(id) === "undefined"){
-            return currentState;
+            return currentStates;
         }
         else{
             return getStateByID(id);
