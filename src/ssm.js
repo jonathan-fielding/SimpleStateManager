@@ -44,27 +44,6 @@
         browserWidth = newBrowserWidth;
     };
 
-    var objectInArray = function(arr, obj){
-        for (var i = 0; i < arr.length; i++) {
-            if(arr[i] === obj){
-                return true;
-                break;
-            }
-        };
-    }
-
-    var removeObjectInArray = function(arr,obj){
-        var length = arr.length - 1;
-
-        for (var i = 0; i < length; i++) {
-            if (arr[i] === obj) {
-                arr.splice(i, 1);
-            }
-        }
-
-        return arr;
-    }
-
     ssm.getBrowserWidth = function(){
         return browserWidth;
     };
@@ -150,18 +129,7 @@
     };
 
     ssm.ready = function () {
-        var state = null,
-            totalStates = states.length;
-
-        for (var i = 0; i < totalStates; i++) {
-            state = states[i];
-
-            if (states[i].width >= browserWidth) {
-                currentState = states[i];
-                currentState.onEnter();
-                break;
-            }
-        }
+        browserResize();
 
         return this;
     };
@@ -227,6 +195,28 @@
         };
     };
 
+    var objectInArray = function(arr, obj){
+        for (var i = 0; i < arr.length; i++) {
+            if(arr[i] === obj){
+                return true;
+                break;
+            }
+        };
+    };
+
+    var removeObjectInArray = function(arr,obj){
+        var length = arr.length - 1;
+
+        for (var i = 0; i < length; i++) {
+            if (arr[i] === obj) {
+                arr.splice(i, 1);
+            }
+        }
+
+        return arr;
+    };
+
+    //Update value of browserWidth
     browserWidth = getWidth();
 
     //Attach event
