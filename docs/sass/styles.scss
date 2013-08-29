@@ -72,6 +72,22 @@ footer p {
   
   header{
     margin: 0 -20px 20px;
+
+    img{
+      height: 150px;
+    }
+    .lead{
+      font-size: 16px;
+      line-height: 1.3em;
+    }
+  }
+
+  h2{
+    font-size: 24px;
+  }
+
+  h3{
+    font-size: 18px;
   }
 
   footer{

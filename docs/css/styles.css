@@ -8374,13 +8374,32 @@ footer p {
   header {
     margin: 0 -20px 20px;
   }
+  /* line 76, ../sass/styles.scss */
+  header img {
+    height: 150px;
+  }
+  /* line 79, ../sass/styles.scss */
+  header .lead {
+    font-size: 16px;
+    line-height: 1.3em;
+  }
 
-  /* line 77, ../sass/styles.scss */
+  /* line 85, ../sass/styles.scss */
+  h2 {
+    font-size: 24px;
+  }
+
+  /* line 89, ../sass/styles.scss */
+  h3 {
+    font-size: 18px;
+  }
+
+  /* line 93, ../sass/styles.scss */
   footer {
     margin: 0 -20px;
   }
 
-  /* line 81, ../sass/styles.scss */
+  /* line 97, ../sass/styles.scss */
   .navbar-fixed-top {
     margin-bottom: 0px;
   }

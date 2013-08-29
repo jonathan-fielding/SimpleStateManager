@@ -32,9 +32,12 @@ module.exports = function (grunt) {
         watch: {
             build: {
                 files: ['src/ssm.js'],
-
                 tasks: ['uglify, compass:dev']
-            }
+            },
+            compass: {
+                files: ['docs/sass/{,*/}*.{scss,sass}'],
+                tasks: ['compass']
+            },
         }
     });
 
