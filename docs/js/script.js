@@ -20,7 +20,7 @@
         id: 'desktop',
         minWidth: 1024,
         onEnter: function(){
-            document.body.style.backgroundColor = "green";
+            document.body.style.backgroundColor = "#fff";
         }
     });
 
