@@ -8301,7 +8301,9 @@ body {
   padding-top: 40px;
 }
 
-/* line 9, ../sass/styles.scss */
+/* Header
+-------------------------------------------------- */
+/* line 12, ../sass/styles.scss */
 header {
   margin-bottom: 30px;
   font-size: 22.5px;
@@ -8312,7 +8314,7 @@ header {
   text-align: center;
   font-family: 'Lato', sans-serif;
 }
-/* line 19, ../sass/styles.scss */
+/* line 22, ../sass/styles.scss */
 header .container {
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
@@ -8322,48 +8324,21 @@ header .container {
   padding: 30px;
 }
 
-/* line 27, ../sass/styles.scss */
+/* line 30, ../sass/styles.scss */
 header h1 {
   line-height: 1;
   color: inherit;
   font-weight: normal;
 }
 
-/* line 33, ../sass/styles.scss */
+/* line 36, ../sass/styles.scss */
 header p {
   line-height: 1.4;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  /* line 39, ../sass/styles.scss */
-  body {
-    padding-top: 0px;
-  }
-
-  /* line 43, ../sass/styles.scss */
-  .navbar-fixed-top {
-    margin-bottom: 0px;
-  }
-}
-@media screen and (max-width: 767px) {
-  /* line 50, ../sass/styles.scss */
-  body {
-    padding-top: 0px;
-  }
-
-  /* line 54, ../sass/styles.scss */
-  header {
-    margin: 0 -20px 20px;
-  }
-
-  /* line 58, ../sass/styles.scss */
-  .navbar-fixed-top {
-    margin-bottom: 0px;
-  }
-}
 /* Footer
 -------------------------------------------------- */
-/* line 66, ../sass/styles.scss */
+/* line 43, ../sass/styles.scss */
 footer {
   text-align: center;
   padding: 30px 0;
@@ -8372,8 +8347,41 @@ footer {
   background-color: #f5f5f5;
 }
 
-/* line 74, ../sass/styles.scss */
+/* line 51, ../sass/styles.scss */
 footer p {
   margin-bottom: 0;
   color: #777;
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px) {
+  /* line 58, ../sass/styles.scss */
+  body {
+    padding-top: 0px;
+  }
+
+  /* line 62, ../sass/styles.scss */
+  .navbar-fixed-top {
+    margin-bottom: 0px;
+  }
+}
+@media screen and (max-width: 767px) {
+  /* line 69, ../sass/styles.scss */
+  body {
+    padding-top: 0px;
+  }
+
+  /* line 73, ../sass/styles.scss */
+  header {
+    margin: 0 -20px 20px;
+  }
+
+  /* line 77, ../sass/styles.scss */
+  footer {
+    margin: 0 -20px;
+  }
+
+  /* line 81, ../sass/styles.scss */
+  .navbar-fixed-top {
+    margin-bottom: 0px;
+  }
 }
