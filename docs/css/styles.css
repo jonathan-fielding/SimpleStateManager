@@ -8340,35 +8340,30 @@ header p {
     padding-top: 0px;
   }
 
-  /* line 42, ../sass/styles.scss */
+  /* line 43, ../sass/styles.scss */
   .navbar-fixed-top {
     margin-bottom: 0px;
   }
-
-  /* line 45, ../sass/styles.scss */
-  header h1 {
-    font-size: 67.5px;
-  }
 }
 @media screen and (max-width: 767px) {
-  /* line 52, ../sass/styles.scss */
+  /* line 50, ../sass/styles.scss */
   body {
     padding-top: 0px;
   }
 
-  /* line 56, ../sass/styles.scss */
+  /* line 54, ../sass/styles.scss */
   header {
     margin: 0 -20px 20px;
   }
 
-  /* line 60, ../sass/styles.scss */
+  /* line 58, ../sass/styles.scss */
   .navbar-fixed-top {
     margin-bottom: 0px;
   }
 }
 /* Footer
 -------------------------------------------------- */
-/* line 68, ../sass/styles.scss */
+/* line 66, ../sass/styles.scss */
 footer {
   text-align: center;
   padding: 30px 0;
@@ -8377,7 +8372,7 @@ footer {
   background-color: #f5f5f5;
 }
 
-/* line 76, ../sass/styles.scss */
+/* line 74, ../sass/styles.scss */
 footer p {
   margin-bottom: 0;
   color: #777;
