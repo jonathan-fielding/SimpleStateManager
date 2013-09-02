@@ -13,6 +13,14 @@ body{
 	height: 300px;
 }
 
+#responsiveDebugger .rd_pull_right{
+	float: right;
+}
+
+#responsiveDebugger .rd_pull_left{
+	float: left;
+}
+
 #responsiveDebugger #rd_nav,#responsiveDebugger #rd_footer{
 	overflow: hidden;
 	background: #ccc;

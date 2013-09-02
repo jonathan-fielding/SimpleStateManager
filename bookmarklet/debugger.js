@@ -21,12 +21,46 @@
 		//Create the panels
 
 		for (var i = 0; i < noPanels; i++) {
-			addPanel(debugPanelNav, debugPanelContainer, data.panels[i]);
+			if(checkDependencies(data.panels[i].dependencies) === true){
+				addPanel(debugPanelNav, debugPanelContainer, data.panels[i]);
+			}
+			
 		};
 
 		//Add the CSS
 		addCSS(data.cssURL);
+
+		browserResize();
 	}
+
+	var dependencies = {
+		ssm: function(){
+			if (typeof ssm !== 'undefined'){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}()
+	}
+
+	var initPanels = {
+		ssmStates: function(){
+			console.log(ssm.getState());
+		}
+	};
+
+	var checkDependencies = function(depends){
+		var length = depends.length;
+
+		for (var i = 0; i < length; i++) {
+			if(dependencies[depends[i]] === false){
+				return false;
+			}
+		};
+
+		return true;
+	};
 
 	var addPanel = function(debugPanelNav, debugPanelContainer, panel){
 		var newPanelMenuItem = document.createElement('li'),
@@ -58,8 +92,37 @@
 		document.head.appendChild(cssFile);	
 	};
 
-	//Add initialisation script
+	var browserResize = function(){
+		var browserWidth = getWidth(),
+			elBrowserWidth = document.getElementById('rd_browserWidth');
+
+		elBrowserWidth.innerHTML = browserWidth + 'px';
+   	};
+
+	var getWidth = function () {
+        var x = 0;
+        if (self.innerHeight) {
+            x = self.innerWidth;
+        } else if (document.documentElement && document.documentElement.clientHeight) {
+            x = document.documentElement.clientWidth;
+        } else if (document.body) {
+            x = document.body.clientWidth;
+        }
+        return x;
+    };
+
+	//Add initialisation script and load templates
 	window.rd = initDebug;
 	addScript('http://localhost:3000/bookmarklet/templates.js');
+
+	//TODO - Add debounce
+	//Attach event
+    if (window.attachEvent) {
+        window.attachEvent('onresize', browserResize);
+    } else if (window.addEventListener) {
+        window.addEventListener('resize', browserResize, true);
+    } else {
+        //The browser does not support Javascript event binding
+    }
 
 }(window, document));
