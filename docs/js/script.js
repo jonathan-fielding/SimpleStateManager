@@ -25,4 +25,7 @@
     });
 
     ssm.ready();
+
+    //Enable debug mode
+    document.body.appendChild(document.createElement('script')).src='http://localhost:3000/bookmarklet/debugger.js';
 }());

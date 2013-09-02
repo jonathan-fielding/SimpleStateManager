@@ -6,7 +6,8 @@
 	var initDebug = function(data){
 		var	noPanels = data.panels.length,
 			debugPanel = null,
-			debugPanelNav = null;
+			debugPanelNav = null,
+			debugPanelContainer = null;
 
 		//Create the debug panel
 		debugPanel = document.createElement('div');
@@ -15,24 +16,34 @@
 		document.body.appendChild(debugPanel);
 
 		debugPanelNav = document.getElementById('rd_navItems');
+		debugPanelContainer = document.getElementById('rd_panelContainer');
 
 		//Create the panels
 
 		for (var i = 0; i < noPanels; i++) {
-			addPanel(debugPanelNav, data.panels[i]);
+			addPanel(debugPanelNav, debugPanelContainer, data.panels[i]);
 		};
 
 		//Add the CSS
 		addCSS(data.cssURL);
 	}
 
-	var addPanel = function(debugPanelNav, panel){
+	var addPanel = function(debugPanelNav, debugPanelContainer, panel){
 		var newPanelMenuItem = document.createElement('li'),
-		newPanelMenuItemAnchor = document.createElement('a');
-		newPanelMenuItemAnchor.innerHTML = panel.name;
+		newPanelMenuItemAnchor = document.createElement('a'),
+		newPanel = document.createElement('divs');
 
+		//Add the menu item
+		newPanelMenuItemAnchor.innerHTML = panel.name;
+		newPanelMenuItemAnchor.href = "#"+panel.id;
 		newPanelMenuItem.appendChild(newPanelMenuItemAnchor);
 		debugPanelNav.appendChild(newPanelMenuItem);
+
+		//Add the panel
+		newPanel.innerHTML = panel.panelHTML;
+		newPanel.id = panel.id;
+		newPanel.className = "rd_DebugPanel";
+		debugPanelContainer.appendChild(newPanel);
 	};
 
 	var addScript = function(url){

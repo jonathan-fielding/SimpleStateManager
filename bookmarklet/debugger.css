@@ -13,9 +13,13 @@ body{
 	height: 300px;
 }
 
-#responsiveDebugger #rd_nav{
+#responsiveDebugger #rd_nav,#responsiveDebugger #rd_footer{
 	overflow: hidden;
 	background: #ccc;
+	font-size: 12px;
+}
+
+#responsiveDebugger #rd_nav{
 	border-bottom: 1px solid #000;
 }
 
@@ -24,17 +28,42 @@ body{
 	list-style: none;
 }
 
+#responsiveDebugger #rd_close{
+	background: url('images/close.png') center center no-repeat;
+	height: 29px;
+	width: 9px;
+	text-indent: -9999px;
+}
+
 #responsiveDebugger #rd_nav ul{
 	padding: 0px;
 	margin: 0px;
 }
 
 #responsiveDebugger #rd_nav ul li{
-	padding: 3px 10px;
 	border-left: 1px solid #bbb;
 }
 
-#responsiveDebugger #rd_nav a{
+#responsiveDebugger #rd_nav a, #responsiveDebugger #rd_footer a{
 	font-size: 12px;
 	color: #000;
+	line-height: 29px;
+	display: block;
+	padding: 0px 10px;
+	text-decoration: none;
+}
+
+#responsiveDebugger #rd_nav a:hover, #responsiveDebugger #rd_footer a:hover{
+	font-size: 12px;
+	color: #000;
+	line-height: 29px;
+	background-color: #bbb;
+}
+
+#responsiveDebugger #rd_footer{
+	border-top: 1px solid #000;
+}
+
+#responsiveDebugger #rd_panelContainer{
+	height: 240px;
 }
