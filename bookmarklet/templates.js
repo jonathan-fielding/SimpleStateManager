@@ -4,21 +4,14 @@ rd({
 	"defaultPanel"	: "rd",
 	"panels" : [
 		{
-			"id" 		: "overview",
+			"id" 		: "rd_overview",
 			"name"		: "Overview",
-			"panelHTML"	: "test",
-			"init"			: "",
+			"panelHTML"	: "This is a alpha version of the debugger",
+			"init"			: "overview",
 			"dependencies"	: []
 		},
 		{
-			"id" 		: "generate",
-			"name"		: "Media Queries",
-			"panelHTML"	: "",
-			"init"			: "",
-			"dependencies"	: []
-		},
-		{
-			"id" 			: "states",
+			"id" 			: "rd_states",
 			"name"			: "SSM States",
 			"panelHTML"		: "",
 			"init"			: "ssmStates",
@@ -26,3 +19,12 @@ rd({
 		}
 	]
 });
+
+// waiting for newer versions
+// {
+// 	"id" 		: "rd_generate",
+// 	"name"		: "Media Queries",
+// 	"panelHTML"	: "",
+// 	"init"			: "",
+// 	"dependencies"	: []
+// },

@@ -1,13 +1,39 @@
 //The SimpleStateManager Debug Panel
-//javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://localhost:3000/bookmarklet/debugger.js';})();
+//javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://www.simplestatemanager.com/bookmarklet/debugger.js';})();
 
 ;(function (window, document, undefined) {
+
+	//polyfill
+	if (!document.getElementsByClassName) {
+		document.getElementsByClassName = function(search) {
+			var d = document, elements, pattern, i, results = [];
+			if (d.querySelectorAll) { // IE8
+				return d.querySelectorAll("." + search);
+			}
+			if (d.evaluate) { // IE6, IE7
+				pattern = ".//*[contains(concat(' ', @class, ' '), ' " + search + " ')]";
+				elements = d.evaluate(pattern, d, null, 0, null);
+				while ((i = elements.iterateNext())) {
+					results.push(i);
+				}
+			} else {
+				elements = d.getElementsByTagName("*");
+				pattern = new RegExp("(^|\\s)" + search + "(\\s|$)");
+				for (i = 0; i < elements.length; i++) {
+					if ( pattern.test(elements[i].className) ) {
+						results.push(elements[i]);
+					}
+				}
+			}
+			return results;
+		}
+	}
 
 	var initDebug = function(data){
 		var	noPanels = data.panels.length,
 			debugPanel = null,
 			debugPanelNav = null,
-			debugPanelContainer = null;
+			debugPanelContainer = null
 
 		//Create the debug panel
 		debugPanel = document.createElement('div');
@@ -21,16 +47,48 @@
 		//Create the panels
 		for (var i = 0; i < noPanels; i++) {
 			if(checkDependencies(data.panels[i].dependencies) === true){
-				addPanel(debugPanelNav, debugPanelContainer, data.panels[i]);
+				addPanel(debugPanelNav, debugPanelContainer, data.panels[i],i);
+				
+				if(data.panels[i].init !== ''){
+					initPanels[data.panels[i].init]();
+				}
+				
 			}
-		};
+		}
+
+		addEvent(document.getElementById('rd_navItems'), "click", function(e) {
+			// Firefox and IE access the target element different. e.target, and event.srcElement, respectively.
+			var target = e ? e.target : window.event.srcElement
+				targetTab = null,
+				panels = document.getElementsByClassName('rd_DebugPanel'),
+				panelCount = panels.length;
+			
+			globTarget = target;
+
+			if ( target.nodeName.toLowerCase() === 'a' ) {
+				if(target.id === "rd_close"){
+					document.getElementById('responsiveDebugger').style.display = "none";
+				}
+				else{
+					targetTab = document.getElementById(target.getAttribute('href').replace('#',''));
+					for (var i = 0; i < panelCount; i++) {
+						panels[i].style.display = "none";
+					};
+					targetTab.style.display = "block";
+				}
+				
+			}
+
+			console.log(e);
+
+			return false;
+		});
 
 		//Add the CSS
 		addCSS(data.cssURL);
 
-		
 		browserResize();
-	}
+	};
 
 	var dependencies = {
 		ssm: function(){
@@ -41,13 +99,41 @@
 				return false;
 			}
 		}()
-	}
+	};
 
 	var initPanels = {
+		overview: function(){
+
+		},
 		ssmStates: function(){
-			console.log(ssm.getState());
+			var ssmStates = ssm.getStates(),
+				stateCount = ssmStates.length,
+				panel = document.getElementById('rd_states'), 
+				panelHTML = '<ul>';
+
+			for (var i = 0; i < stateCount; i++) {
+				panelHTML += "<li>";
+				panelHTML += "<h2>" + ssmStates[i].id +"</h2>";
+				panelHTML += "<p>minWidth : " + ssmStates[i].minWidth +"</p>";
+				panelHTML += "<p>maxWidth : " + ssmStates[i].maxWidth +"</p>";
+				panelHTML += "</li>";
+			};
+
+			panelHTML += '</ul>'
+
+			document.getElementById('rd_states').innerHTML = panelHTML;
 		}
 	};
+
+	var addEvent = function(obj, evt, fn, capture) {  
+        if ( window.attachEvent ) {  
+            obj.attachEvent("on" + evt, fn);  
+        }  
+        else {  
+            if ( !capture ) capture = false; // capture  
+            obj.addEventListener(evt, fn, capture);
+        }  
+    }  
 
 	var checkDependencies = function(depends){
 		var length = depends.length;
@@ -61,7 +147,7 @@
 		return true;
 	};
 
-	var addPanel = function(debugPanelNav, debugPanelContainer, panel){
+	var addPanel = function(debugPanelNav, debugPanelContainer, panel,i){
 		var newPanelMenuItem = document.createElement('li'),
 		newPanelMenuItemAnchor = document.createElement('a'),
 		newPanel = document.createElement('divs');
@@ -76,6 +162,9 @@
 		newPanel.innerHTML = panel.panelHTML;
 		newPanel.id = panel.id;
 		newPanel.className = "rd_DebugPanel";
+		if(i !== 0){
+			newPanel.style.display = "none";
+		}
 		debugPanelContainer.appendChild(newPanel);
 	};
 
