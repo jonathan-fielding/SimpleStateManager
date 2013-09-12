@@ -109,12 +109,20 @@
         return this;
     };
 
-    ssm.getState = function(id){
-        if(typeof(id) === "undefined"){
-            return currentStates;
+    ssm.getStates = function(idArr){
+        var idCount = null, returnArr = [];
+
+        if(typeof(idArr) === "undefined"){
+            return states;
         }
         else{
-            return getStateByID(id);
+            idCount = idArr.length;
+            
+            for (var i = 0; i < idCount; i++) {
+                returnArr.push(getStateByID(idArr[i]));
+            };
+
+            return returnArr;
         }
     };
 
@@ -132,11 +140,6 @@
         browserResize();
 
         return this;
-    };
-
-    //Return an array of all the states
-    ssm.getStates = function () {
-        return states;
     };
 
     var makeID = function () {

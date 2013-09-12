@@ -162,13 +162,15 @@ ssm.addState({
 
                     <pre>ssm.ready();</pre>
 
-                    <p>As SSM is chaninable you can even fire the <code>ssm.ready()</code> method by simply adding <code>.ready()</code> onto your original command</p>
+                    <p>As SSM is chaninable you can fire the <code>ssm.ready()</code> method by simply adding <code>.ready()</code> onto your original command</p>
 
-                    <pre>ssm.addStates([
-    {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
-    {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
-    {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
-]).ready();</pre>
+<pre>ssm.addState({
+    id: 'mobile',
+    maxWidth: 767,
+    onEnter: function(){
+        document.getElementById('hero').style.backgroundColor = "#daa23e";
+    }
+}).ready();</pre>
 
                     <h3>Full API</h3>
 
@@ -179,7 +181,7 @@ ssm.addState({
                         </tr>
                         <tr>
                             <td>ssm.addState</td>
-                            <td>Add a new state, expects an object literal, properties avaliable -  id (optional), width (required), onEnter (optional), onResize (optional), onLeave (optional)</td>
+                            <td>Add a new state, expects an object literal, properties avaliable -  id (optional), minWidth (optional), maxWidth (optional), onEnter (optional), onResize (optional), onLeave (optional)</td>
                         </tr>
                         <tr>
                             <td>ssm.addStates</td>
@@ -198,8 +200,12 @@ ssm.addState({
                             <td>Clears all states from SSM</td>
                         </tr>
                         <tr>
-                            <td>ssm.getState</td>
-                            <td>Gets the current state</td>
+                            <td>ssm.getStates</td>
+                            <td>By default <code>ssm.getStates()</code> will return all the states added to SSM however you optionally can pass an array of ID's of the states you want e.g <code>ssm.getStates(['mobile','desktop'])</code></td>
+                        </tr>
+                        <tr>
+                            <td>ssm.getCurrentStates</td>
+                            <td>Get the currently applied states</td>
                         </tr>
                         <tr>
                             <td>ssm.ready</td>
