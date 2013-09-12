@@ -86,7 +86,7 @@ section{
   }
   
   header{
-    margin: 0 -20px 20px;
+    margin: 0 -20px 0px;
 
     img{
       height: 150px;
@@ -98,15 +98,20 @@ section{
   }
 
   h2{
-    font-size: 26px;
+    font-size: 22px;
   }
 
   h3{
-    font-size: 18px;
+    font-size: 14px;
   }
 
   footer{
     margin: 0 -20px;
+  }
+
+  section{
+    margin: 0 -20px;
+    padding: 20px;
   }
 
   .navbar-fixed-top {

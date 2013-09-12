@@ -6,7 +6,7 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <body data-spy="scroll" data-target=".navbar">
+    <body data-spy="scroll" data-target=".navbar" id="home">
         <a class="github-ribbon visible-desktop" href="https://github.com/jonathan-fielding/SimpleStateManager">
             <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
         </a>
@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-            <header id="home">
+            <header id="hero">
                 <div class="container">
                     <img src="docs/images/ssm-logo.png" class="logo">
 
@@ -92,7 +92,7 @@
                     <h2>API</h2>
 
                     <h3>Add States</h3>
-                    <p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. You are able to add as many states as you need, your states are able to overlap. It is important to remember that the if you do not pass minWidth and maxWidth values they will revert to the default values (0 for minWidth and 99999 for maxWidth)</p>
+                    <p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. You are able to add as many states as you need, your states are able to overlap and your states can each have their own <code>onEnter</code>, <code>onLeave</code> and <code>onResize</code> events. It is important to remember that the if you do not pass minWidth and maxWidth values they will revert to the default values (0 for minWidth and 99999 for maxWidth)</p>
 
                     <pre>ssm.addState({
     id: 'mobile',

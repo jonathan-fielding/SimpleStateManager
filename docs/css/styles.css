@@ -8388,7 +8388,7 @@ section:nth-child(odd) {
 
   /* line 88, ../sass/styles.scss */
   header {
-    margin: 0 -20px 20px;
+    margin: 0 -20px 0px;
   }
   /* line 91, ../sass/styles.scss */
   header img {
@@ -8402,12 +8402,12 @@ section:nth-child(odd) {
 
   /* line 100, ../sass/styles.scss */
   h2 {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   /* line 104, ../sass/styles.scss */
   h3 {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   /* line 108, ../sass/styles.scss */
@@ -8416,6 +8416,12 @@ section:nth-child(odd) {
   }
 
   /* line 112, ../sass/styles.scss */
+  section {
+    margin: 0 -20px;
+    padding: 20px;
+  }
+
+  /* line 117, ../sass/styles.scss */
   .navbar-fixed-top {
     margin-bottom: 0px;
   }
