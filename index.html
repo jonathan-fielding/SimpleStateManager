@@ -185,7 +185,7 @@ ssm.addState({
                         </tr>
                         <tr>
                             <td>ssm.addStates</td>
-                            <td>Add multiple new states, expects an array of object literals, properties avaliable -  id (optional), width (required), onEnter (optional), onResize (optional), onLeave (optional)</td>
+                            <td>Add multiple new states, expects an array of object literals, properties avaliable -  id (optional), minWidth (optional), maxWidth (optional), onEnter (optional), onResize (optional), onLeave (optional)</td>
                         </tr>
                         <tr>
                             <td>ssm.removeState</td>
@@ -214,6 +214,14 @@ ssm.addState({
                         <tr>
                             <td>ssm.getBrowserWidth</td>
                             <td>Get the current value of the browser width</td>
+                        </tr>
+                        <tr>
+                            <td>ssm.setResizeTimeout</td>
+                            <td>Set the value of the timeout used for the resize debounce</td>
+                        </tr>
+                        <tr>
+                            <td>ssm.getResizeTimeout</td>
+                            <td>Get the current value the resize timeout</td>
                         </tr>
                     </table>
                 </div>

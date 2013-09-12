@@ -95,7 +95,7 @@
 
         //Find and remove the state from the array
     ssm.removeAllStates = function (stateId) {
-        states = [];
+        states = currentStates = [];
 
         return this;
     };
@@ -124,6 +124,10 @@
 
             return returnArr;
         }
+    };
+
+    ssm.getCurrentStates = function(){
+        return currentStates;
     };
 
     //Change the timeout before firing the resize function
