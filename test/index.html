@@ -52,7 +52,15 @@
                 ssm.removeAllStates();
             });
 
+            test("remove all states", function() {
+                ssm.addState({
+                    id: 'desktop'
+                });
 
+                ssm.removeAllStates();
+
+                ok(ssm.getStates().length === 0, "Passed");
+            });
 
             test("get states", function() {
                 ssm.addStates([
@@ -69,8 +77,6 @@
 
                 ssm.removeAllStates();
             });
-
-
 
             test("remove all states", function() {
                 ssm.addStates([
