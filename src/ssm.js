@@ -225,7 +225,7 @@
     } else if (window.addEventListener) {
         window.addEventListener('resize', browserResizePre, true);
     } else {
-        //The browser does not support Javascript event binding
+        //The browser does not support Javascript event binding which is required by SimpleStateManager
     }
 
     //Expose Simple State Manager

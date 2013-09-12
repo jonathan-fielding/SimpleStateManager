@@ -19,17 +19,16 @@
 		debugPanelContainer = document.getElementById('rd_panelContainer');
 
 		//Create the panels
-
 		for (var i = 0; i < noPanels; i++) {
 			if(checkDependencies(data.panels[i].dependencies) === true){
 				addPanel(debugPanelNav, debugPanelContainer, data.panels[i]);
 			}
-			
 		};
 
 		//Add the CSS
 		addCSS(data.cssURL);
 
+		
 		browserResize();
 	}
 

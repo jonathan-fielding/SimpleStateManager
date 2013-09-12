@@ -35,7 +35,7 @@
                 <a href="#extend">Extend</a>
               </li>
               <li class="">
-                <a href="./components.html">Debugger</a>
+                <a href="#debugger">Debugger</a>
               </li>
               <li class="">
                 <a href="#log">Release Log</a>
@@ -70,19 +70,48 @@
                         <li>You need to adjust your site using JS after it switches between states (mobile, tablet, desktop)</li>
                     </ul>
 
-                    <h2 id="getstarted">Getting started</h2>
+                    <h3>What should you not use SSM for</h3>
+
+                    <ul>
+                        <li>Anything that can be achieved using pure CSS and Media Queries</li>
+                    </ul>
+
+                    <h2 id="getstarted">Get started</h2>
                     <p>To get started with SSM the first step is to include it in your project, you can do this in two ways</p>
                     <ul>
                         <li>Download and add the ssm.js (or ssm.min.js) file to your site</li>
                         <!-- <li>Use a hosted copy of SSM from the CDNJS CDN.</li> -->
                     </ul>
 
-                    <h3>Add States</h3>
-                    <p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. It is important to remember that the <strong>width</strong> you provide is the upper limit of your responsive state width, the lower limit is defined simply by defining another state with a <strong>width</strong> which is lower.</p>
+                    <h2 id="api">API</h2>
 
-                    <pre>ssm.addState({id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}});
-ssm.addState({width: 1023, onEnter: function(){console.log('enter tablet')}});
-ssm.addState({width: 9999, onEnter: function(){console.log('enter desktop')}});</pre>
+                    <h3>Add States</h3>
+                    <p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. You are able to add as many states as you need, your states are able to overlap. It is important to remember that the if you do not pass minWidth and maxWidth values they will revert to the default values (0 for minWidth and 99999 for maxWidth)</p>
+
+                    <pre>ssm.addState({
+    id: 'mobile',
+    maxWidth: 767,
+    onEnter: function(){
+        console.log('enter mobile');
+    }
+});
+
+ssm.addState({
+    id: 'tablet',
+    minWidth: 768,
+    maxWidth: 1023,
+    onEnter: function(){
+        console.log('enter tablet');
+    }
+});
+
+ssm.addState({
+    id: 'desktop',
+    minWidth: 1024,
+    onEnter: function(){
+        console.log('enter desktop');
+    }
+});</pre>
 
                     <p>If you wish to use one command to add multiple states using one command you can use ssm.addStates to which you should pass an array of states.</p>
 
@@ -123,7 +152,7 @@ ssm.addState({width: 9999, onEnter: function(){console.log('enter desktop')}});<
 
                     <pre>ssm.enableDebug();</pre>
 
-                    <h3 id="api">Full API</h3>
+                    <h3>Full API</h3>
 
                     <table  class="table table-hover table-condensed table-bordered">
                         <tr>
@@ -206,11 +235,12 @@ ssm.addState({width: 9999, onEnter: function(){console.log('enter desktop')}});<
                     <h2 id="log">Release Log</h2>
                     <p>SimpleStateManager follows <a href="http://semver.org/">Semantic Versioning 2.0.0</a></p>
 
-                    <h3>2.0.0 - UNKNOWN</h3>
+                    <h3>2.0.0 - September 13, 2013</h3>
                     <ul>
                         <li>Ability to overlap your states</li>
-                        <li>Debug mode removed - See <a href="#debug">Debug</a> section for info on how to debug without this method</li>
+                        <li>Debug mode removed - replaced with a new debug tool (currently early alpha) which will continue to be expanded to allow better responsive debugging</li>
                         <li>Define min-width and max-width values for each state</li>
+                        <li>Easier to extend SSM (it is now encouraged)</li>
                     </ul>
                     <h3>1.3.0 - August 10, 2013</h3>
                     <ul>

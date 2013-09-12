@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                     cssDir: 'docs/css',
                     imagesDir: 'docs/images',
                     environment: 'development',
-                    httpGeneratedImagesPath: '/images'
+                    httpGeneratedImagesPath: 'docs/images'
                 }
             }
         },
@@ -32,11 +32,11 @@ module.exports = function (grunt) {
         watch: {
             build: {
                 files: ['src/ssm.js'],
-                tasks: ['uglify, compass:dev']
+                tasks: ['uglify']
             },
             compass: {
                 files: ['docs/sass/{,*/}*.{scss,sass}'],
-                tasks: ['compass']
+                tasks: ['compass:dev']
             },
         }
     });
