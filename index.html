@@ -58,16 +58,16 @@
                     <a class="btn btn-large btn-primary" href="https://github.com/jonathan-fielding/SimpleStateManager/archive/master.zip">Download</a>
                 </div>
             </header>
-            <section role="main">
+            <section id="intro">
                 <div class="container">
                     <p>As a state manager, SSM allows you to target different javascript towards different states of your site. It allows you to define as many states as your site requires and allows you to have independent Enter, Leave and Resize events for each of the states.</p>
 
                     <h2>Why should I use SSM</h2>
 
                     <ul>
-                        <li>You require different javascript events dependant on your users being on mobile or desktop</li>
-                        <li>You need to provide a different resize event to the mobile view of your site than your desktop view</li>
-                        <li>You need to adjust your site using JS after it switches between states (mobile, tablet, desktop)</li>
+                        <li>You require different javascript events dependant on the state of your browser e.g mobile, tablet or desktop</li>
+                        <li>You need to provide a different resize event to different states of your site</li>
+                        <li>You need to adjust your site using JS after it switches between states (mobile, tablet, desktop), potentially cleaning up after a state or adding extra functionality specific to a state</li>
                     </ul>
 
                     <h3>What should you not use SSM for</h3>
@@ -75,15 +75,21 @@
                     <ul>
                         <li>Anything that can be achieved using pure CSS and Media Queries</li>
                     </ul>
-
-                    <h2 id="getstarted">Get started</h2>
+                </div>
+            </section>
+            <section id="getstarted">
+                <div class="container">
+                    <h2>Get started</h2>
                     <p>To get started with SSM the first step is to include it in your project, you can do this in two ways</p>
                     <ul>
                         <li>Download and add the ssm.js (or ssm.min.js) file to your site</li>
                         <!-- <li>Use a hosted copy of SSM from the CDNJS CDN.</li> -->
                     </ul>
-
-                    <h2 id="api">API</h2>
+                </div>
+            </section>
+            <section id="api">
+                <div class="container">
+                    <h2>API</h2>
 
                     <h3>Add States</h3>
                     <p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. You are able to add as many states as you need, your states are able to overlap. It is important to remember that the if you do not pass minWidth and maxWidth values they will revert to the default values (0 for minWidth and 99999 for maxWidth)</p>
@@ -115,10 +121,29 @@ ssm.addState({
 
                     <p>If you wish to use one command to add multiple states using one command you can use ssm.addStates to which you should pass an array of states.</p>
 
-                    <pre>ssm.addStates([
-    {id: 'mobile', width: 767, onEnter: function(){console.log('enter mobile')}},
-    {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
-    {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
+<pre>ssm.addStates([
+    {
+        id: 'mobile',
+        maxWidth: 767,
+        onEnter: function(){
+            console.log('enter mobile');
+        }
+    },
+    {
+        id: 'tablet',
+        minWidth: 768,
+        maxWidth: 1023,
+        onEnter: function(){
+            console.log('enter tablet');
+        }
+    },
+    {
+        id: 'desktop',
+        minWidth: 1024,
+        onEnter: function(){
+            console.log('enter desktop');
+        }
+    }
 ]);</pre>
 
                     <h3>Remove States</h3>
@@ -144,13 +169,6 @@ ssm.addState({
     {id: 'tablet',width: 1023, onEnter: function(){console.log('enter tablet')}},
     {id: 'desktop',width: 9999, onEnter: function(){console.log('enter desktop')}}
 ]).ready();</pre>
-
-
-                    <h3>Debug</h3>
-
-                    <p>To enable the debug mode you simply need to run <code>ssm.enableDebug()</code>, this will add a width meter to the bottom right corner of the viewport area.</p>
-
-                    <pre>ssm.enableDebug();</pre>
 
                     <h3>Full API</h3>
 
@@ -192,8 +210,11 @@ ssm.addState({
                             <td>Get the current value of the browser width</td>
                         </tr>
                     </table>
-
-                    <h2 id="extend">Extend</h2>
+                </div>
+            </section>
+            <section id="extend">
+                <div class="container">
+                    <h2>Extend</h2>
 
                     <p>One of the core features we integrated into SimpleStateManager 2.x is that we expose a lot more API's to access some of the values that are used everyday in responsive sites. The benefit of this is that it means SSM can be extended with new plugins that add extra functionality with ease.</p>
 
@@ -221,7 +242,19 @@ ssm.addState({
     }
 
 })( jQuery, window, document );</pre>
-
+                </div>
+            </section>
+            <section id="debugger">
+                <div class="container">
+                    <h2>Debugger</h2>
+                    <p>While working on SSM 2.0 we explored ways in which we could make SSM easier to debug, we started by making a lot more of the SSM variables accessable however we wanted to take it a step further. Due to security restrictions of the browser a Chrome Extension wouldn't work so instead we decided to create a simple bookmarklet which adds a debugger to the page.</p>
+                    <p>The debugger is very much an early alpha build and will be improved over time.</p>
+                    <p>To get started with the SSM 2.0 debugger simply drag the SimpleStateManager Bookmarklet to your bookmarks bar</p>
+                    <p><a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://www.simplestatemanager.com/bookmarklet/debugger.js';})();">SimpleStateManager Bookmarklet</a></p>
+                </div>
+            </section>
+            <section id="browsers">
+                <div class="container">
                     <h2>Browser Support</h2>
                     <p>There are a number of browsers that we have tested support, as we test more browsers we will update this list</p>
                     <ul>
@@ -231,8 +264,11 @@ ssm.addState({
                         <li>Safari</li>
                         <li>Opera</li>
                     </ul>
-
-                    <h2 id="log">Release Log</h2>
+                </div>
+            </section>
+            <section id="log">
+                <div class="container">
+                    <h2>Release Log</h2>
                     <p>SimpleStateManager follows <a href="http://semver.org/">Semantic Versioning 2.0.0</a></p>
 
                     <h3>2.0.0 - September 13, 2013</h3>
@@ -272,14 +308,11 @@ ssm.addState({
                     <ul>
                         <li>Initial release</li>
                     </ul>
+                </div>
+            </section>
 
-                    <h2>Planned Features</h2>
-
-                    <ul>
-                        <li>Enable multiple methods to be attached to each state</li>
-                        <li>Allow overlapping states so that JS can span multiple states</li>
-                    </ul>
-
+            <section id="contribute">
+                <div class="container">
                     <h2>Contribute</h2>
                     <p>Anybody is welcome to contribute to this project, this is a community led library and you can get involved in the following ways</p>
 
@@ -296,8 +329,11 @@ ssm.addState({
                         <li><a href="http://koenpasman.nl/">Koen Pasman</a></li>
                         <li><a href="http://iszak.net/">Iszak Bryan</a></li>
                     </ul>
-
-                    <h2 id="licence">Licence</h2>
+                </div>
+            </section>
+            <section id="licence">
+                <div class="container">
+                    <h2>Licence</h2>
                     <p>License: MIT (<a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a>)</p>
                     <p>The MIT License (MIT)</p>
                     <p>Copyright (c) 2013 Jonathan Fielding</p>

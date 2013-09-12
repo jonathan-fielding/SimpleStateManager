@@ -8305,7 +8305,6 @@ body {
 -------------------------------------------------- */
 /* line 12, ../sass/styles.scss */
 header {
-  margin-bottom: 30px;
   font-size: 22.5px;
   font-weight: 200;
   line-height: 2.1428571435;
@@ -8314,7 +8313,7 @@ header {
   text-align: center;
   font-family: 'Lato', sans-serif;
 }
-/* line 22, ../sass/styles.scss */
+/* line 21, ../sass/styles.scss */
 header .container {
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
@@ -8324,82 +8323,99 @@ header .container {
   padding: 30px;
 }
 
-/* line 30, ../sass/styles.scss */
+/* line 29, ../sass/styles.scss */
 header h1 {
   line-height: 1;
   color: inherit;
   font-weight: normal;
 }
 
-/* line 36, ../sass/styles.scss */
+/* line 35, ../sass/styles.scss */
 header p {
   line-height: 1.4;
 }
 
 /* Footer
 -------------------------------------------------- */
-/* line 43, ../sass/styles.scss */
+/* line 42, ../sass/styles.scss */
 footer {
   text-align: center;
   padding: 30px 0;
-  margin-top: 70px;
   border-top: 1px solid #e5e5e5;
   background-color: #f5f5f5;
 }
 
-/* line 51, ../sass/styles.scss */
+/* line 49, ../sass/styles.scss */
 footer p {
   margin-bottom: 0;
   color: #777;
 }
 
+/* line 54, ../sass/styles.scss */
+section {
+  border-top: 1px solid #ccc;
+  padding: 40px 0px;
+}
+/* line 58, ../sass/styles.scss */
+section h2 {
+  margin-top: 0px;
+}
+/* line 62, ../sass/styles.scss */
+section *:last-child {
+  margin-bottom: 0px;
+}
+/* line 66, ../sass/styles.scss */
+section:nth-child(odd) {
+  background-color: #efefef;
+}
+
 @media screen and (min-width: 768px) and (max-width: 979px) {
-  /* line 58, ../sass/styles.scss */
+  /* line 73, ../sass/styles.scss */
   body {
     padding-top: 0px;
   }
 
-  /* line 62, ../sass/styles.scss */
+  /* line 77, ../sass/styles.scss */
   .navbar-fixed-top {
     margin-bottom: 0px;
   }
 }
 @media screen and (max-width: 767px) {
-  /* line 69, ../sass/styles.scss */
+  /* line 84, ../sass/styles.scss */
   body {
     padding-top: 0px;
   }
 
-  /* line 73, ../sass/styles.scss */
+  /* line 88, ../sass/styles.scss */
   header {
     margin: 0 -20px 20px;
   }
-  /* line 76, ../sass/styles.scss */
+  /* line 91, ../sass/styles.scss */
   header img {
     height: 150px;
   }
-  /* line 79, ../sass/styles.scss */
+  /* line 94, ../sass/styles.scss */
   header .lead {
     font-size: 16px;
     line-height: 1.3em;
   }
 
-  /* line 85, ../sass/styles.scss */
+  /* line 100, ../sass/styles.scss */
   h2 {
     font-size: 26px;
   }
 
-  /* line 89, ../sass/styles.scss */
+  /* line 104, ../sass/styles.scss */
   h3 {
     font-size: 18px;
   }
 
-  /* line 93, ../sass/styles.scss */
+  /* line 108, ../sass/styles.scss */
   footer {
     margin: 0 -20px;
   }
 
-  /* line 97, ../sass/styles.scss */
+  /* line 112, ../sass/styles.scss */
   .navbar-fixed-top {
     margin-bottom: 0px;
   }
