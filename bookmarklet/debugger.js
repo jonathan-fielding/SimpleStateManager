@@ -193,7 +193,7 @@
 
 	//Add initialisation script and load templates
 	window.rd = initDebug;
-	addScript('http://localhost:3000/bookmarklet/templates.js');
+	addScript('http://www.simplestatemanager.com/bookmarklet/templates.js');
 
 	//TODO - Add debounce
 	//Attach event

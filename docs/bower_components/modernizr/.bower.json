@@ -10,6 +10,5 @@
   },
   "_source": "git://github.com/Modernizr/Modernizr.git",
   "_target": "~2.6.2",
-  "_originalSource": "modernizr",
-  "_direct": true
+  "_originalSource": "modernizr"
 }
