@@ -1,0 +1,114 @@
+body{
+	padding-bottom: 300px;
+}
+
+#responsiveDebugger{
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	background: #fff;
+	width: 100%;
+	z-index: 999999;
+	border-top: 1px solid #000;
+	height: 300px;
+}
+
+#responsiveDebugger.sidebar{
+	width: 300px;
+	height: 100%;
+	right:0px;
+	left: auto;
+}
+
+#responsiveDebugger .rd_pull_right{
+	float: right;
+}
+
+#responsiveDebugger .rd_pull_left{
+	float: left;
+}
+
+#responsiveDebugger #rd_nav,#responsiveDebugger #rd_footer{
+	overflow: hidden;
+	background: #ccc;
+	font-size: 12px;
+}
+
+#responsiveDebugger #rd_nav{
+	border-bottom: 1px solid #000;
+}
+
+#responsiveDebugger #rd_close, #responsiveDebugger #rd_nav ul, #responsiveDebugger #rd_nav ul li{
+	float: left;
+	list-style: none;
+}
+
+#responsiveDebugger #rd_close{
+	background: url('images/close.png') center center no-repeat;
+	height: 29px;
+	width: 9px;
+	text-indent: -9999px;
+}
+
+#responsiveDebugger #rd_nav ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+#responsiveDebugger #rd_nav ul li{
+	border-left: 1px solid #bbb;
+}
+
+#responsiveDebugger #rd_nav a, #responsiveDebugger #rd_footer a{
+	font-size: 12px;
+	color: #000;
+	line-height: 29px;
+	display: block;
+	padding: 0px 10px;
+	text-decoration: none;
+}
+
+#responsiveDebugger #rd_nav a:hover, #responsiveDebugger #rd_footer a:hover{
+	font-size: 12px;
+	color: #000;
+	line-height: 29px;
+	background-color: #bbb;
+}
+
+#responsiveDebugger #rd_footer{
+	border-top: 1px solid #000;
+}
+
+#responsiveDebugger #rd_footer .rd_pull_right{
+	margin: 0px;
+	padding: 5px 10px;
+}
+
+#responsiveDebugger #rd_panelContainer{
+	height: 240px;
+	overflow: scroll;
+}
+
+#rd_toggleSidebar{
+	display: none!important;
+}
+
+.rd_DebugPanel ul{
+	margin: 0px;
+}
+
+.rd_DebugPanel ul li{
+	list-style: none;
+}
+
+.rd_DebugPanel h2{
+	background: #ccc;
+	margin-top: 0px;
+	padding: 5px 10px;
+	font-size: 16px;
+	line-height: 16px;
+}
+
+.rd_DebugPanel p{
+	margin: 10px;
+}

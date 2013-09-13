@@ -5,9 +5,10 @@
         states = [],
         debug = false,
         browserWidth = 0,
-        currentState = null,
+        currentStates = [],
         resizeTimeout = 50,
-        resizeTimer = null;
+        resizeTimer = null,
+        stateCounter = 0;
 
     var browserResizePre = function () {
         clearTimeout(resizeTimer);
@@ -16,61 +17,69 @@
 
     var browserResize = function () {
         var state = null,
-            totalStates;
+            totalStates,
+            newBrowserWidth = getWidth();
 
         totalStates = states.length;
-        browserWidth = getWidth();
 
         for (var i = 0; i < totalStates; i++) {
-            state = states[i];
-
-            if (states[i].width >= browserWidth) {
-
-                if (currentState !== null) {
-                    if (currentState.id !== states[i].id) {
-                        currentState.onLeave();
-                        currentState = states[i];
-                        currentState.onEnter();
-                    }
-                } else {
-                    currentState = states[i];
-                    currentState.onEnter();
+            if(browserWidth >= states[i].minWidth && browserWidth <= states[i].maxWidth){
+                
+                if(objectInArray(currentStates, states[i])){
+                    states[i].onResize();
                 }
-
-                states[i].onResize();
-                break;
+                else{
+                    currentStates.push(states[i]);
+                    states[i].onEnter();
+                }
             }
-        }
+            else{
+                if(objectInArray(currentStates, states[i])){
+                    states[i].onLeave();
+                    currentStates = removeObjectInArray(currentStates,states[i]);
+                }
+            }
+        };
 
-        if (debug) {
-            document.getElementById('ssmDebug').innerHTML = browserWidth + 'px';
-        }
+        browserWidth = newBrowserWidth;
     };
 
-    //Enable a debug mode
-    ssm.enableDebug = function () {
-        debug = true;
-        document.body.innerHTML += '<div id="ssmDebug" style="z-index: 99999999; position: fixed; bottom: 0px; right: 0px; width: 100px; line-height: 30px; font-size: 12px; background: #fff; border: 1px solid #000; text-align: center;">' + browserWidth + 'px</div>';
-
-        return this;
+    ssm.getBrowserWidth = function(){
+        return browserWidth;
     };
 
     //Add a new state
     ssm.addState = function (options) {
+        //Setting sensible defaults for a state
+        //Max width is set to 99999 for comparative purposes, is bigger than any display on market
         var defaultOptions = {
             id: makeID(),
-            width: 0,
+            minWidth: 0,
+            maxWidth: 99999,
             onEnter: function () {},
             onLeave: function () {},
             onResize: function () {}
         };
 
+        //Merge options with defaults
         options = mergeOptions(defaultOptions, options);
-        //options.range = options.maxWidth - options.minWidth;
 
+        //Add state to the master states array
         states.push(options);
 
-        states = sortByKey(states, 'width');
+        //Sort 
+        states = sortByKey(states, 'minWidth');
+
+        return this;
+    };
+
+    //Allow updating of an already added state
+    ssm.updateState = function (stateId, options) {
+        for (var i = states.length - 1; i >= 0; i--) {
+            if (states[i].id === stateId) {
+                states[i] = mergeOptions(states[i], options);
+            }
+        }
 
         return this;
     };
@@ -97,7 +106,7 @@
 
         //Find and remove the state from the array
     ssm.removeAllStates = function (stateId) {
-        states = [];
+        states = currentStates = [];
 
         return this;
     };
@@ -111,8 +120,25 @@
         return this;
     };
 
-    ssm.getState = function(){
-        return currentState;
+    ssm.getStates = function(idArr){
+        var idCount = null, returnArr = [];
+
+        if(typeof(idArr) === "undefined"){
+            return states;
+        }
+        else{
+            idCount = idArr.length;
+            
+            for (var i = 0; i < idCount; i++) {
+                returnArr.push(getStateByID(idArr[i]));
+            };
+
+            return returnArr;
+        }
+    };
+
+    ssm.getCurrentStates = function(){
+        return currentStates;
     };
 
     //Change the timeout before firing the resize function
@@ -120,27 +146,15 @@
         resizeTimeout = milliSeconds;
     };
 
-    ssm.ready = function () {
-        var state = null,
-            totalStates = states.length;
-
-        for (var i = 0; i < totalStates; i++) {
-            state = states[i];
-
-            if (states[i].width >= browserWidth) {
-                currentState = states[i];
-                currentState.onEnter();
-                break;
-            }
-        }
-
-        return this;
+    //Change the timeout before firing the resize function
+    ssm.getResizeTimeout = function () {
+        return resizeTimeout;
     };
 
-    //Return an array of all the states
-    ssm.states = function () {
+    ssm.ready = function () {
+        browserResize();
 
-        return states;
+        return this;
     };
 
     var makeID = function () {
@@ -196,6 +210,37 @@
         });
     };
 
+    //Method to get a state based on the ID
+    var getStateByID = function(id){
+        for (var i = states.length - 1; i >= 0; i--) {
+            if(states[i].id === id){
+                return states[i];
+            }
+        };
+    };
+
+    var objectInArray = function(arr, obj){
+        for (var i = 0; i < arr.length; i++) {
+            if(arr[i] === obj){
+                return true;
+                break;
+            }
+        };
+    };
+
+    var removeObjectInArray = function(arr,obj){
+        var length = arr.length - 1;
+
+        for (var i = 0; i < length; i++) {
+            if (arr[i] === obj) {
+                arr.splice(i, 1);
+            }
+        }
+
+        return arr;
+    };
+
+    //Update value of browserWidth
     browserWidth = getWidth();
 
     //Attach event
@@ -204,7 +249,7 @@
     } else if (window.addEventListener) {
         window.addEventListener('resize', browserResizePre, true);
     } else {
-        //The browser does not support Javascript event binding
+        //The browser does not support Javascript event binding which is required by SimpleStateManager
     }
 
     //Expose Simple State Manager
@@ -215,6 +260,5 @@
             return window.ssm;
         });
     }
-
 
 })(window, document);
