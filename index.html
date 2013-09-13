@@ -5,6 +5,10 @@
         <link rel="stylesheet" href="docs/css/styles.css">
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <script src="docs/bower_components/modernizr/modernizr.js"></script>
+        <script src="docs/bower_components/respond/respond.min.js"></script>
+
     </head>
     <body data-spy="scroll" data-target=".navbar" id="home">
         <a class="github-ribbon visible-desktop" href="https://github.com/jonathan-fielding/SimpleStateManager">
@@ -177,6 +181,10 @@ ssm.addState({
                         <tr>
                             <td>ssm.addState</td>
                             <td>Add a new state, expects an object literal, properties avaliable -  id (optional), minWidth (optional), maxWidth (optional), onEnter (optional), onResize (optional), onLeave (optional)</td>
+                        </tr>
+                        <tr>
+                            <td>ssm.updateState</td>
+                            <td>Update an existing state, expects two parameters, firstly the id of the state you wish to update and secondly an object literal of updated settings, properties avaliable -  id (optional), minWidth (optional), maxWidth (optional), onEnter (optional), onResize (optional), onLeave (optional)</td>
                         </tr>
                         <tr>
                             <td>ssm.addStates</td>

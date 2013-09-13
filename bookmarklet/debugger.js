@@ -96,12 +96,18 @@
 
 	var initPanels = {
 		overview: function(){
+			var panel = document.getElementById('rd_overview'),
+				ssmStates = ssm.getStates(),
+				stateCount = ssmStates.length,
+				panelHTML = "<ul>";
 
+			panelHTML += "<p>Number of SSM States: " + stateCount + "</p>";
+			panel.innerHTML = panelHTML;
 		},
 		ssmStates: function(){
-			var ssmStates = ssm.getStates(),
+			var panel = document.getElementById('rd_states'),
+				ssmStates = ssm.getStates(),
 				stateCount = ssmStates.length,
-				panel = document.getElementById('rd_states'), 
 				panelHTML = '<ul>';
 
 			for (var i = 0; i < stateCount; i++) {
@@ -117,7 +123,7 @@
 
 			panelHTML += '</ul>'
 
-			document.getElementById('rd_states').innerHTML = panelHTML;
+			document.getElementById('rd_states').innerHTML += panelHTML;
 		}
 	};
 

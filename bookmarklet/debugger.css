@@ -93,15 +93,15 @@ body{
 	display: none!important;
 }
 
-#rd_states ul{
+.rd_DebugPanel ul{
 	margin: 0px;
 }
 
-#rd_states ul li{
+.rd_DebugPanel ul li{
 	list-style: none;
 }
 
-#rd_states h2{
+.rd_DebugPanel h2{
 	background: #ccc;
 	margin-top: 0px;
 	padding: 5px 10px;
@@ -109,6 +109,6 @@ body{
 	line-height: 16px;
 }
 
-#rd_states p{
+.rd_DebugPanel p{
 	margin: 10px;
 }

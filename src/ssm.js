@@ -73,6 +73,17 @@
         return this;
     };
 
+    //Allow updating of an already added state
+    ssm.updateState = function (stateId, options) {
+        for (var i = states.length - 1; i >= 0; i--) {
+            if (states[i].id === stateId) {
+                states[i] = mergeOptions(states[i], options);
+            }
+        }
+
+        return this;
+    };
+
     //Find and remove the state from the array
     ssm.removeState = function (stateId) {
         for (var i = states.length - 1; i >= 0; i--) {
