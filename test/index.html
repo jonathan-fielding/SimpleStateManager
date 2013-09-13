@@ -28,7 +28,7 @@
                 });
 
 
-                var state = ssm.states().shift();
+                var state = ssm.getStates().shift();
 
                 ok(state.id === id, "Passed");
                 ok(state.width === width, "Passed");
@@ -47,12 +47,20 @@
 
                 ssm.removeState('desktop');
 
-                ok(ssm.states().length === 0, "Passed");
+                ok(ssm.getStates().length === 0, "Passed");
 
                 ssm.removeAllStates();
             });
 
+            test("remove all states", function() {
+                ssm.addState({
+                    id: 'desktop'
+                });
 
+                ssm.removeAllStates();
+
+                ok(ssm.getStates().length === 0, "Passed");
+            });
 
             test("get states", function() {
                 ssm.addStates([
@@ -65,12 +73,10 @@
                     }
                 ]);
 
-                ok(ssm.states().length === 3, "Passed");
+                ok(ssm.getStates().length === 3, "Passed");
 
                 ssm.removeAllStates();
             });
-
-
 
             test("remove all states", function() {
                 ssm.addStates([
@@ -81,11 +87,18 @@
                     }
                 ]);
 
-                ok(ssm.states().length === 2, "Passed");
+                ok(ssm.getStates().length === 2, "Passed");
 
                 ssm.removeAllStates();
 
-                ok(ssm.states().length === 0, "Passed");
+                ok(ssm.getStates().length === 0, "Passed");
+            });
+
+
+            test("Set Resize Timeout", function() {
+                ssm.setResizeTimeout(100);
+
+                ok(ssm.getResizeTimeout() === 100, "Passed");
             });
         </script>
     </body>
