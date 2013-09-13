@@ -106,9 +106,12 @@
 
 			for (var i = 0; i < stateCount; i++) {
 				panelHTML += "<li>";
-				panelHTML += "<h2>" + ssmStates[i].id +"</h2>";
+				panelHTML += "<h2>id: " + ssmStates[i].id +"</h2>";
 				panelHTML += "<p>minWidth : " + ssmStates[i].minWidth +"</p>";
 				panelHTML += "<p>maxWidth : " + ssmStates[i].maxWidth +"</p>";
+				panelHTML += "<p>onEnter : " + ssmStates[i].onEnter +"</p>";
+				panelHTML += "<p>onLeave : " + ssmStates[i].onLeave +"</p>";
+				panelHTML += "<p>onResize : " + ssmStates[i].onResize +"</p>";
 				panelHTML += "</li>";
 			};
 
