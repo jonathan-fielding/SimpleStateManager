@@ -152,7 +152,18 @@
     };
 
     ssm.ready = function () {
+        //Update browser width
         browserWidth = getWidth();
+
+        //Attach event for resizing
+        if (window.attachEvent) {
+            window.attachEvent('onresize', browserResizePre);
+        } else if (window.addEventListener) {
+            window.addEventListener('resize', browserResizePre, true);
+        } else {
+            //The browser does not support Javascript event binding which is required by SimpleStateManager
+        }
+
         browserResize();
 
         return this;
@@ -240,15 +251,6 @@
 
         return arr;
     };
-
-    //Attach event
-    if (window.attachEvent) {
-        window.attachEvent('onresize', browserResizePre);
-    } else if (window.addEventListener) {
-        window.addEventListener('resize', browserResizePre, true);
-    } else {
-        //The browser does not support Javascript event binding which is required by SimpleStateManager
-    }
 
     //Expose Simple State Manager
     window.ssm = ssm;
