@@ -152,6 +152,7 @@
     };
 
     ssm.ready = function () {
+        browserWidth = getWidth();
         browserResize();
 
         return this;
@@ -239,9 +240,6 @@
 
         return arr;
     };
-
-    //Update value of browserWidth
-    browserWidth = getWidth();
 
     //Attach event
     if (window.attachEvent) {
