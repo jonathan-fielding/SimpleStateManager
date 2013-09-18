@@ -18,6 +18,9 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###2.0.1 - September 18, 2013
+* Fixed issue where ssm.js could not be placed in the head of the document
+
 ###2.0.0 - September 13, 2013
 * Major API changes to all states mangement methods, please read through the new API documention if upgrading
 * Ability to overlap your states
