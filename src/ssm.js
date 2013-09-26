@@ -6,7 +6,7 @@
         debug = false,
         browserWidth = 0,
         currentStates = [],
-        resizeTimeout = 0,
+        resizeTimeout = 10,
         resizeTimer = null,
         stateCounter = 0;
 
@@ -248,7 +248,7 @@
     };
 
     var removeObjectInArray = function(arr,obj){
-        var length = arr.length - 1;
+        var length = arr.length;
 
         for (var i = 0; i < length; i++) {
             if (arr[i] === obj) {
@@ -258,7 +258,7 @@
 
         return arr;
     };
-    
+
     var fireAllMethodsInArray = function(arr){
         var arrLength = arr.length;
 

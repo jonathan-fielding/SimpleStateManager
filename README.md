@@ -18,6 +18,9 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###2.0.2 - September 26, 2013
+* Fixed issue where leave events fired incorrectly
+
 ###2.0.1 - September 18, 2013
 * Fixed issue where ssm.js could not be placed in the head of the document
 
