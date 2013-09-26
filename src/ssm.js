@@ -6,7 +6,7 @@
         debug = false,
         browserWidth = 0,
         currentStates = [],
-        resizeTimeout = 50,
+        resizeTimeout = 0,
         resizeTimer = null,
         stateCounter = 0;
 
@@ -18,7 +18,10 @@
     var browserResize = function () {
         var state = null,
             totalStates,
-            newBrowserWidth = getWidth();
+            newBrowserWidth = getWidth(),
+            leaveMethods = [],
+            resizeMethods = [],
+            enterMethods = [];
 
         totalStates = states.length;
 
@@ -26,20 +29,24 @@
             if(browserWidth >= states[i].minWidth && browserWidth <= states[i].maxWidth){
                 
                 if(objectInArray(currentStates, states[i])){
-                    states[i].onResize();
+                    resizeMethods.push(states[i].onResize);
                 }
                 else{
                     currentStates.push(states[i]);
-                    states[i].onEnter();
+                    enterMethods.push(states[i].onEnter);
                 }
             }
             else{
                 if(objectInArray(currentStates, states[i])){
-                    states[i].onLeave();
+                    leaveMethods.push(states[i].onLeave);
                     currentStates = removeObjectInArray(currentStates,states[i]);
                 }
             }
         };
+
+        fireAllMethodsInArray(leaveMethods);
+        fireAllMethodsInArray(enterMethods);
+        fireAllMethodsInArray(resizeMethods);
 
         browserWidth = newBrowserWidth;
     };
@@ -251,6 +258,15 @@
 
         return arr;
     };
+    
+    var fireAllMethodsInArray = function(arr){
+        var arrLength = arr.length;
+
+
+        for (var i = 0; i < arrLength; i++) {
+            arr[i]();
+        };
+    }
 
     //Expose Simple State Manager
     window.ssm = ssm;
