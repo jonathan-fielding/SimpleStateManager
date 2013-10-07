@@ -18,10 +18,11 @@
     var browserResize = function () {
         var state = null,
             totalStates,
-            newBrowserWidth = getWidth(),
             leaveMethods = [],
             resizeMethods = [],
             enterMethods = [];
+
+        browserWidth = getWidth()
 
         totalStates = states.length;
 
@@ -47,8 +48,6 @@
         fireAllMethodsInArray(leaveMethods);
         fireAllMethodsInArray(enterMethods);
         fireAllMethodsInArray(resizeMethods);
-
-        browserWidth = newBrowserWidth;
     };
 
     ssm.getBrowserWidth = function(){

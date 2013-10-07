@@ -1,6 +1,6 @@
 # Simple State Manager
 
-[![Build Status](https://travis-ci.org/jonathan-fielding/SimpleStateManager.png?branch=master)](https://travis-ci.org/jonathan-fielding/SimpleStateManager)
+[![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager)
 
 Simple State Manager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, has no dependencies (except javascript of course) and aims to be really easy to simply drop into your project ready to use.
 
@@ -17,6 +17,9 @@ To get started with SSM the first step is to include it in your project, you can
 Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
+
+###2.0.3 - October 7, 2013
+* Fixed issue where browser width was not updated correctly
 
 ###2.0.2 - September 26, 2013
 * Fixed issue where leave events fired incorrectly
@@ -39,7 +42,7 @@ Documentation can be found at http://www.simplestatemanager.com
 ###1.2.0 - August 9, 2013
 * Added .getState method
 
-###.1.0 - August 9, 2013
+###1.1.0 - August 9, 2013
 * Added .removeAllStates method
 
 ###1.0.2 - August 6, 2013
