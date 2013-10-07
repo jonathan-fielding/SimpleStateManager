@@ -22,7 +22,7 @@
             resizeMethods = [],
             enterMethods = [];
 
-        browserWidth = getWidth()
+        browserWidth = getWidth();
 
         totalStates = states.length;
 
