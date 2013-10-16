@@ -32,4 +32,18 @@
 
     //Enable debug mode
     //document.body.appendChild(document.createElement('script')).src='http://www.simplestatemanager.com/bookmarklet/debugger.js';
+
+    $.ajax({
+        dataType: "json",
+        url: "https://api.github.com/users/SimpleStateManager/repos?callback=?",
+        success: function(data){
+            var html = '';
+
+            for (var i = 0; i < data.data.length; i++) {
+                html += "<li><a href='"+data.data[i].html_url+"'>" + data.data[i].full_name + "</a> - " + data.data[i].description + "</li>";
+            };
+
+            $('#plugins').html(html);
+        }
+    });
 }());
