@@ -4,14 +4,56 @@
         <meta charset="utf-8">
         <title>QUnit Example</title>
         <link rel="stylesheet" href="resources/qunit.css">
+        <script src="../src/ssm.js"></script>
     </head>
     <body>
         <div id="qunit"></div>
         <div id="qunit-fixture"></div>
 
         <script src="resources/qunit.js"></script>
-        <script src="../src/ssm.js"></script>
         <script>
+
+            test("Check enter event fires", function() {
+                var fired = false;
+
+                ssm.addState(
+                    {
+                        id: 'desktop',
+                        onEnter: function(){
+                            fired = true;
+                        }
+                    }
+                );
+
+                ssm.browserResize(800);
+
+                ssm.removeAllStates();
+
+                ok(fired === true, "Passed");
+            });
+
+            test("Check leave event fires", function() {
+                var fired = false;
+
+                ssm.addState(
+                    {
+                        id: 'desktop',
+                        minWidth: 0,
+                        maxWidth: 1000,
+                        onLeave: function(){
+                            fired = true;
+                        }
+                    }
+                );
+                ssm.browserResize(800);
+                ssm.browserResize(1200);
+
+                ssm.removeAllStates();
+
+                ok(fired === true, "Passed");
+            });
+
+
             test("add state", function() {
                 var id = 'test',
                     width = 100,

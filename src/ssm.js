@@ -10,24 +10,28 @@
         resizeTimer = null,
         stateCounter = 0;
 
-    var browserResizePre = function () {
+    var browserResizeDebounce = function () {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(browserResize, resizeTimeout);
     };
 
-    var browserResize = function () {
+    //Added wrapper for the resize method
+    var browserResizeWrapper = function() {
+        browserWidth = getWidth();
+        browserResize(browserWidth);
+    };
+
+    var browserResize = function (localBrowserWidth) {
         var state = null,
             totalStates,
             leaveMethods = [],
             resizeMethods = [],
             enterMethods = [];
 
-        browserWidth = getWidth();
-
         totalStates = states.length;
 
         for (var i = 0; i < totalStates; i++) {
-            if(browserWidth >= states[i].minWidth && browserWidth <= states[i].maxWidth){
+            if(localBrowserWidth >= states[i].minWidth && localBrowserWidth <= states[i].maxWidth){
                 
                 if(objectInArray(currentStates, states[i])){
                     resizeMethods.push(states[i].onResize);
@@ -49,6 +53,8 @@
         fireAllMethodsInArray(enterMethods);
         fireAllMethodsInArray(resizeMethods);
     };
+
+    ssm.browserResize = browserResize;
 
     ssm.getBrowserWidth = function(){
         return browserWidth;
@@ -163,14 +169,14 @@
 
         //Attach event for resizing
         if (window.attachEvent) {
-            window.attachEvent('onresize', browserResizePre);
+            window.attachEvent('onresize', browserResizeDebounce);
         } else if (window.addEventListener) {
-            window.addEventListener('resize', browserResizePre, true);
+            window.addEventListener('resize', browserResizeDebounce, true);
         } else {
             //The browser does not support Javascript event binding which is required by SimpleStateManager
         }
 
-        browserResize();
+        browserResize(browserWidth);
 
         return this;
     };
