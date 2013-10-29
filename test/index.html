@@ -54,6 +54,27 @@
             });
 
 
+
+            test("Check resize event fires", function() {
+                var fired = false;
+
+                ssm.addState(
+                    {
+                        id: 'desktop',
+                        onResize: function(){
+                            fired = true;
+                        }
+                    }
+                );
+                ssm.browserResize(800);
+                ssm.browserResize(1200);
+
+                ssm.removeAllStates();
+
+                ok(fired === true, "Passed");
+            });
+
+
             test("add state", function() {
                 var id = 'test',
                     width = 100,
