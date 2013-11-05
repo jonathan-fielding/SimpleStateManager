@@ -9,7 +9,7 @@
         onEnter: function(){
             var $items = $('.items');
             $items.addClass('mobile-accordion');
-            $items.find('h2').next().hide();
+            $items.find('h2').removeClass('active').next().hide();
         },
         onLeave: function(){
             var $items = $('.items');
@@ -21,6 +21,16 @@
     ssm.ready();
 
     $('body').on('click', '.mobile-accordion h2', function(){
-        $(this).next().toggle();
+        var $this = $(this), $next = $this.next();
+
+        if($this.hasClass('active')){
+            $this.next().hide();
+            $this.removeClass('active');
+        }
+        else{
+            $('h2.active').removeClass('active').next().hide();
+            $this.next().show();
+            $this.addClass('active');
+        }
     });
 }());
