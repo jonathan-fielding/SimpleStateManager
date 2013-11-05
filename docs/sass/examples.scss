@@ -1,5 +1,23 @@
 .container{
-	max-width: 980px;
+	max-width: 940px;
 	padding: 0 20px;
 	margin: 0 auto;
+}
+
+@media screen and (max-width: 979px) {
+	h2{
+		border-bottom: 1px solid #000;
+		padding-bottom: 10px;
+		
+		&:after{
+			content: " +";
+			float: right;
+		}
+
+		&.active{
+			&:after{
+				content: " -"
+			}
+		}
+	}
 }

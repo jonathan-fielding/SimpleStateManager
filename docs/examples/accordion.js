@@ -5,7 +5,7 @@
 
     ssm.addState({
         id: 'mobile',
-        maxWidth: 767,
+        maxWidth: 979,
         onEnter: function(){
             var $items = $('.items');
             $items.addClass('mobile-accordion');
