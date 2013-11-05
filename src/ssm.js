@@ -12,7 +12,7 @@
 
     var browserResizeDebounce = function () {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(browserResize, resizeTimeout);
+        resizeTimer = setTimeout(browserResizeWrapper, resizeTimeout);
     };
 
     //Added wrapper for the resize method

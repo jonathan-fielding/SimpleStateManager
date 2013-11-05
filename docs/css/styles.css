@@ -1,4 +1,4 @@
-/*
+/*!
  * Bootstrap v2.3.2
  *
  * Copyright 2012 Twitter, Inc
@@ -2488,22 +2488,22 @@ table th[class*="span"],
 
 /* line 53, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-music {
-  background-position: -24px 0;
+  background-position: -24px  0;
 }
 
 /* line 54, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-search {
-  background-position: -48px 0;
+  background-position: -48px  0;
 }
 
 /* line 55, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-envelope {
-  background-position: -72px 0;
+  background-position: -72px  0;
 }
 
 /* line 56, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-heart {
-  background-position: -96px 0;
+  background-position: -96px  0;
 }
 
 /* line 57, ../bower_components/sass-bootstrap/lib/_sprites.scss */
@@ -2583,27 +2583,27 @@ table th[class*="span"],
 
 /* line 73, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-home {
-  background-position: 0 -24px;
+  background-position: 0      -24px;
 }
 
 /* line 74, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-file {
-  background-position: -24px -24px;
+  background-position: -24px  -24px;
 }
 
 /* line 75, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-time {
-  background-position: -48px -24px;
+  background-position: -48px  -24px;
 }
 
 /* line 76, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-road {
-  background-position: -72px -24px;
+  background-position: -72px  -24px;
 }
 
 /* line 77, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-download-alt {
-  background-position: -96px -24px;
+  background-position: -96px  -24px;
 }
 
 /* line 78, ../bower_components/sass-bootstrap/lib/_sprites.scss */
@@ -2683,27 +2683,27 @@ table th[class*="span"],
 
 /* line 94, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-tag {
-  background-position: 0 -48px;
+  background-position: 0      -48px;
 }
 
 /* line 95, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-tags {
-  background-position: -25px -48px;
+  background-position: -25px  -48px;
 }
 
 /* line 96, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-book {
-  background-position: -48px -48px;
+  background-position: -48px  -48px;
 }
 
 /* line 97, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-bookmark {
-  background-position: -72px -48px;
+  background-position: -72px  -48px;
 }
 
 /* line 98, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-print {
-  background-position: -96px -48px;
+  background-position: -96px  -48px;
 }
 
 /* line 99, ../bower_components/sass-bootstrap/lib/_sprites.scss */
@@ -2783,27 +2783,27 @@ table th[class*="span"],
 
 /* line 115, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-pencil {
-  background-position: 0 -72px;
+  background-position: 0      -72px;
 }
 
 /* line 116, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-map-marker {
-  background-position: -24px -72px;
+  background-position: -24px  -72px;
 }
 
 /* line 117, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-adjust {
-  background-position: -48px -72px;
+  background-position: -48px  -72px;
 }
 
 /* line 118, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-tint {
-  background-position: -72px -72px;
+  background-position: -72px  -72px;
 }
 
 /* line 119, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-edit {
-  background-position: -96px -72px;
+  background-position: -96px  -72px;
 }
 
 /* line 120, ../bower_components/sass-bootstrap/lib/_sprites.scss */
@@ -2883,27 +2883,27 @@ table th[class*="span"],
 
 /* line 136, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-plus-sign {
-  background-position: 0 -96px;
+  background-position: 0      -96px;
 }
 
 /* line 137, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-minus-sign {
-  background-position: -24px -96px;
+  background-position: -24px  -96px;
 }
 
 /* line 138, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-remove-sign {
-  background-position: -48px -96px;
+  background-position: -48px  -96px;
 }
 
 /* line 139, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-ok-sign {
-  background-position: -72px -96px;
+  background-position: -72px  -96px;
 }
 
 /* line 140, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-question-sign {
-  background-position: -96px -96px;
+  background-position: -96px  -96px;
 }
 
 /* line 141, ../bower_components/sass-bootstrap/lib/_sprites.scss */
@@ -2983,27 +2983,27 @@ table th[class*="span"],
 
 /* line 157, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-exclamation-sign {
-  background-position: 0 -120px;
+  background-position: 0      -120px;
 }
 
 /* line 158, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-gift {
-  background-position: -24px -120px;
+  background-position: -24px  -120px;
 }
 
 /* line 159, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-leaf {
-  background-position: -48px -120px;
+  background-position: -48px  -120px;
 }
 
 /* line 160, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-fire {
-  background-position: -72px -120px;
+  background-position: -72px  -120px;
 }
 
 /* line 161, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-eye-open {
-  background-position: -96px -120px;
+  background-position: -96px  -120px;
 }
 
 /* line 162, ../bower_components/sass-bootstrap/lib/_sprites.scss */
@@ -3086,27 +3086,27 @@ table th[class*="span"],
 
 /* line 178, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-hdd {
-  background-position: 0 -144px;
+  background-position: 0      -144px;
 }
 
 /* line 179, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-bullhorn {
-  background-position: -24px -144px;
+  background-position: -24px  -144px;
 }
 
 /* line 180, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-bell {
-  background-position: -48px -144px;
+  background-position: -48px  -144px;
 }
 
 /* line 181, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-certificate {
-  background-position: -72px -144px;
+  background-position: -72px  -144px;
 }
 
 /* line 182, ../bower_components/sass-bootstrap/lib/_sprites.scss */
 .icon-thumbs-up {
-  background-position: -96px -144px;
+  background-position: -96px  -144px;
 }
 
 /* line 183, ../bower_components/sass-bootstrap/lib/_sprites.scss */
@@ -6803,7 +6803,7 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
   box-sizing: border-box;
 }
 
-/*
+/*!
  * Bootstrap Responsive v2.3.2
  *
  * Copyright 2012 Twitter, Inc
