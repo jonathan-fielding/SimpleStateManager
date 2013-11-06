@@ -1,23 +1,75 @@
 /* line 1, ../sass/examples.scss */
-.container {
+body {
+  margin: 0px;
+}
+
+/* line 6, ../sass/examples.scss */
+.example1 .container {
   max-width: 940px;
   padding: 0 20px;
   margin: 0 auto;
 }
 
+/* line 14, ../sass/examples.scss */
+.example2 h1 {
+  margin: 20px 0px;
+}
+/* line 18, ../sass/examples.scss */
+.example2 h2 {
+  margin: 0px;
+  padding: 20px 0px 0px;
+}
+/* line 23, ../sass/examples.scss */
+.example2 p {
+  margin-bottom: 0px;
+}
+/* line 27, ../sass/examples.scss */
+.example2 .container {
+  width: 980px;
+  margin: 0 auto;
+}
+/* line 32, ../sass/examples.scss */
+.example2 .columns {
+  overflow: hidden;
+}
+/* line 36, ../sass/examples.scss */
+.example2 .col {
+  width: 205px;
+  padding: 0 20px 20px;
+  float: left;
+  background: #ccc;
+  margin-bottom: 20px;
+}
+
 @media screen and (max-width: 979px) {
-  /* line 8, ../sass/examples.scss */
-  h2 {
+  /* line 47, ../sass/examples.scss */
+  .example1 h2 {
     border-bottom: 1px solid #000;
     padding-bottom: 10px;
   }
-  /* line 12, ../sass/examples.scss */
-  h2:after {
+  /* line 51, ../sass/examples.scss */
+  .example1 h2:after {
     content: " +";
     float: right;
   }
-  /* line 18, ../sass/examples.scss */
-  h2.active:after {
+  /* line 57, ../sass/examples.scss */
+  .example1 h2.active:after {
     content: " -";
+  }
+
+  /* line 65, ../sass/examples.scss */
+  .example2 h1 {
+    margin: 20px 20px 0;
+  }
+  /* line 69, ../sass/examples.scss */
+  .example2 .container {
+    width: auto;
+  }
+  /* line 73, ../sass/examples.scss */
+  .example2 .col {
+    float: none;
+    width: auto;
+    margin: 20px 20px;
+    padding: 0px 20px 20px;
   }
 }
