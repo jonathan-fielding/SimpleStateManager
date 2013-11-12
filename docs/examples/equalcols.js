@@ -1,8 +1,4 @@
 (function(){
-    // This is simply an example of SSM, you wouldn't use it for changing a background color
-    // but instead would use Media Queries for this. SSM is meant for javascript states where
-    // your doing something you couldn't otherwise do with Media Queries.
-
     var equalCols = function(){
         var $cols = $('.col'),
             colCount = $cols.length;
