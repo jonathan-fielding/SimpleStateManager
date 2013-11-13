@@ -8,7 +8,8 @@
         currentStates = [],
         resizeTimeout = 10,
         resizeTimer = null,
-        stateCounter = 0;
+        stateCounter = 0,
+        configOptions = [];
 
     var browserResizeDebounce = function () {
         clearTimeout(resizeTimer);
@@ -147,6 +148,28 @@
 
             return returnArr;
         }
+    };
+
+    ssm.addConfigOption = function(options){
+        var defaultOptions = {
+            name: "",
+            test: null
+        };
+
+        //Merge options with defaults
+        options = mergeOptions(defaultOptions, options);
+
+        if(options.name !== "" && options.test !== null){
+            configOptions.push(options);
+        }
+    };
+
+    ssm.getConfigOption = function(name){
+        for (var i = configOptions.length - 1; i >= 0; i--) {
+            if(configOptions[i].name === name){
+                return configOptions[i];
+            }
+        };
     };
 
     ssm.getCurrentStates = function(){
