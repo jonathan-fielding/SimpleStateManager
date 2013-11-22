@@ -1,14 +1,14 @@
+/*global window document clearTimeout setTimeout */
+
 ;(function (window, document, undefined) {
     "use strict";
 
     var ssm = {},
         states = [],
-        debug = false,
         browserWidth = 0,
         currentStates = [],
         resizeTimeout = 10,
         resizeTimer = null,
-        stateCounter = 0,
         configOptions = [];
 
     var browserResizeDebounce = function () {
@@ -23,8 +23,7 @@
     };
 
     var browserResize = function (localBrowserWidth) {
-        var state = null,
-            totalStates,
+        var totalStates,
             leaveMethods = [],
             resizeMethods = [],
             enterMethods = [];
@@ -81,7 +80,7 @@
         states.push(options);
 
         //Sort 
-        states = sortByKey(states, 'minWidth');
+        states = sortByKey(states, "minWidth");
 
         return this;
     };
@@ -117,8 +116,8 @@
         return this;
     };
 
-        //Find and remove the state from the array
-    ssm.removeAllStates = function (stateId) {
+    //Find and remove the state from the array
+    ssm.removeAllStates = function () {
         states = currentStates = [];
 
         return this;
@@ -169,7 +168,7 @@
             if(configOptions[i].name === name){
                 return configOptions[i];
             }
-        };
+        }
     };
 
     ssm.getCurrentStates = function(){
@@ -192,11 +191,9 @@
 
         //Attach event for resizing
         if (window.attachEvent) {
-            window.attachEvent('onresize', browserResizeDebounce);
+            window.attachEvent("onresize", browserResizeDebounce);
         } else if (window.addEventListener) {
-            window.addEventListener('resize', browserResizeDebounce, true);
-        } else {
-            //The browser does not support Javascript event binding which is required by SimpleStateManager
+            window.addEventListener("resize", browserResizeDebounce, true);
         }
 
         browserResize(browserWidth);
@@ -214,14 +211,13 @@
         return text;
     };
 
-
     var getWidth = function () {
         var x = 0;
-        if (typeof(document.body.clientWidth) == 'number') {
+        if (typeof(document.body.clientWidth) === "number") {
             // newest gen browsers
             x = document.body.clientWidth;
         }
-        else if( typeof( window.innerWidth ) == 'number' ) {
+        else if( typeof( window.innerWidth ) === "number" ) {
             //Non-IE
             x = window.innerWidth;
         }
@@ -241,8 +237,8 @@
             obj3[attrname] = obj1[attrname];
         }
 
-        for (var attrname in obj2) {
-            obj3[attrname] = obj2[attrname];
+        for (var attrname2 in obj2) {
+            obj3[attrname2] = obj2[attrname2];
         }
 
         return obj3;
@@ -270,7 +266,6 @@
         for (var i = 0; i < arr.length; i++) {
             if(arr[i] === obj){
                 return true;
-                break;
             }
         };
     };
@@ -294,7 +289,7 @@
         for (var i = 0; i < arrLength; i++) {
             arr[i]();
         };
-    }
+    };
 
     //Expose Simple State Manager
     window.ssm = ssm;

@@ -33,6 +33,7 @@
     "grunt-contrib-watch": "~0.5.2",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-cli": "~0.1.6",
-    "grunt-contrib-compass": "~0.5.0"
+    "grunt-contrib-compass": "~0.5.0",
+    "eslint-grunt": "0.0.7"
   }
 }

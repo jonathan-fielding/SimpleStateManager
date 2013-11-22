@@ -17,6 +17,13 @@ module.exports = function (grunt) {
             all: ['test/**/*.html']
         },
 
+        eslint: {
+          all: ['src/ssm.js'],
+          options: {
+            config: "eslint.json"
+          }
+        },
+
         compass: {
             dev: {
                 options: {
@@ -47,6 +54,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('eslint-grunt');
 
     // Default task(s)
     grunt.registerTask('default', ['uglify']);
