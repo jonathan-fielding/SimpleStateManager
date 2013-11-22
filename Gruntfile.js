@@ -8,9 +8,20 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> | license: MIT | version: <%= pkg.version %> | build date: <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'src/ssm.js',
-                dest: 'dist/ssm.min.js'
+                files: {
+                    'dist/ssm.min.js': ['src/ssm.js']
+                }
             }
+        },
+        copy: {
+          main: {
+            files: [
+              // includes files within path
+              {expand: true, flatten: true, src: ['docs/bower_components/jquery/jquery.min.js'], dest: 'docs/js/vendor', filter: 'isFile'},
+              {expand: true, flatten: true, src: ['docs/bower_components/sass-bootstrap/js/bootstrap-scrollspy.js'], dest: 'docs/js/vendor', filter: 'isFile'},
+              {expand: true, flatten: true, src: ['docs/bower_components/sass-bootstrap/js/bootstrap-collapse.js'], dest: 'docs/js/vendor', filter: 'isFile'}
+            ]
+          }
         },
 
         qunit: {
@@ -54,10 +65,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('eslint-grunt');
 
     // Default task(s)
-    grunt.registerTask('default', ['uglify']);
+    grunt.registerTask('default', ['uglify', 'copy']);
 
     // Travis CI tests
     grunt.registerTask('travis', ['qunit']);
