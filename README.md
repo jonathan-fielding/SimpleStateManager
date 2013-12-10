@@ -58,9 +58,7 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ## Planned Features
 
-* Enable multiple methods to be attached to each state
-
-* Allow overlapping states so that JS can span multiple states
+* Improve documentation
 
 ## License
 
