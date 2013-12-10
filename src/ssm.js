@@ -43,7 +43,7 @@
                     validState = false;
                     break;
                 }
-            };
+            }
 
             if(validState){
                 
@@ -61,7 +61,7 @@
                     currentStates = removeObjectInArray(currentStates,states[i]);
                 }
             }
-        };
+        }
 
         fireAllMethodsInArray(leaveMethods);
         fireAllMethodsInArray(enterMethods);
@@ -157,7 +157,7 @@
             
             for (var i = 0; i < idCount; i++) {
                 returnArr.push(getStateByID(idArr[i]));
-            };
+            }
 
             return returnArr;
         }
@@ -196,7 +196,7 @@
                 configOptions.splice(i, 1);
             }
         }
-    }
+    };
 
     ssm.getCurrentStates = function(){
         return currentStates;
@@ -286,7 +286,7 @@
             if(states[i].id === id){
                 return states[i];
             }
-        };
+        }
     };
 
     var objectInArray = function(arr, obj){
@@ -294,7 +294,7 @@
             if(arr[i] === obj){
                 return true;
             }
-        };
+        }
     };
 
     var removeObjectInArray = function(arr,obj){
@@ -314,11 +314,11 @@
 
         for (var i = 0; i < arrLength; i++) {
             arr[i]();
-        };
+        }
     };
 
     //define the built in methods (required for compatabilty)
-    ssm.addConfigOption({name:'minWidth', test: function(){
+    ssm.addConfigOption({name:"minWidth", test: function(){
         if(typeof this.state.minWidth === "number" && this.state.minWidth <= this.browserWidth){
             return true;
         }
@@ -327,7 +327,7 @@
         }
     }});
 
-    ssm.addConfigOption({name:'maxWidth', test: function(){
+    ssm.addConfigOption({name:"maxWidth", test: function(){
         if(typeof this.state.maxWidth === "number" && this.state.maxWidth >= this.browserWidth){
             return true;
         }

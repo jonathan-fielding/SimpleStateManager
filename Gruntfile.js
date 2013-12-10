@@ -28,6 +28,10 @@ module.exports = function (grunt) {
             all: ['test/**/*.html']
         },
 
+        jshint: {
+            all: ['src/ssm.js']
+        },
+
         eslint: {
           all: ['src/ssm.js'],
           options: {
@@ -66,7 +70,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('eslint-grunt');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Default task(s)
     grunt.registerTask('default', ['uglify', 'copy']);
