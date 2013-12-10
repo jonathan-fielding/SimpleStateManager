@@ -54,7 +54,6 @@
             });
 
 
-
             test("Check resize event fires", function() {
                 var fired = false;
 
@@ -72,6 +71,17 @@
                 ssm.removeAllStates();
 
                 ok(fired === true, "Passed");
+            });
+
+            test("add config option", function() {
+                ssm.addConfigOption({name:'minHeight', test: function(){}});
+
+
+                ok(ssm.getConfigOption().length === 3, "Passed");
+
+                ssm.removeConfigOption('minHeight');
+
+                ok(ssm.getConfigOption().length === 2, "Passed");
             });
 
 
@@ -156,7 +166,6 @@
 
                 ok(ssm.getStates().length === 0, "Passed");
             });
-
 
             test("Set Resize Timeout", function() {
                 ssm.setResizeTimeout(100);

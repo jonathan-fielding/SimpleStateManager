@@ -190,6 +190,14 @@
         }
     };
 
+    ssm.removeConfigOption = function(name){
+        for (var i = configOptions.length - 1; i >= 0; i--) {
+            if (configOptions[i].name === name) {
+                configOptions.splice(i, 1);
+            }
+        }
+    }
+
     ssm.getCurrentStates = function(){
         return currentStates;
     };
