@@ -76,5 +76,5 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['uglify', 'copy']);
 
     // Travis CI tests
-    grunt.registerTask('travis', ['qunit']);
+    grunt.registerTask('travis', ['qunit','jshint']);
 };
