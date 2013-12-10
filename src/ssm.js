@@ -23,15 +23,29 @@
     };
 
     var browserResize = function (localBrowserWidth) {
-        var totalStates,
+        var totalStates = states.length,
+            totalConfigOptions = configOptions.length,
             leaveMethods = [],
             resizeMethods = [],
-            enterMethods = [];
-
-        totalStates = states.length;
+            enterMethods = [],
+            validState = true,
+            tempObj = ssm;
 
         for (var i = 0; i < totalStates; i++) {
-            if(localBrowserWidth >= states[i].minWidth && localBrowserWidth <= states[i].maxWidth){
+            
+            validState = true;
+            tempObj.state = states[i];
+            tempObj.browserWidth = localBrowserWidth;
+
+            for (var j = 0; j < totalConfigOptions; j++) {
+                tempObj.callback = configOptions[j].test;
+                if(tempObj.callback() === false){
+                    validState = false;
+                    break;
+                }
+            };
+
+            if(validState){
                 
                 if(objectInArray(currentStates, states[i])){
                     resizeMethods.push(states[i].onResize);
@@ -164,10 +178,15 @@
     };
 
     ssm.getConfigOption = function(name){
-        for (var i = configOptions.length - 1; i >= 0; i--) {
-            if(configOptions[i].name === name){
-                return configOptions[i];
+        if(typeof name === "string"){
+            for (var i = configOptions.length - 1; i >= 0; i--) {
+                if(configOptions[i].name === name){
+                    return configOptions[i];
+                }
             }
+        }
+        else{
+            return configOptions;
         }
     };
 
@@ -285,11 +304,29 @@
     var fireAllMethodsInArray = function(arr){
         var arrLength = arr.length;
 
-
         for (var i = 0; i < arrLength; i++) {
             arr[i]();
         };
     };
+
+    //define the built in methods (required for compatabilty)
+    ssm.addConfigOption({name:'minWidth', test: function(){
+        if(typeof this.state.minWidth === "number" && this.state.minWidth <= this.browserWidth){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }});
+
+    ssm.addConfigOption({name:'maxWidth', test: function(){
+        if(typeof this.state.maxWidth === "number" && this.state.maxWidth >= this.browserWidth){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }});
 
     //Expose Simple State Manager
     window.ssm = ssm;
