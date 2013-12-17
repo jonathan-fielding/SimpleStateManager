@@ -19,7 +19,9 @@ module.exports = function (grunt) {
               // includes files within path
               {expand: true, flatten: true, src: ['docs/bower_components/jquery/jquery.min.js'], dest: 'docs/js/vendor', filter: 'isFile'},
               {expand: true, flatten: true, src: ['docs/bower_components/sass-bootstrap/js/bootstrap-scrollspy.js'], dest: 'docs/js/vendor', filter: 'isFile'},
-              {expand: true, flatten: true, src: ['docs/bower_components/sass-bootstrap/js/bootstrap-collapse.js'], dest: 'docs/js/vendor', filter: 'isFile'}
+              {expand: true, flatten: true, src: ['docs/bower_components/sass-bootstrap/js/bootstrap-collapse.js'], dest: 'docs/js/vendor', filter: 'isFile'},
+              {expand: true, flatten: true, src: ['docs/bower_components/modernizr/modernizr.js'], dest: 'docs/js/vendor', filter: 'isFile'},
+              {expand: true, flatten: true, src: ['docs/bower_components/respond/respond.min.js'], dest: 'docs/js/vendor', filter: 'isFile'}
             ]
           }
         },
