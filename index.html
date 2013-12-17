@@ -163,7 +163,7 @@ ssm.addState({
 
                     <p>As SSM is chaninable you can fire the <code>ssm.ready()</code> method by simply adding <code>.ready()</code> onto your original command</p>
 
-<pre>ssm.addState({
+                    <pre>ssm.addState({
     id: 'mobile',
     maxWidth: 767,
     onEnter: function(){
@@ -173,7 +173,17 @@ ssm.addState({
 
 
                     <h3>Add a new config option</h3>
-                    <p>In SimpleStateManager </p>
+                    <p>In SimpleStateManager options we pass to our states are called config options, we are able to add new config options to SimpleStateManager using <code>ssm.addConfigOption</code></p>
+
+                    <pre>ssm.addConfigOption({name:"maxWidth", test: function(){
+        if(typeof this.state.maxWidth === "number" && this.state.maxWidth >= this.browserWidth){
+            return true;
+        }
+        else{
+            return false;
+        }
+}});</pre>
+                    <p>This is the same method that SimpleStateManager uses to add the maxWidth and minWidth config options so the example above is taken direct from the SimpleStateManager source</p>
 
                     <h3>Full API</h3>
 
