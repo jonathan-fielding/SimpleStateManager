@@ -32,13 +32,6 @@ module.exports = function (grunt) {
             all: ['src/ssm.js']
         },
 
-        eslint: {
-          all: ['src/ssm.js'],
-          options: {
-            config: "eslint.json"
-          }
-        },
-
         compass: {
             dev: {
                 options: {

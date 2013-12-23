@@ -18,6 +18,11 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###2.1.0 - December 23, 2013
+* Added config option API which allows you to add your own SimpleStateManager config options along with the test to see if they are valid
+* Rewrote how testing of minWidth and maxWidth is handled to use the new config option API
+* Added new unit tests to improve code coverage
+
 ###2.0.3 - October 7, 2013
 * Fixed issue where browser width was not updated correctly
 
