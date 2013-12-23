@@ -6,8 +6,8 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <script src="docs/bower_components/modernizr/modernizr.js"></script>
-        <script src="docs/bower_components/respond/respond.min.js"></script>
+        <script src="docs/js/vendor/modernizr.js"></script>
+        <script src="docs/js/vendor/respond.min.js"></script>
 
     </head>
     <body data-spy="scroll" data-target=".navbar" id="home">
@@ -163,13 +163,27 @@ ssm.addState({
 
                     <p>As SSM is chaninable you can fire the <code>ssm.ready()</code> method by simply adding <code>.ready()</code> onto your original command</p>
 
-<pre>ssm.addState({
+                    <pre>ssm.addState({
     id: 'mobile',
     maxWidth: 767,
     onEnter: function(){
         document.getElementById('hero').style.backgroundColor = "#daa23e";
     }
 }).ready();</pre>
+
+
+                    <h3>Add a new config option</h3>
+                    <p>In SimpleStateManager options we pass to our states are called config options, we are able to add new config options to SimpleStateManager using <code>ssm.addConfigOption</code></p>
+
+                    <pre>ssm.addConfigOption({name:"maxWidth", test: function(){
+        if(typeof this.state.maxWidth === "number" && this.state.maxWidth >= this.browserWidth){
+            return true;
+        }
+        else{
+            return false;
+        }
+}});</pre>
+                    <p>This is the same method that SimpleStateManager uses to add the maxWidth and minWidth config options so the example above is taken direct from the SimpleStateManager source</p>
 
                     <h3>Full API</h3>
 
