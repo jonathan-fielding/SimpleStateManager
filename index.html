@@ -56,7 +56,7 @@
                 <div class="container">
                     <img src="docs/images/ssm-logo.png" class="logo">
 
-                    <h1>Simple State Manager</h1>
+                    <h1>Simple State Manager 2.1.0</h1>
 
                     <p class="lead">Simple State Manager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, has no dependencies (except javascript of course) and aims to be really easy to simply drop into your project ready to use.</p>
                     <a class="btn btn-large btn-primary" href="https://github.com/jonathan-fielding/SimpleStateManager/archive/master.zip">Download</a>
@@ -183,7 +183,12 @@ ssm.addState({
             return false;
         }
 }});</pre>
-                    <p>This is the same method that SimpleStateManager uses to add the maxWidth and minWidth config options so the example above is taken direct from the SimpleStateManager source</p>
+                    <p>This is the same method that SimpleStateManager uses to add the maxWidth config option so the example above is taken direct from the SimpleStateManager source. As you will notice we can use <code>this</code> to access the state we are testing to determine whether the test should pass or fail.</p>
+                    <p>Some simple examples of tests that you could add to SimpleStateManager are:</p>
+                    <ul>
+                        <li>Viewport minimum and maximum height tests</li>
+                        <li>Test to see if touch events are avalible</li>
+                    </ul>
 
                     <h3>Full API</h3>
 
@@ -313,6 +318,13 @@ ssm.addState({
                 <div class="container">
                     <h2>Release Log</h2>
                     <p>SimpleStateManager follows <a href="http://semver.org/">Semantic Versioning 2.0.0</a></p>
+
+                    <h3>2.1.0 - December 23, 2013</h3>
+                    <ul>
+                        <li>Added config option API which allows you to add your own SimpleStateManager config options along with the test to see if they are valid</li>
+                        <li>Rewrote how testing of minWidth and maxWidth is handled to use the new config option API</li>
+                        <li>Added new unit tests to improve code coverage</li>
+                    </ul>
 
                     <h3>2.0.3 - October 7, 2013</h3>
                     <ul>
