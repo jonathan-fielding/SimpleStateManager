@@ -1,4 +1,4 @@
-# Simple State Manager
+# Simple State Manager 2.2.0
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager)
 
@@ -17,6 +17,9 @@ To get started with SSM the first step is to include it in your project, you can
 Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
+
+###2.2.0 - January 29, 2014
+* Added ssm.isActive to allow us to test if a state is active
 
 ###2.1.0 - December 23, 2013
 * Added config option API which allows you to add your own SimpleStateManager config options along with the test to see if they are valid
