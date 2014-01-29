@@ -198,6 +198,16 @@
         }
     };
 
+    ssm.isActive = function(name){
+        for (var i = 0; i < currentStates.length; i++) {
+            if(currentStates[i].id === name){
+                return true;
+            }
+        };
+        
+        return false;
+    };
+
     ssm.getCurrentStates = function(){
         return currentStates;
     };
