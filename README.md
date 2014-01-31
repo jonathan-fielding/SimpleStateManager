@@ -1,4 +1,4 @@
-# Simple State Manager 2.2.0
+# Simple State Manager 2.2.1
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager)
 
