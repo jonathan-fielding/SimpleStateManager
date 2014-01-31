@@ -18,6 +18,9 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###2.2.1 - January 31, 2014
+* Fixed build issue
+
 ###2.2.0 - January 29, 2014
 * Added ssm.isActive to allow us to test if a state is active
 
@@ -58,10 +61,10 @@ Documentation can be found at http://www.simplestatemanager.com
 * Replaced Debounce with timeout
 * New Site
 
-###1.0.1 - Jun 24, 2013
+###1.0.1 - June 24, 2013
 * Added Debounce to SSM (Thanks Kevin)
 
-###1.0.0 - Jun 22, 2013
+###1.0.0 - June 22, 2013
 * Initial release
 
 ## Planned Features

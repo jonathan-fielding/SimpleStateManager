@@ -203,7 +203,7 @@
             if(currentStates[i].id === name){
                 return true;
             }
-        };
+        }
         
         return false;
     };
