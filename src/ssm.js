@@ -38,10 +38,13 @@
             tempObj.browserWidth = localBrowserWidth;
 
             for (var j = 0; j < totalConfigOptions; j++) {
-                tempObj.callback = configOptions[j].test;
-                if(tempObj.callback() === false){
-                    validState = false;
-                    break;
+                //Skip any config options the state does not define
+                if(typeof tempObj.state[configOptions[j].name] !== "undefined"){
+                    tempObj.callback = configOptions[j].test;
+                    if(tempObj.callback() === false){
+                        validState = false;
+                        break;
+                    }
                 }
             }
 

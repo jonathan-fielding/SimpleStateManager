@@ -1,4 +1,4 @@
-# Simple State Manager 2.2.1
+# Simple State Manager 2.2.2
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager)
 
@@ -17,6 +17,9 @@ To get started with SSM the first step is to include it in your project, you can
 Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
+
+###2.2.2 - February 12, 2014
+* Fixed issue where config options were required otherwise there would be an error
 
 ###2.2.1 - January 31, 2014
 * Fixed build issue
