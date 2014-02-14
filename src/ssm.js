@@ -253,12 +253,24 @@
 
     var getWidth = function () {
         var x = 0;
-        if (typeof(document.body.clientWidth) === "number") {
+
+        if(typeof window.matchMedia === "function"){
+            //Browsers that support match media we will test our method does same as media queries
+            if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
+                x = window.innerWidth;
+            }
+            else if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
+                x = window.outerWidth;
+            }
+            else if(window.matchMedia('(width:'+document.body.clientWidth+'px)').matches){
+                x = document.body.clientWidth;
+            }
+        }
+        else if (typeof(document.body.clientWidth) === "number") {
             // newest gen browsers
             x = document.body.clientWidth;
         }
         else if( typeof( window.innerWidth ) === "number" ) {
-            //Non-IE
             x = window.innerWidth;
         }
         else if( document.documentElement && document.documentElement.clientWidth ) {
