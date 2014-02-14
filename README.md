@@ -18,6 +18,9 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###2.2.3 - February 14, 2014
+* Fixed issue where the width of the browser would not always match the media query
+
 ###2.2.2 - February 12, 2014
 * Fixed issue where config options were required otherwise there would be an error
 
