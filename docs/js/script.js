@@ -43,7 +43,7 @@
                 if(data.data[i].full_name !== "SimpleStateManager/SimpleStateManager"){
                     html += "<li><a href='"+data.data[i].html_url+"'>" + data.data[i].full_name + "</a> - " + data.data[i].description + "</li>";
                 }
-            };
+            }
 
             $('#plugins').html(html);
         }

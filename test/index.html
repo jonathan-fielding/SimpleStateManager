@@ -167,10 +167,25 @@
                 ok(ssm.getStates().length === 0, "Passed");
             });
 
-            test("Set Resize Timeout", function() {
+            test("set Resize Timeout", function() {
                 ssm.setResizeTimeout(100);
 
                 ok(ssm.getResizeTimeout() === 100, "Passed");
+            });
+
+            test("add and remove config option's", function() {
+                var configOptions = ssm.getConfigOption().length;
+
+                ssm.addConfigOption({
+                    name: 'test',
+                    test: function(){}
+                });
+
+                ok(ssm.getConfigOption().length === (configOptions + 1), "Passed Adding Config Option");
+
+                ssm.removeConfigOption('test');
+
+                ok(ssm.getConfigOption().length === configOptions, "Passed Removing Config Option");
             });
         </script>
     </body>
