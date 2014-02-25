@@ -105,8 +105,8 @@
 
                 ok(state.id === id, "Passed");
                 ok(state.width === width, "Passed");
-                ok(state.onEnter === onEnter, "Passed");
-                ok(state.onResize === onResize, "Passed");
+                ok(state.onEnter[0] === onEnter, "Passed");
+                ok(state.onResize[0] === onResize, "Passed");
 
                 ssm.removeAllStates();
             });

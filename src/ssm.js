@@ -51,16 +51,16 @@
             if(validState){
                 
                 if(objectInArray(currentStates, states[i])){
-                    resizeMethods.push(states[i].onResize);
+                    resizeMethods = resizeMethods.concat(states[i].onResize);
                 }
                 else{
                     currentStates.push(states[i]);
-                    enterMethods.push(states[i].onEnter);
+                    enterMethods = enterMethods.concat(states[i].onEnter);
                 }
             }
             else{
                 if(objectInArray(currentStates, states[i])){
-                    leaveMethods.push(states[i].onLeave);
+                    leaveMethods = leaveMethods.concat(states[i].onLeave);
                     currentStates = removeObjectInArray(currentStates,states[i]);
                 }
             }
@@ -85,13 +85,26 @@
             id: makeID(),
             minWidth: 0,
             maxWidth: 99999,
-            onEnter: function () {},
-            onLeave: function () {},
-            onResize: function () {}
+            onEnter: [],
+            onLeave: [],
+            onResize: [],
         };
 
         //Merge options with defaults
         options = mergeOptions(defaultOptions, options);
+
+        //Migrate methods into an array
+        if(typeof options.onEnter === "function"){
+            options.onEnter = [options.onEnter];
+        }
+
+        if(typeof options.onLeave === "function"){
+            options.onLeave = [options.onLeave];
+        }
+
+        if(typeof options.onResize === "function"){
+            options.onResize = [options.onResize];
+        }
 
         //Add state to the master states array
         states.push(options);
