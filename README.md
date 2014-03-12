@@ -18,6 +18,9 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###2.2.4 - March 12, 2014
+* Fixed issue where respond.js would trick SimpleStateManager into thinking the matchMedia API was fully supported.
+
 ###2.2.3 - February 14, 2014
 * Fixed issue where the width of the browser would not always match the media query
 

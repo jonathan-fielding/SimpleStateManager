@@ -14,7 +14,7 @@
     ssm.addState({
         id: 'tablet',
         minWidth: 768,
-        maxWidth: 1023,
+        maxWidth: 991,
         onEnter: function(){
             document.getElementById('hero').style.backgroundColor = "#f0b958";
         }
@@ -22,7 +22,7 @@
 
     ssm.addState({
         id: 'desktop',
-        minWidth: 1024,
+        minWidth: 992,
         onEnter: function(){
             document.getElementById('hero').style.backgroundColor = "#e8a631";
         }

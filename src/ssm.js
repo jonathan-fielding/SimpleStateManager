@@ -252,9 +252,21 @@
     };
 
     var getWidth = function () {
-        var x = 0;
+        var x = 0,
+            testQuery = null,
+            supportsQueries = false;
 
         if(typeof window.matchMedia === "function"){
+            testQuery = window.matchMedia('(width: 100px)');
+
+            if(typeof testQuery.addListener !== "undefined"){
+                supportsQueries = true;
+            }
+        }
+
+        if(supportsQueries){
+            testQuery = window.matchMedia('(width: 100px)');
+
             //Browsers that support match media we will test our method does same as media queries
             if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
                 x = window.innerWidth;
@@ -277,6 +289,7 @@
             //IE 6+ in 'standards compliant mode'
             x = document.documentElement.clientWidth;
         }
+        
 
         return x;
     };
