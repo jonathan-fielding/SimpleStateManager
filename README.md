@@ -1,4 +1,4 @@
-# Simple State Manager 2.2.4
+# Simple State Manager 2.2.5
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager) [![Code Climate](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager.png)](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager)
 
@@ -17,6 +17,10 @@ To get started with SSM the first step is to include it in your project, you can
 Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
+
+
+###2.2.5 - June 12, 2014
+* Fixed issue where it didnt work when you zoom the browser
 
 ###2.2.4 - March 12, 2014
 * Fixed issue where respond.js would trick SimpleStateManager into thinking the matchMedia API was fully supported.

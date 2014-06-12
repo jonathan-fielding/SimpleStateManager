@@ -11,6 +11,18 @@
         resizeTimer = null,
         configOptions = [];
 
+
+    //The returned value never changes so is self executing
+    var testForMatchMedia = function(){
+        if(typeof window.matchMedia === "function"){
+            if(typeof window.matchMedia('(width: 100px)').addListener !== "undefined"){
+                return true;
+            }
+        }
+
+        return false;
+    }();
+
     var browserResizeDebounce = function () {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(browserResizeWrapper, resizeTimeout);
@@ -84,7 +96,7 @@
         var defaultOptions = {
             id: makeID(),
             minWidth: 0,
-            maxWidth: 99999,
+            maxWidth: 999999,
             onEnter: [],
             onLeave: [],
             onResize: [],
@@ -265,20 +277,9 @@
     };
 
     var getWidth = function () {
-        var x = 0,
-            testQuery = null,
-            supportsQueries = false;
+        var x = 0;
 
-        if(typeof window.matchMedia === "function"){
-            testQuery = window.matchMedia('(width: 100px)');
-
-            if(typeof testQuery.addListener !== "undefined"){
-                supportsQueries = true;
-            }
-        }
-
-        if(supportsQueries){
-            testQuery = window.matchMedia('(width: 100px)');
+        if(testForMatchMedia){
 
             //Browsers that support match media we will test our method does same as media queries
             if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
@@ -302,7 +303,6 @@
             //IE 6+ in 'standards compliant mode'
             x = document.documentElement.clientWidth;
         }
-        
 
         return x;
     };
