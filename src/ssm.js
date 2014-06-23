@@ -3,7 +3,8 @@
 ;(function (window, document, undefined) {
     "use strict";
 
-    var ssm = {},
+    var isReady = false,
+        ssm = {},
         states = [],
         browserWidth = 0,
         currentStates = [],
@@ -254,11 +255,15 @@
         //Update browser width
         browserWidth = getWidth();
 
-        //Attach event for resizing
-        if (window.attachEvent) {
-            window.attachEvent("onresize", browserResizeDebounce);
-        } else if (window.addEventListener) {
-            window.addEventListener("resize", browserResizeDebounce, true);
+        if(isReady === false){
+            //Attach event for resizing
+            if (window.attachEvent) {
+                window.attachEvent("onresize", browserResizeDebounce);
+            } else if (window.addEventListener) {
+                window.addEventListener("resize", browserResizeDebounce, true);
+            }
+
+            isReady = true;
         }
 
         browserResize(browserWidth);

@@ -18,6 +18,8 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###2.2.6 - June 23, 2014
+* Fixed issue where you can apply multiple readies.
 
 ###2.2.5 - June 12, 2014
 * Fixed issue where it didnt work when you zoom the browser
