@@ -100,7 +100,7 @@
             maxWidth: 999999,
             onEnter: [],
             onLeave: [],
-            onResize: [],
+            onResize: []
         };
 
         //Merge options with defaults
