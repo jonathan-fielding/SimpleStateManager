@@ -18,6 +18,9 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###2.3.0 - July 25, 2014
+* Added onFirstRun callback method to states
+
 ###2.2.6 - June 23, 2014
 * Fixed issue where you can apply multiple readies.
 

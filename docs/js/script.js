@@ -15,7 +15,7 @@
         id: 'tablet',
         minWidth: 768,
         maxWidth: 991,
-        onEnter: function(){
+        onEnter: function() {
             document.getElementById('hero').style.backgroundColor = "#f0b958";
         }
     });

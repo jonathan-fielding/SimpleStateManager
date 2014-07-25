@@ -41,6 +41,7 @@
             leaveMethods = [],
             resizeMethods = [],
             enterMethods = [],
+            setupMethods = [],
             validState = true,
             tempObj = ssm;
 
@@ -62,6 +63,12 @@
             }
 
             if(validState){
+
+                //Run any run once methods
+                setupMethods = setupMethods.concat(states[i].onFirstRun);
+
+                //Clear run once method array
+                states[i].onFirstRun = [];
                 
                 if(objectInArray(currentStates, states[i])){
                     resizeMethods = resizeMethods.concat(states[i].onResize);
@@ -79,6 +86,7 @@
             }
         }
 
+        fireAllMethodsInArray(setupMethods);
         fireAllMethodsInArray(leaveMethods);
         fireAllMethodsInArray(enterMethods);
         fireAllMethodsInArray(resizeMethods);
@@ -100,7 +108,8 @@
             maxWidth: 999999,
             onEnter: [],
             onLeave: [],
-            onResize: []
+            onResize: [],
+            onFirstRun: []
         };
 
         //Merge options with defaults
@@ -117,6 +126,10 @@
 
         if(typeof options.onResize === "function"){
             options.onResize = [options.onResize];
+        }
+
+        if(typeof options.onFirstRun === "function"){
+            options.onFirstRun = [options.onFirstRun];
         }
 
         //Add state to the master states array
