@@ -72,7 +72,10 @@ module.exports = function (grunt) {
         'compile-handlebars': {
             home: {
                 template: 'docs/templates/homepage.handlebars',
-                templateData: grunt.file.readJSON('package.json'),
+                templateData: {
+                    package: grunt.file.readJSON('package.json'),
+                    versions: grunt.file.readJSON('releases.json')
+                },
                 output: 'index.html'
             }
         }
@@ -91,9 +94,9 @@ module.exports = function (grunt) {
 
     // Default task(s)
     grunt.registerTask('default', ['uglify', 'copy']);
-    grunt.registerTask('bugfix', ['qunit', 'jshint', 'bumpup', 'uglify', 'copy']);
-    grunt.registerTask('minor', ['qunit', 'jshint', 'bumpup:minor', 'uglify', 'copy']);
-    grunt.registerTask('major', ['qunit', 'jshint', 'bumpup:major', 'uglify', 'copy']);
+    grunt.registerTask('bugfix', ['qunit', 'jshint', 'bumpup', 'compile-handlebars', 'uglify', 'copy']);
+    grunt.registerTask('minor', ['qunit', 'jshint', 'bumpup:minor', 'compile-handlebars', 'uglify', 'copy']);
+    grunt.registerTask('major', ['qunit', 'jshint', 'bumpup:major', 'compile-handlebars', 'uglify', 'copy']);
 
     // Travis CI tests
     grunt.registerTask('travis', ['qunit', 'jshint']);
