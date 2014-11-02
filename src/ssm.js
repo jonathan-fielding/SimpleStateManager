@@ -1,6 +1,16 @@
 /*global window document clearTimeout setTimeout */
 
-;(function (window, document, undefined) {
+(function (window, document, undefined, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(function() {
+      return factory(root);
+    });
+  } else if (typeof exports === 'object') {
+    module.exports = factory;
+  } else {
+    window.ssm = factory(window, document, undefined);
+  }
+})(window, document, undefined, function (window, document, undefined) {
     "use strict";
 
     var isReady = false,
@@ -405,13 +415,6 @@
         }
     }});
 
-    //Expose Simple State Manager
-    window.ssm = ssm;
+    return ssm;
 
-    if (typeof window.define === "function" && window.define.amd) {
-        window.define("ssm", [], function () {
-            return window.ssm;
-        });
-    }
-
-})(window, document);
+});

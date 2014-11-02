@@ -55,6 +55,16 @@ module.exports = function (grunt) {
                 files: ['docs/sass/{,*/}*.{scss,sass}'],
                 tasks: ['compass:dev']
             },
+        },
+
+        bumpup: {
+            options: {
+                // Options go here.
+            },
+            setters: {
+                // Custom setters go here.
+            },
+            files: ['package.json', 'bower.json']
         }
     });
 
@@ -66,6 +76,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-bumpup');
 
     // Default task(s)
     grunt.registerTask('default', ['uglify', 'copy']);
