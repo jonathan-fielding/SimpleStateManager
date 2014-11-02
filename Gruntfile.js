@@ -59,7 +59,9 @@ module.exports = function (grunt) {
 
         bumpup: {
             options: {
-                // Options go here.
+                updateProps: {
+                    pkg: 'package.json'
+                }
             },
             setters: {
                 // Custom setters go here.
