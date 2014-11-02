@@ -67,6 +67,14 @@ module.exports = function (grunt) {
                 // Custom setters go here.
             },
             files: ['package.json', 'bower.json']
+        },
+
+        'compile-handlebars': {
+            home: {
+                template: 'docs/templates/homepage.handlebars',
+                templateData: grunt.file.readJSON('package.json'),
+                output: 'index.html'
+            }
         }
     });
 
@@ -79,6 +87,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-bumpup');
+    grunt.loadNpmTasks('grunt-compile-handlebars');
 
     // Default task(s)
     grunt.registerTask('default', ['uglify', 'copy']);
