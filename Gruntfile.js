@@ -80,6 +80,9 @@ module.exports = function (grunt) {
 
     // Default task(s)
     grunt.registerTask('default', ['uglify', 'copy']);
+    grunt.registerTask('bugfix', ['qunit','jshint', 'uglify', 'copy', 'bumpup']);
+    grunt.registerTask('minor', ['qunit','jshint', 'uglify', 'copy', 'bumpup:minor']);
+    grunt.registerTask('major', ['qunit','jshint', 'uglify', 'copy', 'bumpup:major']);
 
     // Travis CI tests
     grunt.registerTask('travis', ['qunit','jshint']);
