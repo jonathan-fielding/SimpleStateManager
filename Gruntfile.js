@@ -77,6 +77,14 @@ module.exports = function (grunt) {
                     versions: grunt.file.readJSON('releases.json')
                 },
                 output: 'index.html'
+            },
+            readme: {
+                template: 'docs/templates/readme.handlebars',
+                templateData: {
+                    package: grunt.file.readJSON('package.json'),
+                    versions: grunt.file.readJSON('releases.json')
+                },
+                output: 'README.md'
             }
         }
     });
