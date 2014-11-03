@@ -224,7 +224,13 @@ onEnter: function(){
                     </tr>
                     <tr>
                         <td>ssm.getStates</td>
-                        <td>By default <code>ssm.getStates()</code> will return all the states added to SSM however you optionally can pass an array of ID's of the states you want e.g <code>ssm.getStates([ 'mobile' ,'desktop']);</code></td>
+                        <td>
+                            By default <code>ssm.getStates()</code> will return all the states added to SSM however you optionally can pass an array of ID's of the states you want e.g
+                            <pre><code>ssm.getStates([
+    'mobile',
+    'desktop'
+]);</code></pre>
+                        </td>
                     </tr>
                     <tr>
                         <td>ssm.getCurrentStates</td>
@@ -252,7 +258,13 @@ onEnter: function(){
                     </tr>
                     <tr>
                         <td>ssm.addConfigOption</td>
-                        <td>SSM allows you to define new rules by which a state can be enabled and disabled using <code>ssm.addConfigOption</code>. The method takes an object with 2 values as the parameter, firstly the name of the config option and secondly the method to test the option. Please note the test must return true or false to allow SSM to know if the test has passed or failed.  A typical example of how you can add a test <code>ssm.addConfigOption({name: "minHeight", test: function(){ return true; } });</code></td>
+                        <td>SSM allows you to define new rules by which a state can be enabled and disabled using <code>ssm.addConfigOption</code>. The method takes an object with 2 values as the parameter, firstly the name of the config option and secondly the method to test the option. Please note the test must return true or false to allow SSM to know if the test has passed or failed.  A typical example of how you can add a test.
+                            <pre><code>ssm.addConfigOption({
+    name: "minHeight",
+    test: function(){
+        return true;
+    }
+});</code></pre></td>
                     </tr>
                 </table>
             </div>
