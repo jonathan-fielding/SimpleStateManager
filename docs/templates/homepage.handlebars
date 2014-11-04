@@ -95,28 +95,28 @@
                 <p>With Simple State Manager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. You are able to add as many states as you need, your states are able to overlap and your states can each have their own <code>onEnter</code>, <code>onLeave</code> and <code>onResize</code> events. It is important to remember that the if you do not pass minWidth and maxWidth values they will revert to the default values (0 for minWidth and 99999 for maxWidth)</p>
 
                 <pre>ssm.addState({
-id: 'mobile',
-maxWidth: 767,
-onEnter: function(){
-    console.log('enter mobile');
-}
+    id: 'mobile',
+    maxWidth: 767,
+    onEnter: function(){
+        console.log('enter mobile');
+    }
 });
 
 ssm.addState({
-id: 'tablet',
-minWidth: 768,
-maxWidth: 1023,
-onEnter: function(){
-    console.log('enter tablet');
-}
+    id: 'tablet',
+    minWidth: 768,
+    maxWidth: 1023,
+    onEnter: function(){
+        console.log('enter tablet');
+    }
 });
 
 ssm.addState({
-id: 'desktop',
-minWidth: 1024,
-onEnter: function(){
-    console.log('enter desktop');
-}
+    id: 'desktop',
+    minWidth: 1024,
+    onEnter: function(){
+        console.log('enter desktop');
+    }
 });</pre>
 
                 <p>If you wish to use one command to add multiple states using one command you can use ssm.addStates to which you should pass an array of states.</p>
@@ -165,11 +165,11 @@ onEnter: function(){
                 <p>As SSM is chaninable you can fire the <code>ssm.ready()</code> method by simply adding <code>.ready()</code> onto your original command</p>
 
                 <pre>ssm.addState({
-id: 'mobile',
-maxWidth: 767,
-onEnter: function(){
-    document.getElementById('hero').style.backgroundColor = "#daa23e";
-}
+    id: 'mobile',
+    maxWidth: 767,
+    onEnter: function(){
+        document.getElementById('hero').style.backgroundColor = "#daa23e";
+    }
 }).ready();</pre>
 
 
