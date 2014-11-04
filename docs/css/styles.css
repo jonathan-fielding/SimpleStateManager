@@ -8370,37 +8370,42 @@ section:nth-child(odd) {
     margin: 0 -20px 0px;
   }
   /* line 93, ../sass/styles.scss */
-  header img {
-    height: 150px;
+  header h1 {
+    font-size: 28px;
+    margin-top: 20px;
   }
-  /* line 96, ../sass/styles.scss */
+  /* line 98, ../sass/styles.scss */
+  header img {
+    height: 100px;
+  }
+  /* line 102, ../sass/styles.scss */
   header .lead {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.3em;
   }
 
-  /* line 102, ../sass/styles.scss */
+  /* line 108, ../sass/styles.scss */
   h2 {
     font-size: 22px;
   }
 
-  /* line 106, ../sass/styles.scss */
+  /* line 112, ../sass/styles.scss */
   h3 {
     font-size: 14px;
   }
 
-  /* line 110, ../sass/styles.scss */
+  /* line 116, ../sass/styles.scss */
   footer {
     margin: 0 -20px;
   }
 
-  /* line 114, ../sass/styles.scss */
+  /* line 120, ../sass/styles.scss */
   section {
     margin: 0 -20px;
     padding: 15px;
   }
 
-  /* line 119, ../sass/styles.scss */
+  /* line 125, ../sass/styles.scss */
   .navbar-fixed-top {
     margin-bottom: 0px;
   }
