@@ -3,7 +3,7 @@
 (function (window, document, undefined, factory) {
   if (typeof define === 'function' && define.amd) {
     define(function() {
-      return factory(root);
+      return factory(window, document, undefined);
     });
   } else if (typeof exports === 'object') {
     module.exports = factory;

@@ -8,8 +8,6 @@
     "components"
   ],
   "devDependencies": {
-    "sass-bootstrap": "~2.3.2",
-    "jquery": "~1.10.2",
-    "respond": "~1.3.0"
+    "jquery": "~1.10.2"
   }
 }

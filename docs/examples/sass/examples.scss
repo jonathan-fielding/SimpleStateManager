@@ -37,9 +37,24 @@ body{
 		width: 205px;
 		padding: 0 20px 20px;
 		float: left;
-		background: #ccc;
 		margin-bottom: 20px;
 	}
+
+    .column1 {
+    	background: #aaa;
+    }
+
+    .column2 {
+        background: #bbb;
+    }
+
+    .column3 {
+        background: #ccc;
+    }
+
+    .column4 {
+        background: #ddd;
+    }
 }
 
 @media screen and (max-width: 979px) {

@@ -13,18 +13,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        copy: {
-          main: {
-            files: [
-              // includes files within path
-              {expand: true, flatten: true, src: ['docs/bower_components/jquery/jquery.min.js'], dest: 'docs/js/vendor', filter: 'isFile'},
-              {expand: true, flatten: true, src: ['docs/bower_components/sass-bootstrap/js/bootstrap-scrollspy.js'], dest: 'docs/js/vendor', filter: 'isFile'},
-              {expand: true, flatten: true, src: ['docs/bower_components/sass-bootstrap/js/bootstrap-collapse.js'], dest: 'docs/js/vendor', filter: 'isFile'},
-              {expand: true, flatten: true, src: ['docs/bower_components/modernizr/modernizr.js'], dest: 'docs/js/vendor', filter: 'isFile'},
-              {expand: true, flatten: true, src: ['docs/bower_components/respond/respond.min.js'], dest: 'docs/js/vendor', filter: 'isFile'}
-            ]
-          }
-        },
 
         qunit: {
             all: ['test/**/*.html']
@@ -37,11 +25,9 @@ module.exports = function (grunt) {
         compass: {
             dev: {
                 options: {
-                    sassDir: 'docs/sass',
-                    cssDir: 'docs/css',
-                    imagesDir: 'docs/images',
-                    environment: 'development',
-                    httpGeneratedImagesPath: 'docs/images'
+                    sassDir: 'docs/examples/sass',
+                    cssDir: 'docs/examples/css',
+                    environment: 'development'
                 }
             }
         },
@@ -55,6 +41,10 @@ module.exports = function (grunt) {
                 files: ['docs/sass/{,*/}*.{scss,sass}'],
                 tasks: ['compass:dev']
             },
+            handlebars: {
+                files: ['docs/templates/{,*/}*.{handlebars}'],
+                tasks: ['compile-handlebars']
+            }
         },
 
         bumpup: {
@@ -70,14 +60,6 @@ module.exports = function (grunt) {
         },
 
         'compile-handlebars': {
-            home: {
-                template: 'docs/templates/homepage.handlebars',
-                templateData: {
-                    package: grunt.file.readJSON('package.json'),
-                    versions: grunt.file.readJSON('releases.json')
-                },
-                output: 'index.html'
-            },
             readme: {
                 template: 'docs/templates/readme.handlebars',
                 templateData: {
@@ -89,22 +71,20 @@ module.exports = function (grunt) {
         }
     });
 
-
     // Required task(s)
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-bumpup');
     grunt.loadNpmTasks('grunt-compile-handlebars');
 
     // Default task(s)
     grunt.registerTask('default', ['uglify', 'copy']);
-    grunt.registerTask('bugfix', ['qunit', 'jshint', 'bumpup', 'compile-handlebars', 'uglify', 'copy']);
-    grunt.registerTask('minor', ['qunit', 'jshint', 'bumpup:minor', 'compile-handlebars', 'uglify', 'copy']);
-    grunt.registerTask('major', ['qunit', 'jshint', 'bumpup:major', 'compile-handlebars', 'uglify', 'copy']);
+    grunt.registerTask('bugfix', ['qunit', 'jshint', 'bumpup', 'compile-handlebars', 'uglify']);
+    grunt.registerTask('minor', ['qunit', 'jshint', 'bumpup:minor', 'compile-handlebars', 'uglify']);
+    grunt.registerTask('major', ['qunit', 'jshint', 'bumpup:major', 'compile-handlebars', 'uglify']);
 
     // Travis CI tests
     grunt.registerTask('travis', ['qunit', 'jshint']);
