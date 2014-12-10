@@ -303,7 +303,7 @@
             if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
                 x = window.innerWidth;
             }
-            else if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
+            else if(window.matchMedia('(width:'+window.outerWidth+'px)').matches){
                 x = window.outerWidth;
             }
             else if(window.matchMedia('(width:'+document.body.clientWidth+'px)').matches){
