@@ -1,10 +1,11 @@
 [
 	{
 		"version" : "2.4.0",
-		"date" : "x", 
+		"date" : "December 29, 2014", 
 		"items" : [
 			"Improved release process with version auto updating",
-			"Implemented proper AMD support"
+			"Implemented proper AMD support",
+			"Made the site a seperate repository"
 		] 
 	},
 	{

@@ -1,4 +1,4 @@
-# Simple State Manager 2.5.0
+# Simple State Manager 2.4.0
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager) [![Code Climate](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager.png)](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager)
 
@@ -18,9 +18,10 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
-###2.4.0 - x
+###2.4.0 - December 29, 2014
 * Improved release process with version auto updating
 * Implemented proper AMD support
+* Made the site a seperate repository
 
 ###2.3.0 - July 25, 2014
 * Added onFirstRun callback method to states.
