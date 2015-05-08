@@ -291,18 +291,23 @@
                 x = document.body.clientWidth;
             }
         }
-        else if (typeof(document.body.clientWidth) === "number") {
-            // newest gen browsers
-            x = document.body.clientWidth;
+
+        if (x === 0) {
+            if (typeof(document.body.clientWidth) === "number") {
+                // newest gen browsers
+                x = document.body.clientWidth;
+            }
+            else if( typeof( window.innerWidth ) === "number" ) {
+                x = window.innerWidth;
+            }
+            else if( document.documentElement && document.documentElement.clientWidth ) {
+                //IE 6+ in 'standards compliant mode'
+                x = document.documentElement.clientWidth;
+            } else {
+                x = document.innerWidth;
+            }
         }
-        else if( typeof( window.innerWidth ) === "number" ) {
-            x = window.innerWidth;
-        }
-        else if( document.documentElement && document.documentElement.clientWidth ) {
-            //IE 6+ in 'standards compliant mode'
-            x = document.documentElement.clientWidth;
-        }
-        
+
 
         return x;
     };
