@@ -1,5 +1,5 @@
 {
-  "name": "ssm",
+  "name": "simplestatemanager",
   "description": "SimpleStateManager ==================",
   "version": "2.4.1",
   "main": "src/ssm.js",
