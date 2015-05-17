@@ -82,7 +82,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-compile-handlebars');
 
     // Default task(s)
-    grunt.registerTask('default', ['uglify', 'copy']);
+    grunt.registerTask('default', ['uglify']);
     grunt.registerTask('bugfix', ['qunit', 'jshint', 'bumpup', 'compile-handlebars', 'uglify']);
     grunt.registerTask('minor', ['qunit', 'jshint', 'bumpup:minor', 'compile-handlebars', 'uglify']);
     grunt.registerTask('major', ['qunit', 'jshint', 'bumpup:major', 'compile-handlebars', 'uglify']);
