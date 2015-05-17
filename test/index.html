@@ -32,28 +32,6 @@
                 ok(fired === true, "Passed");
             });
 
-            test("Check leave event fires", function() {
-                var fired = false;
-
-                ssm.addState(
-                    {
-                        id: 'desktop',
-                        minWidth: 0,
-                        maxWidth: 1000,
-                        onLeave: function(){
-                            fired = true;
-                        }
-                    }
-                );
-                ssm.browserResize(800);
-                ssm.browserResize(1200);
-
-                ssm.removeAllStates();
-
-                ok(fired === true, "Passed");
-            });
-
-
             test("Check resize event fires", function() {
                 var fired = false;
 
@@ -76,25 +54,24 @@
             test("add config option", function() {
                 ssm.addConfigOption({name:'minHeight', test: function(){}});
 
-
-                ok(ssm.getConfigOption().length === 3, "Passed");
+                ok(ssm.getConfigOption().length === 1, "Passed");
 
                 ssm.removeConfigOption('minHeight');
 
-                ok(ssm.getConfigOption().length === 2, "Passed");
+                ok(ssm.getConfigOption().length === 0, "Passed");
             });
 
 
             test("add state", function() {
                 var id = 'test',
-                    width = 100,
+                    query = '(min-width: 100px)',
                     onEnter = function() {},
                     onLeave = function() {},
                     onResize = function() {};
 
                 ssm.addState({
                     id: id,
-                    width: width,
+                    query: query,
                     onEnter: onEnter,
                     onLeave: onLeave,
                     onResize: onResize
@@ -104,7 +81,7 @@
                 var state = ssm.getStates().shift();
 
                 ok(state.id === id, "Passed");
-                ok(state.width === width, "Passed");
+                ok(state.query === query, "Passed");
                 ok(state.onEnter[0] === onEnter, "Passed");
                 ok(state.onResize[0] === onResize, "Passed");
 
@@ -113,80 +90,80 @@
 
 
 
-            test("remove state", function() {
-                ssm.addState({
-                    id: 'desktop'
-                });
+            // test("remove state", function() {
+            //     ssm.addState({
+            //         id: 'desktop'
+            //     });
 
-                ssm.removeState('desktop');
+            //     ssm.removeState('desktop');
 
-                ok(ssm.getStates().length === 0, "Passed");
+            //     ok(ssm.getStates().length === 0, "Passed");
 
-                ssm.removeAllStates();
-            });
+            //     ssm.removeAllStates();
+            // });
 
-            test("remove all states", function() {
-                ssm.addState({
-                    id: 'desktop'
-                });
+            // test("remove all states", function() {
+            //     ssm.addState({
+            //         id: 'desktop'
+            //     });
 
-                ssm.removeAllStates();
+            //     ssm.removeAllStates();
 
-                ok(ssm.getStates().length === 0, "Passed");
-            });
+            //     ok(ssm.getStates().length === 0, "Passed");
+            // });
 
-            test("get states", function() {
-                ssm.addStates([
-                    {
-                        id: 'desktop'
-                    }, {
-                        id: 'tablet'
-                    }, {
-                        id: 'mobile'
-                    }
-                ]);
+            // test("get states", function() {
+            //     ssm.addStates([
+            //         {
+            //             id: 'desktop'
+            //         }, {
+            //             id: 'tablet'
+            //         }, {
+            //             id: 'mobile'
+            //         }
+            //     ]);
 
-                ok(ssm.getStates().length === 3, "Passed");
+            //     ok(ssm.getStates().length === 3, "Passed");
 
-                ssm.removeAllStates();
-            });
+            //     ssm.removeAllStates();
+            // });
 
-            test("remove all states", function() {
-                ssm.addStates([
-                    {
-                        id: 'desktop'
-                    }, {
-                        id: 'tablet'
-                    }
-                ]);
+            // test("remove all states", function() {
+            //     ssm.addStates([
+            //         {
+            //             id: 'desktop'
+            //         }, {
+            //             id: 'tablet'
+            //         }
+            //     ]);
 
-                ok(ssm.getStates().length === 2, "Passed");
+            //     ok(ssm.getStates().length === 2, "Passed");
 
-                ssm.removeAllStates();
+            //     ssm.removeAllStates();
 
-                ok(ssm.getStates().length === 0, "Passed");
-            });
+            //     ok(ssm.getStates().length === 0, "Passed");
+            // });
 
-            test("set Resize Timeout", function() {
-                ssm.setResizeTimeout(100);
+            // test("set Resize Timeout", function() {
+            //     ssm.setResizeTimeout(100);
 
-                ok(ssm.getResizeTimeout() === 100, "Passed");
-            });
+            //     ok(ssm.getResizeTimeout() === 100, "Passed");
+            // });
 
-            test("add and remove config option's", function() {
-                var configOptions = ssm.getConfigOption().length;
+            // test("add and remove config option's", function() {
+            //     var configOptions = ssm.getConfigOption().length;
 
-                ssm.addConfigOption({
-                    name: 'test',
-                    test: function(){}
-                });
+            //     ssm.addConfigOption({
+            //         name: 'test',
+            //         test: function(){}
+            //     });
 
-                ok(ssm.getConfigOption().length === (configOptions + 1), "Passed Adding Config Option");
+            //     ok(ssm.getConfigOption().length === (configOptions + 1), "Passed Adding Config Option");
 
-                ssm.removeConfigOption('test');
+            //     ssm.removeConfigOption('test');
 
-                ok(ssm.getConfigOption().length === configOptions, "Passed Removing Config Option");
-            });
+            //     ok(ssm.getConfigOption().length === configOptions, "Passed Removing Config Option");
+            // });
         </script>
     </body>
 </html>

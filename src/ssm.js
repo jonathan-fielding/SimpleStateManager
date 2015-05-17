@@ -22,100 +22,25 @@
         resizeTimer = null,
         configOptions = [];
 
-
-    //The returned value never changes so is self executing
-    var testForMatchMedia = function(){
-        if(typeof window.matchMedia === "function"){
-            if(typeof window.matchMedia('(width: 100px)').addListener !== "undefined"){
-                return true;
-            }
-        }
-
-        return false;
-    }();
-
     var browserResizeDebounce = function () {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(browserResizeWrapper, resizeTimeout);
+        resizeTimer = setTimeout(browserResize, resizeTimeout);
     };
 
-    //Added wrapper for the resize method
-    var browserResizeWrapper = function() {
-        browserWidth = getWidth();
-        browserResize(browserWidth);
-    };
-
-    var browserResize = function (localBrowserWidth) {
-        var totalStates = states.length,
-            totalConfigOptions = configOptions.length,
-            leaveMethods = [],
-            resizeMethods = [],
-            enterMethods = [],
-            setupMethods = [],
-            validState = true,
-            tempObj = ssm;
-
-        for (var i = 0; i < totalStates; i++) {
-            
-            validState = true;
-            tempObj.state = states[i];
-            tempObj.browserWidth = localBrowserWidth;
-
-            for (var j = 0; j < totalConfigOptions; j++) {
-                //Skip any config options the state does not define
-                if(typeof tempObj.state[configOptions[j].name] !== "undefined"){
-                    tempObj.callback = configOptions[j].test;
-                    if(tempObj.callback() === false){
-                        validState = false;
-                        break;
-                    }
-                }
-            }
-
-            if(validState){
-
-                //Run any run once methods
-                setupMethods = setupMethods.concat(states[i].onFirstRun);
-
-                //Clear run once method array
-                states[i].onFirstRun = [];
-                
-                if(objectInArray(currentStates, states[i])){
-                    resizeMethods = resizeMethods.concat(states[i].onResize);
-                }
-                else{
-                    currentStates.push(states[i]);
-                    enterMethods = enterMethods.concat(states[i].onEnter);
-                }
-            }
-            else{
-                if(objectInArray(currentStates, states[i])){
-                    leaveMethods = leaveMethods.concat(states[i].onLeave);
-                    currentStates = removeObjectInArray(currentStates,states[i]);
-                }
-            }
+    var browserResize = function () {
+        for (var i = currentStates.length - 1; i >= 0; i--) {
+            fireAllMethodsInArray(currentStates[i].onResize);
         }
-
-        fireAllMethodsInArray(setupMethods);
-        fireAllMethodsInArray(leaveMethods);
-        fireAllMethodsInArray(enterMethods);
-        fireAllMethodsInArray(resizeMethods);
     };
 
     ssm.browserResize = browserResize;
 
-    ssm.getBrowserWidth = function(){
-        return browserWidth;
-    };
-
     //Add a new state
     ssm.addState = function (options) {
         //Setting sensible defaults for a state
-        //Max width is set to 99999 for comparative purposes, is bigger than any display on market
         var defaultOptions = {
             id: makeID(),
-            minWidth: 0,
-            maxWidth: 999999,
+            query: '',
             onEnter: [],
             onLeave: [],
             onResize: [],
@@ -144,9 +69,6 @@
 
         //Add state to the master states array
         states.push(options);
-
-        //Sort 
-        states = sortByKey(states, "minWidth");
 
         return this;
     };
@@ -304,37 +226,6 @@
         return text;
     };
 
-    var getWidth = function () {
-        var x = 0;
-
-        if(testForMatchMedia){
-
-            //Browsers that support match media we will test our method does same as media queries
-            if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
-                x = window.innerWidth;
-            }
-            else if(window.matchMedia('(width:'+window.outerWidth+'px)').matches){
-                x = window.outerWidth;
-            }
-            else if(window.matchMedia('(width:'+document.body.clientWidth+'px)').matches){
-                x = document.body.clientWidth;
-            }
-        }
-        else if (typeof(document.body.clientWidth) === "number") {
-            // newest gen browsers
-            x = document.body.clientWidth;
-        }
-        else if( typeof( window.innerWidth ) === "number" ) {
-            x = window.innerWidth;
-        }
-        else if( document.documentElement && document.documentElement.clientWidth ) {
-            //IE 6+ in 'standards compliant mode'
-            x = document.documentElement.clientWidth;
-        }
-
-        return x;
-    };
-
 
     var mergeOptions = function (obj1, obj2) {
         var obj3 = {};
@@ -348,15 +239,6 @@
         }
 
         return obj3;
-    };
-
-
-    var sortByKey = function (array, key) {
-        return array.sort(function (a, b) {
-            var x = a[key];
-            var y = b[key];
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        });
     };
 
     //Method to get a state based on the ID
@@ -396,25 +278,5 @@
         }
     };
 
-    //define the built in methods (required for compatabilty)
-    ssm.addConfigOption({name:"minWidth", test: function(){
-        if(typeof this.state.minWidth === "number" && this.state.minWidth <= this.browserWidth){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }});
-
-    ssm.addConfigOption({name:"maxWidth", test: function(){
-        if(typeof this.state.maxWidth === "number" && this.state.maxWidth >= this.browserWidth){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }});
-
     return ssm;
-
 });

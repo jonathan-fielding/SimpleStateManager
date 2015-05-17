@@ -1,5 +1,15 @@
 [
 	{
+		"version" : "3.0.0",
+		"date" : "TBC", 
+		"items" : [
+			"Rewrite to use the matchMedia API",
+			"Add support for media queries",
+			"Major refactor",
+			"Update browser support to Internet Explorer 9+	"
+		] 
+	},
+	{
 		"version" : "2.4.0",
 		"date" : "December 29, 2014", 
 		"items" : [
