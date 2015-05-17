@@ -1,5 +1,12 @@
 [
 	{
+		"version" : "2.4.1",
+		"date" : "May 17, 2015", 
+		"items" : [
+			"Fix browser width when browser is zoomed"
+		] 
+	},
+	{
 		"version" : "2.4.0",
 		"date" : "December 29, 2014", 
 		"items" : [

@@ -1,4 +1,4 @@
-# Simple State Manager 2.4.0
+# Simple State Manager 2.4.1
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager) [![Code Climate](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager.png)](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager)
 
@@ -17,6 +17,9 @@ To get started with SSM the first step is to include it in your project, you can
 Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
+
+###2.4.1 - May 17, 2015
+* Fix browser width when browser is zoomed
 
 ###2.4.0 - December 29, 2014
 * Improved release process with version auto updating
