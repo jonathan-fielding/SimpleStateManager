@@ -3,7 +3,7 @@
 
     ssm.addState({
         id: 'mobile',
-        maxWidth: 979,
+        query: '(min-width: 767px)',
         onEnter: function(){
             $items.addClass('mobile-accordion');
             $items.find('h2').removeClass('active').next().hide();
@@ -13,8 +13,6 @@
             $items.find('h2').next().show();
         }
     });
-
-    ssm.ready();
 
     $('body').on('click', '.mobile-accordion h2', function(){
         var $this = $(this), $next = $this.next();

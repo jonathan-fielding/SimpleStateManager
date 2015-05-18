@@ -1,5 +1,8 @@
 module.exports = function (grunt) {
     // Project configuration.
+
+    require('load-grunt-tasks')(grunt);
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -58,6 +61,16 @@ module.exports = function (grunt) {
             },
             files: ['package.json', 'bower.json']
         },
+        babel: {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    'src/ssm.js': 'src/ssm.es6'
+                }
+            }
+        },
 
         'compile-handlebars': {
             readme: {
@@ -70,16 +83,6 @@ module.exports = function (grunt) {
             }
         }
     });
-
-    // Required task(s)
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-compass');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-bumpup');
-    grunt.loadNpmTasks('grunt-compile-handlebars');
 
     // Default task(s)
     grunt.registerTask('default', ['uglify']);
