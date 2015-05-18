@@ -15,7 +15,7 @@
 })(window, document, undefined, function (window, document, undefined) {
     'use strict';
 
-    var resizeTimeout = 10;
+    var resizeTimeout = 25;
 
     //
     // State Constructor
@@ -69,14 +69,14 @@
                 this.enterState();
             }
 
-            this.listener = this.test.addListener(function(test){
+            this.listener = this.test.addListener(partialRight(function(test){
                 if (test.matches) {
                     this.enterState();
                 }
                 else {
                     this.leaveState();
                 }
-            }.bind(this));
+            }, this));
         },
         
         enterState: function() {
@@ -98,7 +98,7 @@
 
         //An array of avaliable config options, this can be pushed to by the State Manager
         configOptions: [
-
+            
         ]
     };  
 
@@ -113,6 +113,8 @@
     StateManager.prototype = {
         addState: function(options) {
             this.states.push(new State(options));
+
+            window.addEventListener("resize", debounce(this.resizeBrowser, resizeTimeout), true);
         },
 
         getState: function(id) {
@@ -176,7 +178,7 @@
             State.prototype.configOptions = configOptions;
         },
 
-        getConfigOption : function(name){
+        getConfigOption: function(name){
             var configOptions = State.prototype.configOptions;
 
             if(typeof name === "string"){
@@ -189,6 +191,10 @@
             else{
                 return configOptions;
             }
+        },
+
+        resizeBrowser: function() {
+            console.log('test');
         }
     };
 
@@ -233,6 +239,32 @@
         else {
             return func;
         }
+    }
+
+    function partialRight(method, args) {
+        return function () {
+            method.apply(this, args);
+        };
+    }
+
+    //
+    // David Walsh's Debounce - http://davidwalsh.name/javascript-debounce-function
+    //
+
+    function debounce(func, wait, immediate) {
+        var timeout;
+        
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
     }
 
     // ssm.browserResize = browserResize;
