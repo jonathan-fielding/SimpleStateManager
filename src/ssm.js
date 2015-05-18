@@ -24,6 +24,7 @@
     function State(options) {
         this.id = options.id || makeID();
         this.query = options.query || '';
+        this.active = false;
 
         this.methods = {};
         this.methods.onEnter = options.onEnter || [];
@@ -56,10 +57,12 @@
             fireAllMethodsInArray(this.methods.onFirstRun);
             fireAllMethodsInArray(this.methods.onEnter);
             this.methods.onFirstRun = [];
+            this.active = true;
         },
 
         leaveState: function() {
             fireAllMethodsInArray(this.methods.onLeave);
+            this.active = false;
         },
 
         //When the StateManager removes a state we want to remove the event listener
