@@ -3,7 +3,7 @@
 
     ssm.addState({
         id: 'mobile',
-        query: '(min-width: 767px)',
+        query: '(max-width: 767px)',
         onEnter: function(){
             $items.addClass('mobile-accordion');
             $items.find('h2').removeClass('active').next().hide();

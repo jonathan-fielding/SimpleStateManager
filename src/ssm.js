@@ -27,10 +27,10 @@
         this.active = false;
 
         this.methods = {};
-        this.methods.onEnter = options.onEnter || [];
-        this.methods.onLeave = options.onLeave || [];
-        this.methods.onResize = options.onResize || [];
-        this.methods.onFirstRun = options.onFirstRun || [];
+        this.methods.onEnter = funcToArray(options.onEnter) || [];
+        this.methods.onLeave = funcToArray(options.onLeave) || [];
+        this.methods.onResize = funcToArray(options.onResize) || [];
+        this.methods.onFirstRun = funcToArray(options.onFirstRun) || [];
 
         this.init();
     }
@@ -39,18 +39,18 @@
         init: function() {
             this.test = window.matchMedia(this.query);
 
-            if (this.test.match) {
+            if (this.test.matches) {
                 this.enterState();
             }
 
             this.listener = this.test.addListener(function(test){
-                if (test.match) {
-                    this.methods.enterState();
+                if (test.matches) {
+                    this.enterState();
                 }
                 else {
-                    this.methods.leaveState();
+                    this.leaveState();
                 }
-            });
+            }.bind(this));
         },
         
         enterState: function() {
@@ -141,6 +141,15 @@
 
         for (var i = 0; i < arrLength; i++) {
             arr[i]();
+        }
+    }
+
+    function funcToArray(func) {
+        if (typeof func === 'function') {
+            return [func];
+        }
+        else {
+            return func;
         }
     }
 
