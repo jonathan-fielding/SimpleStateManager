@@ -25,27 +25,6 @@
                     }
                 );
 
-                ssm.browserResize(800);
-
-                ssm.removeAllStates();
-
-                ok(fired === true, "Passed");
-            });
-
-            test("Check resize event fires", function() {
-                var fired = false;
-
-                ssm.addState(
-                    {
-                        id: 'desktop',
-                        onResize: function(){
-                            fired = true;
-                        }
-                    }
-                );
-                ssm.browserResize(800);
-                ssm.browserResize(1200);
-
                 ssm.removeAllStates();
 
                 ok(fired === true, "Passed");
@@ -78,12 +57,12 @@
                 });
 
 
-                var state = ssm.getStates().shift();
+                var state = ssm.states[0];
 
                 ok(state.id === id, "Passed");
                 ok(state.query === query, "Passed");
-                ok(state.onEnter[0] === onEnter, "Passed");
-                ok(state.onResize[0] === onResize, "Passed");
+                ok(state.options.onEnter[0] === onEnter, "Passed");
+                ok(state.options.onResize[0] === onResize, "Passed");
 
                 ssm.removeAllStates();
             });

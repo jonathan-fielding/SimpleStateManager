@@ -41,6 +41,23 @@
         //Merge options with defaults to make the state
         this.options = mergeOptions(defaultOptions, options);
 
+        //Migrate methods into an array, this is to enable future functionality of adding extra methods to an existing state
+        if(typeof this.options.onEnter === "function"){
+            this.options.onEnter = [this.options.onEnter];
+        }
+
+        if(typeof this.options.onLeave === "function"){
+            this.options.onLeave = [this.options.onLeave];
+        }
+
+        if(typeof this.options.onResize === "function"){
+            this.options.onResize = [this.options.onResize];
+        }
+
+        if(typeof this.options.onFirstRun === "function"){
+            this.options.onFirstRun = [this.options.onFirstRun];
+        }
+
         this.init();
     }
 
@@ -99,8 +116,8 @@
         },
 
         getState: function(id) {
-            for (var i = states.length - 1; i >= 0; i--) {
-                var state = states[i];
+            for (var i = this.states.length - 1; i >= 0; i--) {
+                var state = this.states[i];
 
                 if(state.id === id){
                     return state;
@@ -123,10 +140,20 @@
             return this;
         },
 
+        removeAllStates: function() {
+            for (var i = this.states.length - 1; i >= 0; i--) {
+                var state = this.states[i];
+                state.destroy();
+            }
+
+            this.states = [];
+        },
+
         addConfigOption: function(options){
             var defaultOptions = {
                 name: '',
-                test: null
+                test: null,
+                when: 'resize'
             };
 
             //Merge options with defaults
