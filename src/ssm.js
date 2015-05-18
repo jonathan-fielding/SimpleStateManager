@@ -69,14 +69,14 @@
                 this.enterState();
             }
 
-            this.listener = this.test.addListener(partialRight(function(test){
+            this.listener = this.test.addListener(function(test){
                 if (test.matches) {
                     this.enterState();
                 }
                 else {
                     this.leaveState();
                 }
-            }, this));
+            }.bind(this));
         },
         
         enterState: function() {
@@ -239,12 +239,6 @@
         else {
             return func;
         }
-    }
-
-    function partialRight(method, args) {
-        return function () {
-            method.apply(this, args);
-        };
     }
 
     //
