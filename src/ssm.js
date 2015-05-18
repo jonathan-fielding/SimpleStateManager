@@ -162,6 +162,33 @@
             if(options.name !== '' && options.test !== null){
                 State.prototype.configOptions.push(options);
             }
+        },
+
+        removeConfigOption: function(name){
+            var configOptions = State.prototype.configOptions;
+
+            for (var i = configOptions.length - 1; i >= 0; i--) {
+                if (configOptions[i].name === name) {
+                    configOptions.splice(i, 1);
+                }
+            }
+
+            State.prototype.configOptions = configOptions;
+        },
+
+        getConfigOption : function(name){
+            var configOptions = State.prototype.configOptions;
+
+            if(typeof name === "string"){
+                for (var i = configOptions.length - 1; i >= 0; i--) {
+                    if(configOptions[i].name === name){
+                        return configOptions[i];
+                    }
+                }
+            }
+            else{
+                return configOptions;
+            }
         }
     };
 
