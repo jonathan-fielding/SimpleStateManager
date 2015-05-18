@@ -13,24 +13,33 @@
     window.ssm = factory(window, document, undefined);
   }
 })(window, document, undefined, function (window, document, undefined) {
-    "use strict";
+    'use strict';
 
     var resizeTimeout = 10;
 
     //
-    // State Constructor - When the user uses addState state manager will create instances of a State
+    // State Constructor
+    // When the user uses addState state manager will create instances of a State
     //
 
     function State(options) {
         this.id = options.id || makeID();
         this.query = options.query || '';
-        this.active = false;
 
-        this.methods = {};
-        this.methods.onEnter = funcToArray(options.onEnter) || [];
-        this.methods.onLeave = funcToArray(options.onLeave) || [];
-        this.methods.onResize = funcToArray(options.onResize) || [];
-        this.methods.onFirstRun = funcToArray(options.onFirstRun) || [];
+        // These are exposed as part of the state, not options so delete before
+        // we merge these into default options.
+        delete options.id;
+        delete options.query;
+
+        var defaultOptions = {
+            onEnter: [],
+            onLeave: [],
+            onResize: [],
+            onFirstRun: []
+        };
+
+        //Merge options with defaults to make the state
+        this.options = mergeOptions(defaultOptions, options);
 
         this.init();
     }
@@ -54,21 +63,26 @@
         },
         
         enterState: function() {
-            fireAllMethodsInArray(this.methods.onFirstRun);
-            fireAllMethodsInArray(this.methods.onEnter);
-            this.methods.onFirstRun = [];
+            fireAllMethodsInArray(this.options.onFirstRun);
+            fireAllMethodsInArray(this.options.onEnter);
+            this.options.onFirstRun = [];
             this.active = true;
         },
 
         leaveState: function() {
-            fireAllMethodsInArray(this.methods.onLeave);
+            fireAllMethodsInArray(this.options.onLeave);
             this.active = false;
         },
 
         //When the StateManager removes a state we want to remove the event listener
         destroy: function() {
             this.test.removeListener(this.listener);
-        }
+        },
+
+        //An array of avaliable config options, this can be pushed to by the State Manager
+        configOptions: [
+
+        ]
     };  
 
     //State Manager Constructor
@@ -107,6 +121,20 @@
             }
 
             return this;
+        },
+
+        addConfigOption: function(options){
+            var defaultOptions = {
+                name: '',
+                test: null
+            };
+
+            //Merge options with defaults
+            options = mergeOptions(defaultOptions, options);
+
+            if(options.name !== '' && options.test !== null){
+                State.prototype.configOptions.push(options);
+            }
         }
     };
 
