@@ -79,6 +79,7 @@
             }.bind(this));
         },
         
+        //Handle entering a state
         enterState: function() {
             fireAllMethodsInArray(this.options.onFirstRun);
             fireAllMethodsInArray(this.options.onEnter);
@@ -86,9 +87,15 @@
             this.active = true;
         },
 
+        //Handle leaving a state
         leaveState: function() {
             fireAllMethodsInArray(this.options.onLeave);
             this.active = false;
+        },
+
+        //Handle the user resizing the browser
+        resizeState: function() {
+            fireAllMethodsInArray(this.options.onResize);
         },
 
         //When the StateManager removes a state we want to remove the event listener
@@ -114,7 +121,7 @@
         addState: function(options) {
             this.states.push(new State(options));
 
-            window.addEventListener("resize", debounce(this.resizeBrowser, resizeTimeout), true);
+            window.addEventListener("resize", debounce(this.resizeBrowser.bind(this), resizeTimeout), true);
         
             return this;
         },
@@ -221,11 +228,31 @@
         },
 
         resizeBrowser: function() {
-            console.log('test');
+            var activeStates = filterStates(this.states, 'active', true);
+            var len = activeStates.length;
+
+            for (var i = 0; i < len; i++) {
+                activeStates[i].resizeState();
+            }
         }
     };
 
     //Utility functions
+
+    function filterStates(states, key, value) {
+        var len = states.length;
+        var returnStates = [];
+
+        for (var i = 0; i < len; i++) {
+            var state = states[i];
+
+            if (state[key] && state[key] === value) {
+                returnStates.push(state);
+            }
+        }
+
+        return returnStates;
+    }
 
     function mergeOptions(obj1, obj2) {
         var obj3 = {};
