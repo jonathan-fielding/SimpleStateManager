@@ -115,14 +115,14 @@
         this.states = [];
         this.resizeTimer = null;
         this.configOptions = [];
+
+        window.addEventListener("resize", debounce(this.resizeBrowser.bind(this), resizeTimeout), true);    
     }
 
     StateManager.prototype = {
         addState: function(options) {
             this.states.push(new State(options));
 
-            window.addEventListener("resize", debounce(this.resizeBrowser.bind(this), resizeTimeout), true);
-        
             return this;
         },
 
