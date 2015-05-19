@@ -2,33 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>QUnit Example</title>
+        <title>QUnit - SimpleStateManager</title>
         <link rel="stylesheet" href="resources/qunit.css">
         <script>
             //Add bind polyfill as phantomjs doesnt support bind but the browsers SSM support do
             if (!Function.prototype.bind) {
-              Function.prototype.bind = function(oThis) {
-                if (typeof this !== 'function') {
-                  // closest thing possible to the ECMAScript 5
-                  // internal IsCallable function
-                  throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
-                }
+                Function.prototype.bind = function(oThis) {
+                    if (typeof this !== 'function') {
+                      // closest thing possible to the ECMAScript 5
+                      // internal IsCallable function
+                        throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+                    }
 
-                var aArgs   = Array.prototype.slice.call(arguments, 1),
-                    fToBind = this,
-                    fNOP    = function() {},
-                    fBound  = function() {
-                      return fToBind.apply(this instanceof fNOP
-                             ? this
-                             : oThis,
-                             aArgs.concat(Array.prototype.slice.call(arguments)));
-                    };
+                    var aArgs   = Array.prototype.slice.call(arguments, 1),
+                        fToBind = this,
+                        fNOP    = function() {},
+                        fBound  = function() {
+                            return fToBind.apply(this instanceof fNOP ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
+                        };
 
-                fNOP.prototype = this.prototype;
-                fBound.prototype = new fNOP();
+                    fNOP.prototype = this.prototype;
+                    fBound.prototype = new fNOP();
 
-                return fBound;
-              };
+                    return fBound;
+                };
             }
         </script>
         <script src="../src/ssm.js"></script>
@@ -94,82 +91,66 @@
                 ok(state.options.onResize[0] === onResize, "Passed");
             });
 
+            test("remove state", function() {
+                ssm.addState({
+                    id: 'desktop'
+                });
 
+                ssm.removeState('desktop');
 
-            // test("remove state", function() {
-            //     ssm.addState({
-            //         id: 'desktop'
-            //     });
+                ok(ssm.getStates().length === 0, "Passed");
 
-            //     ssm.removeState('desktop');
+                ssm.removeAllStates();
+            });
 
-            //     ok(ssm.getStates().length === 0, "Passed");
+            test("get states", function() {
+                ssm.addStates([
+                    {
+                        id: 'desktop'
+                    }, 
+                    {
+                        id: 'tablet'
+                    },
+                    {
+                        id: 'mobile'
+                    }
+                ]);
 
-            //     ssm.removeAllStates();
-            // });
+                ok(ssm.getStates().length === 3, "Passed");
 
-            // test("remove all states", function() {
-            //     ssm.addState({
-            //         id: 'desktop'
-            //     });
+                ssm.removeAllStates();
+            });
 
-            //     ssm.removeAllStates();
+            test("remove multiple states", function() {
+                ssm.addStates([
+                    {
+                        id: 'desktop'
+                    }, {
+                        id: 'tablet'
+                    }
+                ]);
 
-            //     ok(ssm.getStates().length === 0, "Passed");
-            // });
+                ok(ssm.getStates().length === 2, "Passed");
 
-            // test("get states", function() {
-            //     ssm.addStates([
-            //         {
-            //             id: 'desktop'
-            //         }, {
-            //             id: 'tablet'
-            //         }, {
-            //             id: 'mobile'
-            //         }
-            //     ]);
+                ssm.removeAllStates();
 
-            //     ok(ssm.getStates().length === 3, "Passed");
+                ok(ssm.getStates().length === 0, "Passed");
+            });
 
-            //     ssm.removeAllStates();
-            // });
+            test("add and remove config option's", function() {
+                var configOptions = ssm.getConfigOption().length;
 
-            // test("remove all states", function() {
-            //     ssm.addStates([
-            //         {
-            //             id: 'desktop'
-            //         }, {
-            //             id: 'tablet'
-            //         }
-            //     ]);
+                ssm.addConfigOption({
+                    name: 'test',
+                    test: function(){}
+                });
 
-            //     ok(ssm.getStates().length === 2, "Passed");
+                ok(ssm.getConfigOption().length === (configOptions + 1), "Passed Adding Config Option");
 
-            //     ssm.removeAllStates();
+                ssm.removeConfigOption('test');
 
-            //     ok(ssm.getStates().length === 0, "Passed");
-            // });
-
-            // test("set Resize Timeout", function() {
-            //     ssm.setResizeTimeout(100);
-
-            //     ok(ssm.getResizeTimeout() === 100, "Passed");
-            // });
-
-            // test("add and remove config option's", function() {
-            //     var configOptions = ssm.getConfigOption().length;
-
-            //     ssm.addConfigOption({
-            //         name: 'test',
-            //         test: function(){}
-            //     });
-
-            //     ok(ssm.getConfigOption().length === (configOptions + 1), "Passed Adding Config Option");
-
-            //     ssm.removeConfigOption('test');
-
-            //     ok(ssm.getConfigOption().length === configOptions, "Passed Removing Config Option");
-            // });
+                ok(ssm.getConfigOption().length === configOptions, "Passed Removing Config Option");
+            });
         </script>
     </body>
 </html>

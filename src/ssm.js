@@ -115,6 +115,16 @@
             this.states.push(new State(options));
 
             window.addEventListener("resize", debounce(this.resizeBrowser, resizeTimeout), true);
+        
+            return this;
+        },
+
+        addStates: function (statesArray) {
+            for (var i = statesArray.length - 1; i >= 0; i--) {
+                this.addState(statesArray[i]);
+            }
+
+            return this;
         },
 
         getState: function(id) {
@@ -129,13 +139,30 @@
             return this;
         },
 
+        getStates: function() {
+            var idCount = null, returnArr = [];
+
+            if (typeof(idArr) === "undefined") {
+                return this.states;
+            }
+            else {
+                idCount = idArr.length;
+                
+                for (var i = 0; i < idCount; i++) {
+                    returnArr.push(this.getState(idArr[i]));
+                }
+
+                return returnArr;
+            }
+        },
+
         removeState: function (id) {
-            for (var i = states.length - 1; i >= 0; i--) {
-                var state = states[i];
+            for (var i = this.states.length - 1; i >= 0; i--) {
+                var state = this.states[i];
 
                 if (state.id === id) {
                     state.destroy();
-                    states.splice(i, 1);
+                    this.states.splice(i, 1);
                 }
             }
 
