@@ -71,13 +71,15 @@
         init: function() {
             this.test = window.matchMedia(this.query);
 
-            if (this.test.matches) {
+            if (this.test.matches && this.testConfigOptions('match') && this.testConfigOptions('both')) {
                 this.enterState();
             }
 
             this.listener = this.test.addListener(function(test){
                 if (test.matches) {
-                    this.enterState();
+                    if (this.testConfigOptions('match') && this.testConfigOptions('both')) {
+                        this.enterState();
+                    }
                 }
                 else {
                     this.leaveState();
@@ -101,7 +103,9 @@
 
         //Handle the user resizing the browser
         resizeState: function() {
-            fireAllMethodsInArray(this.options.onResize);
+            if (this.testConfigOptions('resize') && this.testConfigOptions('both')) {
+                fireAllMethodsInArray(this.options.onResize);
+            }
         },
 
         //When the StateManager removes a state we want to remove the event listener
