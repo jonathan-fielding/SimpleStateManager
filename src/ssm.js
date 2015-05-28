@@ -25,7 +25,6 @@
     function State(options) {
         this.id = options.id || makeID();
         this.query = options.query || '';
-
         // These are exposed as part of the state, not options so delete before
         // we merge these into default options.
         delete options.id;
@@ -58,6 +57,13 @@
             this.options.onFirstRun = [this.options.onFirstRun];
         }
 
+        //Test the one time tests first, 
+        if (this.testConfigOptions('once') === false) {
+            this.valid = false;
+            return false;
+        }
+
+        this.valid = true;
         this.init();
     }
 
@@ -103,10 +109,33 @@
             this.test.removeListener(this.listener);
         },
 
+        testConfigOptions: function(when) {
+            var totalConfigOptions = this.configOptions.length;
+
+            for (var j = 0; j < totalConfigOptions; j++) {
+                var configOption = this.configOptions[j];
+
+                if (typeof this.options[configOption.name] !== "undefined") {
+                    if (configOption.when === when && configOption.test.bind(this)() === false) {
+                        return false;
+                    }
+                }
+
+                //Skip any config options the state does not define
+                // if(typeof tempObj.state[configOptions[j].name] !== "undefined"){
+                //     tempObj.callback = configOptions[j].test;
+                //     if(tempObj.callback() === false){
+                //         validState = false;
+                //         break;
+                //     }
+                // }
+            }
+
+            return true;
+        },
+
         //An array of avaliable config options, this can be pushed to by the State Manager
-        configOptions: [
-            
-        ]
+        configOptions: []
     };  
 
     //State Manager Constructor
@@ -121,7 +150,11 @@
 
     StateManager.prototype = {
         addState: function(options) {
-            this.states.push(new State(options));
+            var newState = new State(options);
+            
+            if (newState.valid) {
+                this.states.push(newState);
+            }
 
             return this;
         },
@@ -187,9 +220,9 @@
 
         addConfigOption: function(options){
             var defaultOptions = {
-                name: '',
-                test: null,
-                when: 'resize'
+                name: '', // name, this is used to apply to a state
+                test: null, //function
+                when: 'resize' // resize, match, or both, or once
             };
 
             //Merge options with defaults
