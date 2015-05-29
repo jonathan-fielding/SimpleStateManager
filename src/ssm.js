@@ -71,13 +71,13 @@
         init: function() {
             this.test = window.matchMedia(this.query);
 
-            if (this.test.matches && this.testConfigOptions('match') && this.testConfigOptions('both')) {
+            if (this.test.matches && this.testConfigOptions('match')) {
                 this.enterState();
             }
 
             this.listener = this.test.addListener(function(test){
                 if (test.matches) {
-                    if (this.testConfigOptions('match') && this.testConfigOptions('both')) {
+                    if (this.testConfigOptions('match')) {
                         this.enterState();
                     }
                 }
@@ -103,7 +103,7 @@
 
         //Handle the user resizing the browser
         resizeState: function() {
-            if (this.testConfigOptions('resize') && this.testConfigOptions('both')) {
+            if (this.testConfigOptions('resize')) {
                 fireAllMethodsInArray(this.options.onResize);
             }
         },
@@ -222,11 +222,12 @@
             this.states = [];
         },
 
+        
         addConfigOption: function(options){
             var defaultOptions = {
                 name: '', // name, this is used to apply to a state
-                test: null, //function
-                when: 'resize' // resize, match, or both, or once
+                test: null, //function which will perform the test
+                when: 'resize' // resize or match (match will mean that resize will never fire either), or once (which will test once, then delete state if test doesnt pass)
             };
 
             //Merge options with defaults
