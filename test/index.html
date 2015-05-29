@@ -196,6 +196,12 @@
                 });
 
                 ok(stateMatch === true, "Passed state matched");
+                ok(ssm.getStates().length === 1, "Passed state not added as matched");
+
+                ssm.removeState('onceState');
+
+                ok(ssm.getStates().length === 0, "Passed remove state");
+
             });
         </script>
     </body>
