@@ -179,11 +179,9 @@
                     return state;
                 }
             }
-
-            return this;
         },
 
-        getStates: function() {
+        getStates: function(idArr) {
             var idCount = null, returnArr = [];
 
             if (typeof(idArr) === "undefined") {
@@ -222,7 +220,7 @@
             this.states = [];
         },
 
-        
+
         addConfigOption: function(options){
             var defaultOptions = {
                 name: '', // name, this is used to apply to a state
