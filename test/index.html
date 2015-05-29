@@ -151,6 +151,52 @@
 
                 ok(ssm.getConfigOption().length === configOptions, "Passed Removing Config Option");
             });
+
+            test("config option once", function() {
+                var stateMatch = false;
+
+                ssm.addConfigOption({
+                    name: 'once',
+                    test: function(){
+                        return false;
+                    },
+                    when: 'once'
+                });
+
+                ssm.addState({
+                    id: 'onceState',
+                    once: 'value',
+                    onEnter: function() {
+                        stateMatch = true;
+                    }
+                });
+
+                ok(stateMatch === false, "Passed state not matched");
+
+                ok(ssm.getStates().length === 0, "Passed state not added as not matched");
+
+                ssm.removeConfigOption('once');
+
+                stateMatch = false;
+
+                ssm.addConfigOption({
+                    name: 'once',
+                    test: function(){
+                        return true;
+                    },
+                    when: 'once'
+                });
+
+                ssm.addState({
+                    id: 'onceState',
+                    once: 'value',
+                    onEnter: function() {
+                        stateMatch = true;
+                    }
+                });
+
+                ok(stateMatch === true, "Passed state matched");
+            });
         </script>
     </body>
 </html>
