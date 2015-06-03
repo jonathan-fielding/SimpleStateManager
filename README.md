@@ -18,6 +18,12 @@ Documentation can be found at http://www.simplestatemanager.com
 
 ##Release Log
 
+###3.0.0 - TBC
+* Rewrite to use the matchMedia API
+* Add support for media queries
+* Major refactor
+* Remove legacy browser (IE 8 and below) support
+
 ###2.4.1 - May 17, 2015
 * Fix browser width when browser is zoomed
 
