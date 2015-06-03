@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <title>QUnit - SimpleStateManager</title>
         <link rel="stylesheet" href="resources/qunit.css">
-        <script src="resources/matchmedia.mock.js"></script>
         <script src="resources/bind.poly.js"></script>
+        <script src="resources/matchmedia.mock.js"></script>
         <script src="../src/ssm.js"></script>
     </head>
     <body>
@@ -64,6 +64,7 @@
                 ok(state.query === query, "Passed");
                 ok(state.options.onEnter[0] === onEnter, "Passed");
                 ok(state.options.onResize[0] === onResize, "Passed");
+                ok(state.active === true, "Passed");
             });
 
             test("add inactive state", function() {
