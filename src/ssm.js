@@ -57,13 +57,14 @@
             this.options.onFirstRun = [this.options.onFirstRun];
         }
 
-        //Test the one time tests first, 
+        //Test the one time tests first, if the test is invalid we wont create the config option
         if (this.testConfigOptions('once') === false) {
             this.valid = false;
             return false;
         }
 
         this.valid = true;
+        this.active = false;
         this.init();
     }
 
@@ -160,7 +161,7 @@
                 this.states.push(newState);
             }
 
-            return this;
+            return newState;
         },
 
         addStates: function (statesArray) {
@@ -261,6 +262,10 @@
             else{
                 return configOptions;
             }
+        },
+
+        getConfigOptions: function(){
+            return State.prototype.configOptions;
         },
 
         resizeBrowser: function() {

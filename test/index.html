@@ -4,30 +4,8 @@
         <meta charset="utf-8">
         <title>QUnit - SimpleStateManager</title>
         <link rel="stylesheet" href="resources/qunit.css">
-        <script>
-            //Add bind polyfill as phantomjs doesnt support bind but the browsers SSM support do
-            if (!Function.prototype.bind) {
-                Function.prototype.bind = function(oThis) {
-                    if (typeof this !== 'function') {
-                      // closest thing possible to the ECMAScript 5
-                      // internal IsCallable function
-                        throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
-                    }
-
-                    var aArgs   = Array.prototype.slice.call(arguments, 1),
-                        fToBind = this,
-                        fNOP    = function() {},
-                        fBound  = function() {
-                            return fToBind.apply(this instanceof fNOP ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
-                        };
-
-                    fNOP.prototype = this.prototype;
-                    fBound.prototype = new fNOP();
-
-                    return fBound;
-                };
-            }
-        </script>
+        <script src="resources/matchmedia.mock.js"></script>
+        <script src="resources/bind.poly.js"></script>
         <script src="../src/ssm.js"></script>
     </head>
     <body>
@@ -65,23 +43,20 @@
             });
 
 
-            test("add state", function() {
+            test("add active state", function() {
                 var id = 'test',
                     query = '(min-width: 100px)',
                     onEnter = function() {},
                     onLeave = function() {},
                     onResize = function() {};
 
-                ssm.addState({
+                var state = ssm.addState({
                     id: id,
                     query: query,
                     onEnter: onEnter,
                     onLeave: onLeave,
                     onResize: onResize
                 });
-
-
-                var state = ssm.states[0];
 
                 ssm.removeAllStates();
 
@@ -90,6 +65,33 @@
                 ok(state.options.onEnter[0] === onEnter, "Passed");
                 ok(state.options.onResize[0] === onResize, "Passed");
             });
+
+            test("add inactive state", function() {
+                var id = 'test',
+                    query = '(max-width: 1000px)',
+                    onEnter = function() {},
+                    onLeave = function() {},
+                    onResize = function() {};
+
+                var state = ssm.addState({
+                    id: id,
+                    query: query,
+                    onEnter: onEnter,
+                    onLeave: onLeave,
+                    onResize: onResize
+                });
+
+                ssm.removeAllStates();
+
+                ok(state.id === id, "Passed");
+                ok(state.query === query, "Passed");
+                ok(state.options.onEnter[0] === onEnter, "Passed");
+                ok(state.options.onResize[0] === onResize, "Passed");
+                ok(state.active === false, "Passed");
+            });
+
+            
+
 
             test("remove state", function() {
                 ssm.addState({
@@ -163,6 +165,9 @@
                     when: 'once'
                 });
 
+
+                ok(ssm.getConfigOptions().length === 1, "Passed always false config option added");
+
                 ssm.addState({
                     id: 'onceState',
                     once: 'value',
@@ -177,6 +182,8 @@
 
                 ssm.removeConfigOption('once');
 
+                ok(ssm.getConfigOptions().length === 0, "Passed always false config option removed");
+
                 stateMatch = false;
 
                 ssm.addConfigOption({
@@ -186,6 +193,8 @@
                     },
                     when: 'once'
                 });
+
+                ok(ssm.getConfigOptions().length === 1, "Passed always true config option added");
 
                 ssm.addState({
                     id: 'onceState',
@@ -201,6 +210,11 @@
                 ssm.removeState('onceState');
 
                 ok(ssm.getStates().length === 0, "Passed remove state");
+
+
+                ssm.removeConfigOption('once');
+
+                ok(ssm.getConfigOptions().length === 0, "Passed always true config option removed");
 
             });
         </script>
