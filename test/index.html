@@ -83,13 +83,47 @@
                     onResize: onResize
                 });
 
-                ssm.removeAllStates();
-
                 ok(state.id === id, "Passed");
                 ok(state.query === query, "Passed");
                 ok(state.options.onEnter[0] === onEnter, "Passed");
                 ok(state.options.onResize[0] === onResize, "Passed");
                 ok(state.active === false, "Passed");
+
+                ssm.removeAllStates();
+            });
+
+            test("test browser resize matchmedia matching", function() {
+                var id = 'browserMatchMediaTest',
+                    query = '(max-width: 320px)',
+                    onEnter = function() {
+                        browserEnter = true;
+                    },
+                    onLeave = function() {
+                        browserLeave = true;
+                    },
+                    browserEnter = false;
+                    browserLeave = false;
+
+                var state = ssm.addState({
+                    id: id,
+                    query: query,
+                    onEnter: onEnter,
+                    onLeave: onLeave
+                });
+
+                window.matchMedia.set({
+                    width: 300
+                });
+
+                window.matchMedia.set({
+                    width: 1024
+                });
+
+                ok(browserEnter === true, "Passed");
+                ok(browserLeave === true, "Passed");
+
+                
+                ssm.removeAllStates();
             });
 
             test("remove state", function() {
