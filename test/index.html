@@ -141,7 +141,22 @@
                 ssm.removeConfigOption(name);
             });
 
-            test("add active state", function() {
+            test("Remove config option (removeConfigOption)", function() {
+                var configOptions = ssm.getConfigOption().length;
+
+                ssm.addConfigOption({
+                    name: 'test',
+                    test: function(){}
+                });
+
+                ok(ssm.getConfigOption().length === (configOptions + 1), "Added config option successfully");
+
+                ssm.removeConfigOption('test');
+
+                ok(ssm.getConfigOption().length === configOptions, "Removed config option successfully");
+            });
+
+            test("Add a state that instantly matches (addState)", function() {
                 var id = 'test',
                     query = '(min-width: 100px)',
                     onEnter = function() {},
@@ -158,14 +173,11 @@
 
                 ssm.removeAllStates();
 
-                ok(state.id === id, "Passed");
-                ok(state.query === query, "Passed");
-                ok(state.options.onEnter[0] === onEnter, "Passed");
-                ok(state.options.onResize[0] === onResize, "Passed");
-                ok(state.active === true, "Passed");
+                ok(state.id === id, "State has been added successfully");
+                ok(state.active === true, "State is correctly active");
             });
 
-            test("add inactive state", function() {
+            test("Add a state that is unmatched (addState)", function() {
                 var id = 'test',
                     query = '(max-width: 1000px)',
                     onEnter = function() {},
@@ -180,16 +192,13 @@
                     onResize: onResize
                 });
 
-                ok(state.id === id, "Passed");
-                ok(state.query === query, "Passed");
-                ok(state.options.onEnter[0] === onEnter, "Passed");
-                ok(state.options.onResize[0] === onResize, "Passed");
-                ok(state.active === false, "Passed");
+                ok(state.id === id, "State has been added successfully");
+                ok(state.active === false, "State is correctly inactive");
 
                 ssm.removeAllStates();
             });
 
-            test("test browser resize matchmedia matching", function() {
+            test("Add a state that is unmatched and then handle it matching when browser is resized (addState)", function() {
                 var id = 'browserMatchMediaTest',
                     query = '(max-width: 320px)',
                     onEnter = function() {
@@ -208,21 +217,25 @@
                     onLeave: onLeave
                 });
 
+                ok(browserEnter === false, "State has not yet been entered");
+                ok(browserLeave === false, "State has not yet been left");
+
                 window.matchMedia.set({
                     width: 300
                 });
+
+                ok(browserEnter === true, "State enters successfully");
 
                 window.matchMedia.set({
                     width: 1024
                 });
 
-                ok(browserEnter === true, "Passed");
-                ok(browserLeave === true, "Passed");
+                ok(browserLeave === true, "State leaves successfully");
 
                 ssm.removeAllStates();
             });
 
-            test("test first matched", function() {
+            test("Test the onFirstRun method of a state (addState)", function() {
                 var id = 'test',
                     onFirstRun = function() {
                         firstRun = true;
@@ -268,22 +281,7 @@
                 });
             });
 
-            test("add and remove config option's", function() {
-                var configOptions = ssm.getConfigOption().length;
-
-                ssm.addConfigOption({
-                    name: 'test',
-                    test: function(){}
-                });
-
-                ok(ssm.getConfigOption().length === (configOptions + 1), "Passed Adding Config Option");
-
-                ssm.removeConfigOption('test');
-
-                ok(ssm.getConfigOption().length === configOptions, "Passed Removing Config Option");
-            });
-
-            test("config option once", function() {
+            test("Add a config option which validates once (addConfigOption - once)", function() {
                 var stateMatch = false;
 
                 ssm.addConfigOption({
