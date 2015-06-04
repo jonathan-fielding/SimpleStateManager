@@ -16,7 +16,7 @@
         <script src="resources/blanket.min.js"></script>
         <script>
 
-            test("Check enter event fires", function() {
+            test("Add states (addState and addStates)", function() {
                 var fired = true;
 
                 ssm.addState(
@@ -28,21 +28,118 @@
                     }
                 );
 
+                ok(ssm.getStates().length === 1, "Adding a single state successful");
+                ok(fired === true, "Added state is successfully matched and enter event run");
+
+                ssm.removeState('desktop');
+
+                ok(ssm.getStates().length === 0, "Removing single state successful");
+
+                ssm.addStates([
+                    {
+                        id: 'desktop'
+                    }, 
+                    {
+                        id: 'tablet'
+                    },
+                    {
+                        id: 'mobile'
+                    }
+                ]);
+
+                ok(ssm.getStates().length === 3, "Adding multiple states successful");
+
                 ssm.removeAllStates();
 
-                ok(fired === true, "Passed");
+                ok(ssm.getStates().length === 0, "Removing multiple states successful");
             });
 
-            test("add config option", function() {
+            test("Get states (getState and getStates)", function(){
+                var id = 'test';
+
+                ssm.addState({
+                    id: id,
+                    query: '(min-width: 100px)',
+                    onEnter: function() {},
+                    onLeave: function() {},
+                    onResize: function() {}
+                });
+
+                var state = ssm.getState(id);
+
+                ok(state.id === id, "Retrieved state successfully");
+
+                ssm.removeAllStates();
+
+                ok(ssm.getStates().length === 0, "Removing state successful");
+
+                ssm.addStates([
+                    {
+                        id: 'desktop'
+                    }, 
+                    {
+                        id: 'tablet'
+                    },
+                    {
+                        id: 'mobile'
+                    }
+                ]);
+
+                ok(ssm.getStates(['desktop', 'tablet']).length === 2, "Fetched desktop and mobile states successful");
+
+                ssm.removeAllStates();
+
+                ok(ssm.getStates().length === 0, "Removing all states successful");
+            });
+
+            test("Remove states (removeState, removeAllStates)", function() {
+                ssm.addState({
+                    id: 'desktop'
+                });
+
+                ok(ssm.getStates().length === 1, "Added individual state successfully, ready for removal");
+
+                ssm.removeState('desktop');
+
+                ok(ssm.getStates().length === 0, "Removed individual state successfully");
+
+                ssm.addStates([
+                    {
+                        id: 'desktop'
+                    }, 
+                    {
+                        id: 'tablet'
+                    }
+                ]);
+
+                ok(ssm.getStates().length === 2, "Multiple states added successfully, ready for removal");
+
+                ssm.removeAllStates();
+
+                ok(ssm.getStates().length === 0, "Multiple states removed successfully");
+            });
+
+            test("Add a config option (addConfigOption)", function() {
                 ssm.addConfigOption({name:'minHeight', test: function(){}});
 
-                ok(ssm.getConfigOption().length === 1, "Passed");
+                ok(ssm.getConfigOption().length === 1, "Adding a single config option successful");
 
                 ssm.removeConfigOption('minHeight');
 
-                ok(ssm.getConfigOption().length === 0, "Passed");
+                ok(ssm.getConfigOption().length === 0, "Remove a single config option successful");
             });
 
+            test("Get a config option (getConfigOption)", function() {
+                var name = 'minHeight';
+
+                ssm.addConfigOption({name: name, test: function(){}});
+
+                var configOption = ssm.getConfigOption(name);
+
+                ok(ssm.getConfigOption(name).name === name, "Retrive a single config option successfully");
+
+                ssm.removeConfigOption(name);
+            });
 
             test("add active state", function() {
                 var id = 'test',
@@ -122,54 +219,53 @@
                 ok(browserEnter === true, "Passed");
                 ok(browserLeave === true, "Passed");
 
-                
                 ssm.removeAllStates();
             });
 
-            test("remove state", function() {
+            test("test first matched", function() {
+                var id = 'test',
+                    onFirstRun = function() {
+                        firstRun = true;
+                    },
+                    firstRun = false;
+
                 ssm.addState({
-                    id: 'desktop'
+                    id: id,
+                    query: '',
+                    onFirstRun: onFirstRun
                 });
 
-                ssm.removeState('desktop');
-
-                ok(ssm.getStates().length === 0, "Passed");
-
-                ssm.removeAllStates();
-            });
-
-            test("get states", function() {
-                ssm.addStates([
-                    {
-                        id: 'desktop'
-                    }, 
-                    {
-                        id: 'tablet'
-                    },
-                    {
-                        id: 'mobile'
-                    }
-                ]);
-
-                ok(ssm.getStates().length === 3, "Passed");
-
-                ssm.removeAllStates();
-            });
-
-            test("remove multiple states", function() {
-                ssm.addStates([
-                    {
-                        id: 'desktop'
-                    }, {
-                        id: 'tablet'
-                    }
-                ]);
-
-                ok(ssm.getStates().length === 2, "Passed");
+                ok(firstRun === true, "Passed Simple First Match");
 
                 ssm.removeAllStates();
 
-                ok(ssm.getStates().length === 0, "Passed");
+                firstRun = false;
+
+                ssm.addState({
+                    id: id,
+                    query: '(min-width: 1200px)',
+                    onFirstRun: onFirstRun
+                });
+
+                ok(firstRun === false, "Passed not initially matched");
+
+                ssm.addState({
+                    id: id,
+                    query: '(min-width: 1200px)',
+                    onFirstRun: onFirstRun
+                });
+
+                window.matchMedia.set({
+                    width: 1200
+                });
+
+                ok(firstRun === true, "Passed matched after resize");
+
+                ssm.removeAllStates();
+
+                window.matchMedia.set({
+                    width: 1024
+                });
             });
 
             test("add and remove config option's", function() {
