@@ -21,11 +21,21 @@
 			this.callback = callback;
 		},
 
-		removeListener: function(){
+		removeListener: function() {
 			
 		},
 
-		callback: null
+		runTest: function() {
+			var matches = this.matches;
+
+			this.matches = testAgainstState(this.test);
+
+			if ((this.matches && !matches) || (!this.matches && matches)) {
+				this.callback(this);
+			}
+		},
+
+		callback: function(){}
 	};
 
 	//
@@ -52,6 +62,8 @@
 
 			for (var i = this.mqls.length - 1; i >= 0; i--) {
                 var list = this.mqls[i];
+
+                list.runTest();
             }
 		}
 	};
