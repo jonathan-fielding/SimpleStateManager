@@ -6,13 +6,14 @@
         <link rel="stylesheet" href="resources/qunit.css">
         <script src="resources/bind.poly.js"></script>
         <script src="resources/matchmedia.mock.js"></script>
-        <script src="../src/ssm.js"></script>
+        <script src="../src/ssm.js" data-cover></script>
     </head>
     <body>
         <div id="qunit"></div>
         <div id="qunit-fixture"></div>
 
         <script src="resources/qunit.js"></script>
+        <script src="resources/blanket.min.js"></script>
         <script>
 
             test("Check enter event fires", function() {
@@ -90,9 +91,6 @@
                 ok(state.options.onResize[0] === onResize, "Passed");
                 ok(state.active === false, "Passed");
             });
-
-            
-
 
             test("remove state", function() {
                 ssm.addState({
