@@ -1,0 +1,32 @@
+{
+    "test_framework" : "qunit",
+    "test_path": "test/index.html",
+    "browsers": [
+        "chrome_previous",
+        "chrome_latest",
+        "firefox_previous",
+        "firefox_latest",
+        "ie_9",
+        "ie_10",
+        "ie_11",
+        "opera_latest",
+        {
+            "browser": "safari",
+            "browser_version": "latest",
+            "os": "OS X",
+            "os_version": "Mountain Lion"
+        },
+        {
+            "browser": "safari",
+            "browser_version": "latest",
+            "os": "OS X",
+            "os_version": "Mavericks"
+        },
+        {
+            "browser": "safari",
+            "browser_version": "latest",
+            "os": "OS X",
+            "os_version": "Yosemite"
+        }
+    ]
+}

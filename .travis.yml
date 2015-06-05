@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-  - 0.10.28
+- 0.10.28
+env:
+  global:
+  - secure: PgS45kQzqlgcITYBG/wGJKsytmacGBeWij5euUTrU2TPjYHifBmCanjHc+TthOky/ODVGGz0VS2fPggwwfskgBQQmA1/+M7JENZX7iLAgz4wbA7OoRiW6aVm0d27z0XzzAemw40vatbwRLysMAQzxodBkyxM34C61VIgEHPSXik=
+  - secure: MyoOGToZ8p/XcAkWt6xI0XllXfefmyQ17AbMekdG8hW1LdGjj3RXwUdemH42ZycjjfBma4U6JY8rpbB10ckQMECzLB4Gww40cQ5Y3cqfmBk6WmVNB7VlCC0RUssytugE628rJYgTkbaDs9hmbWyQTIKERWkxqx5P+1imLOP8u2s=
+before_script:
+  - npm -g install browserstack-runner
+script:
+  - browserstack-runner
