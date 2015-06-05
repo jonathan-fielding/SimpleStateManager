@@ -6,10 +6,11 @@
         "chrome_latest",
         "firefox_previous",
         "firefox_latest",
+        "opera_latest",
+        "opera_previous",
         "ie_9",
         "ie_10",
         "ie_11",
-        "opera_latest",
         {
             "browser": "safari",
             "browser_version": "latest",
