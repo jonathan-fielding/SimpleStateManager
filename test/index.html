@@ -187,6 +187,26 @@
 
                 ok(ssm.getConfigOption().length === configOptions, "Passed Removing Config Option");
             });
+
+            test("General state change hook", function() {
+                var changed = false;
+
+                ssm.onStateChange = function() {
+                    changed = true;
+                };
+
+                ssm.addState(
+                    {
+                        id: 'desktop',
+                        onEnter: function(){}
+                    }
+                );
+                
+                ssm.browserResize(800);
+                ssm.removeAllStates();
+
+                ok(changed == true, "Fired after resize.");
+            });
         </script>
     </body>
 </html>
