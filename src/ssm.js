@@ -46,7 +46,8 @@
     };
 
     var browserResize = function (localBrowserWidth) {
-        var totalStates = states.length,
+        var changed = false,
+            totalStates = states.length,
             totalConfigOptions = configOptions.length,
             leaveMethods = [],
             resizeMethods = [],
@@ -87,11 +88,14 @@
                     currentStates.push(states[i]);
                     enterMethods = enterMethods.concat(states[i].onEnter);
                 }
+
+                changed = true;
             }
             else{
                 if(objectInArray(currentStates, states[i])){
                     leaveMethods = leaveMethods.concat(states[i].onLeave);
                     currentStates = removeObjectInArray(currentStates,states[i]);
+                    changed = true;
                 }
             }
         }
@@ -100,7 +104,13 @@
         fireAllMethodsInArray(leaveMethods);
         fireAllMethodsInArray(enterMethods);
         fireAllMethodsInArray(resizeMethods);
+
+        if (changed) {
+            ssm.onStateChange();
+        }
     };
+
+    ssm.onStateChange = function() {};
 
     ssm.browserResize = browserResize;
 
