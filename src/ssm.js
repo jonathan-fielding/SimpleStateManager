@@ -16,6 +16,12 @@
     'use strict';
 
     var resizeTimeout = 25;
+    var stateChangeMethod = function(){};
+
+    function Error(message) {
+       this.message = message;
+       this.name = "Error";
+    }
 
     //
     // State Constructor
@@ -77,13 +83,21 @@
             }
 
             this.listener = this.test.addListener(function(test){
+                var changed = false;
+
                 if (test.matches) {
                     if (this.testConfigOptions('match')) {
                         this.enterState();
+                        changed = true;
                     }
                 }
                 else {
                     this.leaveState();
+                    changed = true;
+                }
+
+                if (changed) {
+                    stateChangeMethod();
                 }
             }.bind(this));
         },
@@ -274,6 +288,15 @@
 
             for (var i = 0; i < len; i++) {
                 activeStates[i].resizeState();
+            }
+        },
+
+        stateChange: function(func) {
+            if (typeof func === "function") {
+                stateChangeMethod = func;
+            }
+            else {
+                throw new Error('Not a function');
             }
         }
     };
