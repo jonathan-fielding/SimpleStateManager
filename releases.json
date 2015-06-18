@@ -1,5 +1,15 @@
 [
 	{
+		"version" : "3.0.0",
+		"date" : "June 8th, 2015", 
+		"items" : [
+			"Rewrite to use the matchMedia API",
+			"Add support for media queries",
+			"Major refactor",
+			"Remove legacy browser (IE 8 and below) support"
+		]
+	},
+	{	
 		"version" : "2.4.1",
 		"date" : "May 17, 2015", 
 		"items" : [

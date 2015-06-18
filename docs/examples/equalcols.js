@@ -6,25 +6,27 @@
         return {
             setup: function(){
                 var height = 0, tempHeight = 0;
+
                 for (var i = 0; i < colCount; i++) {
                     tempHeight = $cols.eq(i).height();
 
                     if(tempHeight > height){
                         height = tempHeight;
                     }
-                };
-                 $cols.css('height', height)
+                }
+
+                $cols.css('height', height);
             },
             reset: function(){
-                $cols.css('height', 'auto')
+                $cols.css('height', 'auto');
             }
-        }
+        };
     }();
 
 
     ssm.addState({
         id: 'mobile',
-        maxWidth: 979,
+        query: '(max-width: 979px)',
         onEnter: function(){
             equalCols.reset();
         }
@@ -32,11 +34,9 @@
 
     ssm.addState({
         id: 'desktop',
-        minWidth: 980,
+        query: '(min-width: 980px)',
         onEnter: function(){
             equalCols.setup();
         }
     });
-
-    ssm.ready();
 }());

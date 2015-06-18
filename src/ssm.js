@@ -3,353 +3,330 @@
 (function (window, document, undefined, factory) {
   if (typeof define === 'function' && define.amd) {
     define(function() {
-      return factory(window, document, undefined);
+        return factory(window, document, undefined);
     });
-  } else if (typeof exports === 'object') {
+  }
+  else if (typeof exports === 'object') {
     module.exports = factory;
-  } else {
+  }
+  else {
     window.ssm = factory(window, document, undefined);
   }
 })(window, document, undefined, function (window, document, undefined) {
-    "use strict";
+    'use strict';
 
-    var isReady = false,
-        ssm = {},
-        states = [],
-        browserWidth = 0,
-        currentStates = [],
-        resizeTimeout = 10,
-        resizeTimer = null,
-        configOptions = [];
+    var resizeTimeout = 25;
+    var stateChangeMethod = function(){};
 
+    function Error(message) {
+       this.message = message;
+       this.name = "Error";
+    }
 
-    //The returned value never changes so is self executing
-    var testForMatchMedia = function(){
-        if(typeof window.matchMedia === "function"){
-            if(typeof window.matchMedia('(width: 100px)').addListener !== "undefined"){
-                return true;
-            }
-        }
+    //
+    // State Constructor
+    // When the user uses addState state manager will create instances of a State
+    //
 
-        return false;
-    }();
+    function State(options) {
+        this.id = options.id || makeID();
+        this.query = options.query || '';
+        // These are exposed as part of the state, not options so delete before
+        // we merge these into default options.
+        delete options.id;
+        delete options.query;
 
-    var browserResizeDebounce = function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(browserResizeWrapper, resizeTimeout);
-    };
-
-    //Added wrapper for the resize method
-    var browserResizeWrapper = function() {
-        browserWidth = getWidth();
-        browserResize(browserWidth);
-    };
-
-    var browserResize = function (localBrowserWidth) {
-        var changed = false,
-            totalStates = states.length,
-            totalConfigOptions = configOptions.length,
-            leaveMethods = [],
-            resizeMethods = [],
-            enterMethods = [],
-            setupMethods = [],
-            validState = true,
-            tempObj = ssm;
-
-        for (var i = 0; i < totalStates; i++) {
-            
-            validState = true;
-            tempObj.state = states[i];
-            tempObj.browserWidth = localBrowserWidth;
-
-            for (var j = 0; j < totalConfigOptions; j++) {
-                //Skip any config options the state does not define
-                if(typeof tempObj.state[configOptions[j].name] !== "undefined"){
-                    tempObj.callback = configOptions[j].test;
-                    if(tempObj.callback() === false){
-                        validState = false;
-                        break;
-                    }
-                }
-            }
-
-            if(validState){
-
-                //Run any run once methods
-                setupMethods = setupMethods.concat(states[i].onFirstRun);
-
-                //Clear run once method array
-                states[i].onFirstRun = [];
-                
-                if(objectInArray(currentStates, states[i])){
-                    resizeMethods = resizeMethods.concat(states[i].onResize);
-                }
-                else{
-                    currentStates.push(states[i]);
-                    enterMethods = enterMethods.concat(states[i].onEnter);
-                }
-
-                changed = true;
-            }
-            else{
-                if(objectInArray(currentStates, states[i])){
-                    leaveMethods = leaveMethods.concat(states[i].onLeave);
-                    currentStates = removeObjectInArray(currentStates,states[i]);
-                    changed = true;
-                }
-            }
-        }
-
-        fireAllMethodsInArray(setupMethods);
-        fireAllMethodsInArray(leaveMethods);
-        fireAllMethodsInArray(enterMethods);
-        fireAllMethodsInArray(resizeMethods);
-
-        if (changed) {
-            ssm.onStateChange();
-        }
-    };
-
-    ssm.onStateChange = function() {};
-
-    ssm.browserResize = browserResize;
-
-    ssm.getBrowserWidth = function(){
-        return browserWidth;
-    };
-
-    //Add a new state
-    ssm.addState = function (options) {
-        //Setting sensible defaults for a state
-        //Max width is set to 99999 for comparative purposes, is bigger than any display on market
         var defaultOptions = {
-            id: makeID(),
-            minWidth: 0,
-            maxWidth: 999999,
             onEnter: [],
             onLeave: [],
             onResize: [],
             onFirstRun: []
         };
 
-        //Merge options with defaults
-        options = mergeOptions(defaultOptions, options);
+        //Merge options with defaults to make the state
+        this.options = mergeOptions(defaultOptions, options);
 
-        //Migrate methods into an array
-        if(typeof options.onEnter === "function"){
-            options.onEnter = [options.onEnter];
+        //Migrate methods into an array, this is to enable future functionality of adding extra methods to an existing state
+        if(typeof this.options.onEnter === "function"){
+            this.options.onEnter = [this.options.onEnter];
         }
 
-        if(typeof options.onLeave === "function"){
-            options.onLeave = [options.onLeave];
+        if(typeof this.options.onLeave === "function"){
+            this.options.onLeave = [this.options.onLeave];
         }
 
-        if(typeof options.onResize === "function"){
-            options.onResize = [options.onResize];
+        if(typeof this.options.onResize === "function"){
+            this.options.onResize = [this.options.onResize];
         }
 
-        if(typeof options.onFirstRun === "function"){
-            options.onFirstRun = [options.onFirstRun];
+        if(typeof this.options.onFirstRun === "function"){
+            this.options.onFirstRun = [this.options.onFirstRun];
         }
 
-        //Add state to the master states array
-        states.push(options);
+        //Test the one time tests first, if the test is invalid we wont create the config option
+        if (this.testConfigOptions('once') === false) {
+            this.valid = false;
+            return false;
+        }
 
-        //Sort 
-        states = sortByKey(states, "minWidth");
+        this.valid = true;
+        this.active = false;
+        this.init();
+    }
 
-        return this;
-    };
+    State.prototype = {
+        init: function() {
+            this.test = window.matchMedia(this.query);
 
-    //Allow updating of an already added state
-    ssm.updateState = function (stateId, options) {
-        for (var i = states.length - 1; i >= 0; i--) {
-            if (states[i].id === stateId) {
-                states[i] = mergeOptions(states[i], options);
+            if (this.test.matches && this.testConfigOptions('match')) {
+                this.enterState();
             }
-        }
 
-        return this;
-    };
+            this.listener = this.test.addListener(function(test){
+                var changed = false;
 
-    //Find and remove the state from the array
-    ssm.removeState = function (stateId) {
-        for (var i = states.length - 1; i >= 0; i--) {
-            if (states[i].id === stateId) {
-                states.splice(i, 1);
+                if (test.matches) {
+                    if (this.testConfigOptions('match')) {
+                        this.enterState();
+                        changed = true;
+                    }
+                }
+                else {
+                    this.leaveState();
+                    changed = true;
+                }
+
+                if (changed) {
+                    stateChangeMethod();
+                }
+            }.bind(this));
+        },
+        
+        //Handle entering a state
+        enterState: function() {
+            fireAllMethodsInArray(this.options.onFirstRun);
+            fireAllMethodsInArray(this.options.onEnter);
+            this.options.onFirstRun = [];
+            this.active = true;
+        },
+
+        //Handle leaving a state
+        leaveState: function() {
+            fireAllMethodsInArray(this.options.onLeave);
+            this.active = false;
+        },
+
+        //Handle the user resizing the browser
+        resizeState: function() {
+            if (this.testConfigOptions('resize')) {
+                fireAllMethodsInArray(this.options.onResize);
             }
-        }
+        },
 
-        return this;
-    };
+        //When the StateManager removes a state we want to remove the event listener
+        destroy: function() {
+            this.test.removeListener(this.listener);
+        },
 
-    //Remove multiple states from an array
-    ssm.removeStates = function (statesArray) {
-        for (var i = statesArray.length - 1; i >= 0; i--) {
-            ssm.removeState(statesArray[i]);
-        }
+        testConfigOptions: function(when) {
+            var totalConfigOptions = this.configOptions.length;
 
-        return this;
-    };
+            for (var j = 0; j < totalConfigOptions; j++) {
+                var configOption = this.configOptions[j];
 
-    //Find and remove the state from the array
-    ssm.removeAllStates = function () {
-        states = currentStates = [];
+                if (typeof this.options[configOption.name] !== "undefined") {
+                    if (configOption.when === when && configOption.test.bind(this)() === false) {
+                        return false;
+                    }
+                }
 
-        return this;
-    };
+                //Skip any config options the state does not define
+                // if(typeof tempObj.state[configOptions[j].name] !== "undefined"){
+                //     tempObj.callback = configOptions[j].test;
+                //     if(tempObj.callback() === false){
+                //         validState = false;
+                //         break;
+                //     }
+                // }
+            }
 
-    //Add multiple states from an array
-    ssm.addStates = function (statesArray) {
-        for (var i = statesArray.length - 1; i >= 0; i--) {
-            ssm.addState(statesArray[i]);
-        }
+            return true;
+        },
 
-        return this;
-    };
+        //An array of avaliable config options, this can be pushed to by the State Manager
+        configOptions: []
+    };  
 
-    ssm.getStates = function(idArr){
-        var idCount = null, returnArr = [];
+    //State Manager Constructor
 
-        if(typeof(idArr) === "undefined"){
-            return states;
-        }
-        else{
-            idCount = idArr.length;
+    function StateManager(options) {
+        this.states = [];
+        this.resizeTimer = null;
+        this.configOptions = [];
+
+        window.addEventListener("resize", debounce(this.resizeBrowser.bind(this), resizeTimeout), true);    
+    }
+
+    StateManager.prototype = {
+        addState: function(options) {
+            var newState = new State(options);
             
-            for (var i = 0; i < idCount; i++) {
-                returnArr.push(getStateByID(idArr[i]));
+            if (newState.valid) {
+                this.states.push(newState);
             }
 
-            return returnArr;
-        }
-    };
+            return newState;
+        },
 
-    ssm.addConfigOption = function(options){
-        var defaultOptions = {
-            name: "",
-            test: null
-        };
+        addStates: function (statesArray) {
+            for (var i = statesArray.length - 1; i >= 0; i--) {
+                this.addState(statesArray[i]);
+            }
 
-        //Merge options with defaults
-        options = mergeOptions(defaultOptions, options);
+            return this;
+        },
 
-        if(options.name !== "" && options.test !== null){
-            configOptions.push(options);
-        }
-    };
+        getState: function(id) {
+            for (var i = this.states.length - 1; i >= 0; i--) {
+                var state = this.states[i];
 
-    ssm.getConfigOption = function(name){
-        if(typeof name === "string"){
-            for (var i = configOptions.length - 1; i >= 0; i--) {
-                if(configOptions[i].name === name){
-                    return configOptions[i];
+                if(state.id === id){
+                    return state;
                 }
             }
-        }
-        else{
-            return configOptions;
-        }
-    };
+        },
 
-    ssm.removeConfigOption = function(name){
-        for (var i = configOptions.length - 1; i >= 0; i--) {
-            if (configOptions[i].name === name) {
-                configOptions.splice(i, 1);
+        getStates: function(idArr) {
+            var idCount = null, returnArr = [];
+
+            if (typeof(idArr) === "undefined") {
+                return this.states;
+            }
+            else {
+                idCount = idArr.length;
+                
+                for (var i = 0; i < idCount; i++) {
+                    returnArr.push(this.getState(idArr[i]));
+                }
+
+                return returnArr;
+            }
+        },
+
+        removeState: function (id) {
+            for (var i = this.states.length - 1; i >= 0; i--) {
+                var state = this.states[i];
+
+                if (state.id === id) {
+                    state.destroy();
+                    this.states.splice(i, 1);
+                }
+            }
+
+            return this;
+        },
+
+        removeStates: function (idArray) {
+            for (var i = idArray.length - 1; i >= 0; i--) {
+                this.removeState(idArray[i]);
+            }
+
+            return this;
+        },
+
+        removeAllStates: function() {
+            for (var i = this.states.length - 1; i >= 0; i--) {
+                var state = this.states[i];
+                state.destroy();
+            }
+
+            this.states = [];
+        },
+
+
+        addConfigOption: function(options){
+            var defaultOptions = {
+                name: '', // name, this is used to apply to a state
+                test: null, //function which will perform the test
+                when: 'resize' // resize or match (match will mean that resize will never fire either), or once (which will test once, then delete state if test doesnt pass)
+            };
+
+            //Merge options with defaults
+            options = mergeOptions(defaultOptions, options);
+
+            if(options.name !== '' && options.test !== null){
+                State.prototype.configOptions.push(options);
+            }
+        },
+
+        removeConfigOption: function(name){
+            var configOptions = State.prototype.configOptions;
+
+            for (var i = configOptions.length - 1; i >= 0; i--) {
+                if (configOptions[i].name === name) {
+                    configOptions.splice(i, 1);
+                }
+            }
+
+            State.prototype.configOptions = configOptions;
+        },
+
+        getConfigOption: function(name){
+            var configOptions = State.prototype.configOptions;
+
+            if(typeof name === "string"){
+                for (var i = configOptions.length - 1; i >= 0; i--) {
+                    if(configOptions[i].name === name){
+                        return configOptions[i];
+                    }
+                }
+            }
+            else{
+                return configOptions;
+            }
+        },
+
+        getConfigOptions: function(){
+            return State.prototype.configOptions;
+        },
+
+        resizeBrowser: function() {
+            var activeStates = filterStates(this.states, 'active', true);
+            var len = activeStates.length;
+
+            for (var i = 0; i < len; i++) {
+                activeStates[i].resizeState();
+            }
+        },
+
+        stateChange: function(func) {
+            if (typeof func === "function") {
+                stateChangeMethod = func;
+            }
+            else {
+                throw new Error('Not a function');
             }
         }
     };
 
-    ssm.isActive = function(name){
-        for (var i = 0; i < currentStates.length; i++) {
-            if(currentStates[i].id === name){
-                return true;
-            }
-        }
-        
-        return false;
-    };
+    //Utility functions
 
-    ssm.getCurrentStates = function(){
-        return currentStates;
-    };
+    function filterStates(states, key, value) {
+        var len = states.length;
+        var returnStates = [];
 
-    //Change the timeout before firing the resize function
-    ssm.setResizeTimeout = function (milliSeconds) {
-        resizeTimeout = milliSeconds;
-    };
+        for (var i = 0; i < len; i++) {
+            var state = states[i];
 
-    //Change the timeout before firing the resize function
-    ssm.getResizeTimeout = function () {
-        return resizeTimeout;
-    };
-
-    ssm.ready = function () {
-        //Update browser width
-        browserWidth = getWidth();
-
-        if(isReady === false){
-            //Attach event for resizing
-            if (window.attachEvent) {
-                window.attachEvent("onresize", browserResizeDebounce);
-            } else if (window.addEventListener) {
-                window.addEventListener("resize", browserResizeDebounce, true);
-            }
-
-            isReady = true;
-        }
-
-        browserResize(browserWidth);
-
-        return this;
-    };
-
-    var makeID = function () {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        for (var i = 0; i < 10; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-        }
-        return text;
-    };
-
-    var getWidth = function () {
-        var x = 0;
-
-        if(testForMatchMedia){
-            //Browsers that support match media we will test our method does same as media queries
-            if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
-                x = window.innerWidth;
-            }
-            else if(window.matchMedia('(width:'+window.innerWidth+'px)').matches){
-                x = window.outerWidth;
-            }
-            else if(window.matchMedia('(width:'+document.body.clientWidth+'px)').matches){
-                x = document.body.clientWidth;
+            if (state[key] && state[key] === value) {
+                returnStates.push(state);
             }
         }
 
-        if (x === 0) {
-            if (typeof(document.body.clientWidth) === "number") {
-                // newest gen browsers
-                x = document.body.clientWidth;
-            }
-            else if( typeof( window.innerWidth ) === "number" ) {
-                x = window.innerWidth;
-            }
-            else if( document.documentElement && document.documentElement.clientWidth ) {
-                //IE 6+ in 'standards compliant mode'
-                x = document.documentElement.clientWidth;
-            } else {
-                x = document.innerWidth;
-            }
-        }
+        return returnStates;
+    }
 
-        return x;
-    };
-
-    var mergeOptions = function (obj1, obj2) {
+    function mergeOptions(obj1, obj2) {
         var obj3 = {};
 
         for (var attrname in obj1) {
@@ -361,73 +338,54 @@
         }
 
         return obj3;
-    };
+    }
 
+    function makeID() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    var sortByKey = function (array, key) {
-        return array.sort(function (a, b) {
-            var x = a[key];
-            var y = b[key];
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        });
-    };
-
-    //Method to get a state based on the ID
-    var getStateByID = function(id){
-        for (var i = states.length - 1; i >= 0; i--) {
-            if(states[i].id === id){
-                return states[i];
-            }
+        for (var i = 0; i < 10; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
         }
-    };
+        return text;
+    }
 
-    var objectInArray = function(arr, obj){
-        for (var i = 0; i < arr.length; i++) {
-            if(arr[i] === obj){
-                return true;
-            }
-        }
-    };
-
-    var removeObjectInArray = function(arr,obj){
-        var length = arr.length;
-
-        for (var i = 0; i < length; i++) {
-            if (arr[i] === obj) {
-                arr.splice(i, 1);
-            }
-        }
-
-        return arr;
-    };
-
-    var fireAllMethodsInArray = function(arr){
+    function fireAllMethodsInArray(arr) {
         var arrLength = arr.length;
 
         for (var i = 0; i < arrLength; i++) {
             arr[i]();
         }
-    };
+    }
 
-    //define the built in methods (required for compatabilty)
-    ssm.addConfigOption({name:"minWidth", test: function(){
-        if(typeof this.state.minWidth === "number" && this.state.minWidth <= this.browserWidth){
-            return true;
+    function funcToArray(func) {
+        if (typeof func === 'function') {
+            return [func];
         }
-        else{
-            return false;
+        else {
+            return func;
         }
-    }});
+    }
 
-    ssm.addConfigOption({name:"maxWidth", test: function(){
-        if(typeof this.state.maxWidth === "number" && this.state.maxWidth >= this.browserWidth){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }});
+    //
+    // David Walsh's Debounce - http://davidwalsh.name/javascript-debounce-function
+    //
 
-    return ssm;
+    function debounce(func, wait, immediate) {
+        var timeout;
+        
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
 
+    return new StateManager();
 });
