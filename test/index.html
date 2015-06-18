@@ -338,11 +338,32 @@
 
                 ok(ssm.getStates().length === 0, "Passed remove state");
 
-
                 ssm.removeConfigOption('once');
 
                 ok(ssm.getConfigOptions().length === 0, "Passed always true config option removed");
 
+            });
+
+            test("Add a config option which validates once (addConfigOption - once)", function() {
+                var switchedStates = false;
+
+                ssm.addState({
+                    id: 'tiny',
+                    query: '(max-width: 320px)',
+                    onEnter: function() {}
+                });
+
+                ssm.stateChange(function(){
+                    switchedStates = true;
+                });
+
+                ok(switchedStates === false, "Not switched states yet");
+
+                window.matchMedia.set({
+                    width: 300
+                });
+
+                ok(switchedStates === true, "Switched states now");
             });
         </script>
     </body>
