@@ -19,7 +19,7 @@ Documentation can be found at http://www.simplestatemanager.com
 ##Browser Support
 Version 3.x of SimpleStateManager and above supports the following browsers:
 
-* Internet Explorer 9+
+* Internet Explorer 10+ (Internet Explorer 9 should work if you use a matchMedia polyfill)
 * Google Chrome
 * Mozilla Firefox
 * Opera
