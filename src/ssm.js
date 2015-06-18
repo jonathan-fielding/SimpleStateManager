@@ -226,6 +226,14 @@
             return this;
         },
 
+        removeStates: function (idArray) {
+            for (var i = idArray.length - 1; i >= 0; i--) {
+                this.removeState(idArray[i]);
+            }
+
+            return this;
+        },
+
         removeAllStates: function() {
             for (var i = this.states.length - 1; i >= 0; i--) {
                 var state = this.states[i];
