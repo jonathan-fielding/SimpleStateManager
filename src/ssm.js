@@ -196,6 +196,12 @@
             }
         },
 
+        isActive: function(id) {
+            var selectedState = this.getState(id) || {};
+
+            return selectedState.active || false;
+        },
+
         getStates: function(idArr) {
             var idCount = null, returnArr = [];
 

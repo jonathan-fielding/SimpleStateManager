@@ -3,3 +3,4 @@ node_modules
 docs/bower_components
 .idea
 BrowserStackLocal
+.sass-cache
