@@ -1,4 +1,4 @@
-# Simple State Manager 3.0.0
+# Simple State Manager 3.1.0
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager) [![Code Climate](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager.png)](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager)
 
@@ -15,6 +15,22 @@ To get started with SSM the first step is to include it in your project, you can
 
 ##Documentation
 Documentation can be found at http://www.simplestatemanager.com
+
+##Browser Support
+Version 3.x of SimpleStateManager and above supports the following browsers:
+
+* Internet Explorer 10+ (Internet Explorer 9 should work if you use a matchMedia polyfill)
+* Google Chrome
+* Mozilla Firefox
+* Opera
+* Apple Safari
+
+The library is tested across browser prior to each release and every commit is validated using TravisCI and BrowserStack.
+
+If you need to support Internet Explorer 8 or below their are two options available:
+
+* Use a matchMedia polyfill and a bind polfill
+* Use SimpleStateManager 2.X.X branch
 
 ##Release Log
 
