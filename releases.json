@@ -1,5 +1,12 @@
 [
 	{
+		"version" : "3.1.0",
+		"date" : "February 10th, 2015", 
+		"items" : [
+			"Added isActive method back into library"
+		]
+	},
+	{
 		"version" : "3.0.0",
 		"date" : "June 8th, 2015", 
 		"items" : [
