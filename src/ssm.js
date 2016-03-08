@@ -82,7 +82,7 @@
                 this.enterState();
             }
 
-            this.listener = this.test.addListener(function(test){
+            this.listener = function(test){
                 var changed = false;
 
                 if (test.matches) {
@@ -99,7 +99,9 @@
                 if (changed) {
                     stateChangeMethod();
                 }
-            }.bind(this));
+            }.bind(this);
+          
+            this.test.addListener(this.listener);
         },
         
         //Handle entering a state
