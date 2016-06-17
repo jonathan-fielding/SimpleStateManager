@@ -30,7 +30,7 @@
 
     function State(options) {
         this.id = options.id || makeID();
-        this.query = options.query || '';
+        this.query = options.query || 'all';
         // These are exposed as part of the state, not options so delete before
         // we merge these into default options.
         delete options.id;

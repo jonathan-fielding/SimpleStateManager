@@ -34,6 +34,9 @@ If you need to support Internet Explorer 8 or below their are two options availa
 
 ##Release Log
 
+###3.1.2 - June 17th, 2016
+* Fixed a bug where IE11 would reject a media expression that is an empty string, switched to provide a media expersion that is always true as the default.
+
 ###3.1.1 - March 8th, 2016
 * Fixed bug that prevented removing states correctly removing the listeners
 

@@ -1,5 +1,12 @@
 [
 	{
+		"version" : "3.1.2",
+		"date" : "June 17th, 2016", 
+		"items" : [
+			"Fixed a bug where IE11 would reject a media expression that is an empty string, switched to provide a media expersion that is always true as the default."
+		]
+	},
+	{
 		"version" : "3.1.1",
 		"date" : "March 8th, 2016", 
 		"items" : [
