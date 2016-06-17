@@ -15,7 +15,7 @@
 	},
 	{
 		"version" : "3.1.0",
-		"date" : "February 10th, 2015", 
+		"date" : "February 10th, 2016", 
 		"items" : [
 			"Added isActive method back into library"
 		]

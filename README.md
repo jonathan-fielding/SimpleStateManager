@@ -1,4 +1,4 @@
-# Simple State Manager 3.1.1
+# Simple State Manager 3.1.3
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager) [![Code Climate](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager.png)](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager)
 
@@ -40,7 +40,7 @@ If you need to support Internet Explorer 8 or below their are two options availa
 ###3.1.1 - March 8th, 2016
 * Fixed bug that prevented removing states correctly removing the listeners
 
-###3.1.0 - February 10th, 2015
+###3.1.0 - February 10th, 2016
 * Added isActive method back into library
 
 ###3.0.0 - June 8th, 2015
