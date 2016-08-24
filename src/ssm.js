@@ -130,6 +130,21 @@
             this.test.removeListener(this.listener);
         },
 
+        attachCallback: function(type, callback) {
+            switch(type) {
+                case 'enter':
+                    this.options.onEnter.push(callback);
+                    break;
+                case 'leave':
+                    this.options.onLeave.push(callback);
+                    break;
+                case 'resize':
+                    this.options.onResize.push(callback);
+                    break;
+            }
+
+        },
+
         testConfigOptions: function(when) {
             var totalConfigOptions = this.configOptions.length;
 
@@ -141,15 +156,6 @@
                         return false;
                     }
                 }
-
-                //Skip any config options the state does not define
-                // if(typeof tempObj.state[configOptions[j].name] !== "undefined"){
-                //     tempObj.callback = configOptions[j].test;
-                //     if(tempObj.callback() === false){
-                //         validState = false;
-                //         break;
-                //     }
-                // }
             }
 
             return true;
