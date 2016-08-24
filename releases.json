@@ -1,5 +1,12 @@
 [
-	{
+    {
+        "version" : "3.2.0",
+        "date" : "August 24th, 2016",
+        "items" : [
+          "Add method to enable developers to attach multiple callbacks to a state"
+        ]
+    },
+    {
 		"version" : "3.1.2",
 		"date" : "June 17th, 2016", 
 		"items" : [

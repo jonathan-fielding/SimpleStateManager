@@ -34,6 +34,9 @@ If you need to support Internet Explorer 8 or below their are two options availa
 
 ##Release Log
 
+###3.2.0 - August 24th, 2016
+* Add method to enable developers to attach multiple callbacks to a state
+
 ###3.1.2 - June 17th, 2016
 * Fixed a bug where IE11 would reject a media expression that is an empty string, switched to provide a media expersion that is always true as the default.
 

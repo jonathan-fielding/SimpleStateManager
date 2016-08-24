@@ -22,7 +22,8 @@ module.exports = function (grunt) {
         },
 
         jshint: {
-            all: ['src/ssm.js']
+
+            all: 'src/ssm.js'
         },
 
         compass: {
@@ -86,9 +87,9 @@ module.exports = function (grunt) {
 
     // Default task(s)
     grunt.registerTask('default', ['uglify']);
-    grunt.registerTask('bugfix', ['qunit', 'jshint', 'bumpup', 'compile-handlebars', 'uglify']);
-    grunt.registerTask('minor', ['qunit', 'jshint', 'bumpup:minor', 'compile-handlebars', 'uglify']);
-    grunt.registerTask('major', ['qunit', 'jshint', 'bumpup:major', 'compile-handlebars', 'uglify']);
+    grunt.registerTask('bugfix', ['qunit', 'bumpup', 'compile-handlebars', 'uglify']);
+    grunt.registerTask('minor', ['qunit', 'bumpup:minor', 'compile-handlebars', 'uglify']);
+    grunt.registerTask('major', ['qunit', 'bumpup:major', 'compile-handlebars', 'uglify']);
 
     // Travis CI tests
     grunt.registerTask('travis', ['qunit', 'jshint']);
