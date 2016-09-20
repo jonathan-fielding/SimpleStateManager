@@ -130,7 +130,7 @@
             this.test.removeListener(this.listener);
         },
 
-        attachCallback: function(type, callback) {
+        attachCallback: function(type, callback, runIfActive) {
             switch(type) {
                 case 'enter':
                     this.options.onEnter.push(callback);
@@ -143,6 +143,9 @@
                     break;
             }
 
+            if (runIfActive && this.active) {
+                callback();
+            }
         },
 
         testConfigOptions: function(when) {
