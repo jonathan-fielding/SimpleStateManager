@@ -143,9 +143,9 @@
                     break;
             }
 
-            if (runIfActive && this.active) {
+            if (type === 'enter' && runIfActive && this.active) {
                 callback();
-            }
+            } 
         },
 
         testConfigOptions: function(when) {
