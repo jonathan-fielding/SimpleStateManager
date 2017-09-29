@@ -4,12 +4,10 @@ import {
     funcToArray,
     fireAllMethodsInArray,
     makeID,
-    mergeOptions,
     filterStates,
 } from './utils';
 
 var resizeTimeout = 25;
-var stateChangeMethod = function(){};
 
 function Error(message) {
     this.message = message;
@@ -17,16 +15,17 @@ function Error(message) {
 }
 
 //State Manager Constructor
-function StateManager(options) {
-    this.states = [];
-    this.resizeTimer = null;
-    this.configOptions = [];
+class StateManager {
 
-    window.addEventListener("resize", debounce(this.resizeBrowser.bind(this), resizeTimeout), true);    
-}
+    constructor(options) {
+        this.states = [];
+        this.resizeTimer = null;
+        this.configOptions = [];
 
-StateManager.prototype = {
-    addState: function(options) {
+        window.addEventListener("resize", debounce(this.resizeBrowser.bind(this), resizeTimeout), true);    
+    }
+
+    addState(options) {
         var newState = new State(options);
         
         if (newState.valid) {
@@ -34,17 +33,17 @@ StateManager.prototype = {
         }
 
         return newState;
-    },
+    }
 
-    addStates: function (statesArray) {
+    addStates(statesArray) {
         for (var i = statesArray.length - 1; i >= 0; i--) {
             this.addState(statesArray[i]);
         }
 
         return this;
-    },
+    }
 
-    getState: function(id) {
+    getState(id) {
         for (var i = this.states.length - 1; i >= 0; i--) {
             var state = this.states[i];
 
@@ -52,15 +51,15 @@ StateManager.prototype = {
                 return state;
             }
         }
-    },
+    }
 
-    isActive: function(id) {
+    isActive(id) {
         var selectedState = this.getState(id) || {};
 
         return selectedState.active || false;
-    },
+    }
 
-    getStates: function(idArr) {
+    getStates(idArr)  {
         var idCount = null, returnArr = [];
 
         if (typeof(idArr) === "undefined") {
@@ -75,9 +74,9 @@ StateManager.prototype = {
 
             return returnArr;
         }
-    },
+    }
 
-    removeState: function (id) {
+    removeState(id) {
         for (var i = this.states.length - 1; i >= 0; i--) {
             var state = this.states[i];
 
@@ -88,27 +87,26 @@ StateManager.prototype = {
         }
 
         return this;
-    },
+    }
 
-    removeStates: function (idArray) {
+    removeStates(idArray) {
         for (var i = idArray.length - 1; i >= 0; i--) {
             this.removeState(idArray[i]);
         }
 
         return this;
-    },
+    }
 
-    removeAllStates: function() {
+    removeAllStates() {
         for (var i = this.states.length - 1; i >= 0; i--) {
             var state = this.states[i];
             state.destroy();
         }
 
         this.states = [];
-    },
+    }
 
-
-    addConfigOption: function(options){
+    addConfigOption(options) {
         var defaultOptions = {
             name: '', // name, this is used to apply to a state
             test: null, //function which will perform the test
@@ -116,27 +114,19 @@ StateManager.prototype = {
         };
 
         //Merge options with defaults
-        options = mergeOptions(defaultOptions, options);
+        options = Object.assign({}, defaultOptions, options);
 
         if(options.name !== '' && options.test !== null){
-            State.prototype.configOptions.push(options);
+            State.addConfigOption(options);
         }
-    },
+    }
 
-    removeConfigOption: function(name){
-        var configOptions = State.prototype.configOptions;
+    removeConfigOption(name) {
+        State.removeConfigOption(name);
+    }
 
-        for (var i = configOptions.length - 1; i >= 0; i--) {
-            if (configOptions[i].name === name) {
-                configOptions.splice(i, 1);
-            }
-        }
-
-        State.prototype.configOptions = configOptions;
-    },
-
-    getConfigOption: function(name){
-        var configOptions = State.prototype.configOptions;
+    getConfigOption(name) {
+        var configOptions = State.getConfigOptions();
 
         if(typeof name === "string"){
             for (var i = configOptions.length - 1; i >= 0; i--) {
@@ -148,28 +138,23 @@ StateManager.prototype = {
         else{
             return configOptions;
         }
-    },
+    }
 
-    getConfigOptions: function(){
-        return State.prototype.configOptions;
-    },
+    getConfigOptions() {
+        return State.getConfigOptions();
+    }
 
-    resizeBrowser: function() {
+    resizeBrowser() {
         var activeStates = filterStates(this.states, 'active', true);
         var len = activeStates.length;
 
         for (var i = 0; i < len; i++) {
             activeStates[i].resizeState();
         }
-    },
+    }
 
-    stateChange: function(func) {
-        if (typeof func === "function") {
-            stateChangeMethod = func;
-        }
-        else {
-            throw new Error('Not a function');
-        }
+    stateChange(func) {
+        State.setStateChangeMethod(func);
     }
 };
 
