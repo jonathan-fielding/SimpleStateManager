@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import babelrc from 'babelrc-rollup';
+import uglify from 'rollup-plugin-uglify';
 
 const babelConfig = {
   'presets': [
@@ -21,7 +22,8 @@ export default {
       addExternalHelpersPlugin: false,
       config: babelConfig,
       exclude: 'node_modules/**'
-    }))
+    })),
+    uglify()
   ],
   output: {
     file: 'dist/ssm.min.js',

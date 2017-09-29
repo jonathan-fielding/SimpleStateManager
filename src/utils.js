@@ -13,20 +13,6 @@ export function filterStates(states, key, value) {
     return returnStates;
 }
 
-export function mergeOptions(obj1, obj2) {
-    var obj3 = {};
-
-    for (var attrname in obj1) {
-        obj3[attrname] = obj1[attrname];
-    }
-
-    for (var attrname2 in obj2) {
-        obj3[attrname2] = obj2[attrname2];
-    }
-
-    return obj3;
-}
-
 export function makeID() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

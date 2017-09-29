@@ -3,7 +3,6 @@ import {
     funcToArray,
     fireAllMethodsInArray,
     makeID,
-    mergeOptions,
     filterStates,
 } from './utils';
 
@@ -27,7 +26,7 @@ export default class State {
         };
     
         //Merge options with defaults to make the state
-        this.options = mergeOptions(defaultOptions, options);
+        this.options = Object.assign({}, defaultOptions, options);
     
         //Migrate methods into an array, this is to enable future functionality of adding extra methods to an existing state
         if (typeof this.options.onEnter === "function") {
