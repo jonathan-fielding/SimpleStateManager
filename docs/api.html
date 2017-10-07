@@ -35,53 +35,53 @@ layout: default
         <p>In the below example we are adding three states, one for mobile devices, one for tablet and one for desktop. We have defined these using a media query that checks the width of the browser.</p>
 
         <pre>ssm.addState({
-id: 'mobile',
-query: '(max-width: 767px)',
-onEnter: function(){
-console.log('enter mobile');
-}
+    id: 'mobile',
+    query: '(max-width: 767px)',
+    onEnter: function(){
+        console.log('enter mobile');
+    }
 });
 
 ssm.addState({
-id: 'tablet',
-query: '(min-width: 768px) and (max-width: 1023px)',
-onEnter: function(){
-console.log('enter tablet');
-}
+    id: 'tablet',
+    query: '(min-width: 768px) and (max-width: 1023px)',
+    onEnter: function(){
+        console.log('enter tablet');
+    }
 });
 
 ssm.addState({
-id: 'desktop',
-query: '(min-width: 1024px)',
-onEnter: function(){
-console.log('enter desktop');
-}
+    id: 'desktop',
+    query: '(min-width: 1024px)',
+    onEnter: function(){
+        console.log('enter desktop');
+    }
 });</pre>
 
         <p>Alternatively you can add these states in a single command by passing them as an array of states to the <code>ssm.addStates</code> method. This same example is shown again below but using the addStates method instead.</p>
 
 <pre>ssm.addStates([
-{
-id: 'mobile',
-query: '(max-width: 767px)',
-onEnter: function(){
-console.log('enter mobile');
-}
-},
-{
-id: 'tablet',
-query: '(min-width: 768px) and (max-width: 1023px)',
-onEnter: function(){
-console.log('enter tablet');
-}
-},
-{
-id: 'desktop',
-uery: '(min-width: 1024px)',
-onEnter: function(){
-console.log('enter desktop');
-}
-}
+    {
+        id: 'mobile',
+        query: '(max-width: 767px)',
+        onEnter: function(){
+            console.log('enter mobile');
+        }
+    },
+    {
+        id: 'tablet',
+        query: '(min-width: 768px) and (max-width: 1023px)',
+        onEnter: function(){
+            console.log('enter tablet');
+        }
+    },
+    {
+        id: 'desktop',
+        query: '(min-width: 1024px)',
+        onEnter: function(){
+            console.log('enter desktop');
+        }
+    }
 ]);</pre>
         <h4 class="h4">Note:</h4>
 
@@ -105,15 +105,15 @@ console.log('enter desktop');
         <p>In SimpleStateManager options we pass to our states are called config options, we are able to add new config options to SimpleStateManager using <code>ssm.addConfigOption</code></p>
 
         <pre>ssm.addConfigOption({
-name: "touch", 
-test: function(){
-if(typeof this.state.touch === "boolean" && this.state.touch === Modernizr.touch){
-    return true;
-}
-else{
-    return false;
-}
-}
+    name: "touch", 
+    test: function(){
+        if(typeof this.state.touch === "boolean" && this.state.touch === Modernizr.touch){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 });</pre>
         <p>By default the <code>addConfigOption</code> method will run when the browser is resized. If you want to customise this behaviour you can do so by using the <code>when</code> property of your config option.</p>
 
@@ -129,16 +129,16 @@ else{
 
 
         <pre>ssm.addConfigOption({
-name: "touch", 
-when: "once",
-test: function(){
-if(typeof this.state.touch === "boolean" && this.state.touch === Modernizr.touch){
-    return true;
-}
-else{
-    return false;
-}
-}
+    name: "touch", 
+    when: "once",
+    test: function(){
+        if(typeof this.state.touch === "boolean" && this.state.touch === Modernizr.touch){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 });</pre>
 
         <h2>Full API</h2>
