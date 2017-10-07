@@ -11,22 +11,16 @@ footer {
     background-color: #f5f5f5;
 }
 
-.old-version {
-    background: #999;
-    color: #fff;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    text-align: center;
-
-    p {
-        margin-bottom: 0;
-    }
-
-    .btn:first-child {
-        margin-left: 20px;
-    }
-}
-
 .margin-bottom-0 {
     margin-bottom: 0;
+}
+
+section:nth-child(odd) {
+    background-color: #efefef;
+}
+
+section {
+    border-top: 1px solid #ccc;
+    padding: 40px 0px;
+    background: #fff;
 }
