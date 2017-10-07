@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SimpleStateManager - Responsive state manager for JS</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="js/vendor/respond.min.js"></script>
+
+    </head>
+    <body data-spy="scroll" data-target=".navbar" id="home">
+        <a class="github-ribbon visible-desktop" href="https://github.com/SimpleStateManager/SimpleStateManager">
+            <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
+        </a>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="index.html">Simple State Manager</a>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="">
+                                <a href="index.html">Get started</a>
+                            </li>
+                            <li class="">
+                                <a href="api.html">API</a>
+                            </li>
+                            <li class="active">
+                                <a href="extend.html">Extend</a>
+                            </li>
+                            <li class="">
+                                <a href="debug.html">Debug Tool</a>
+                            </li>
+                            <li class="">
+                                <a href="releases.html">Releases</a>
+                            </li>
+                            <li class="">
+                                <a href="licence.html">Licence</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header id="hero">
+            <div class="container">
+                <h1>Extend SimpleStateManager</h1>
+            </div>
+        </header>
+
+
+        <section id="extend">
+            <div class="container">
+
+                <p>One of the features of SimpleStateManager is the ability to add custom configuration options which perform a particular test. The benefit being that rather than simply testing for the width of the browser, we can add our own tests which allow us to test for support for a particular feauture, in fact, anything you can test in JavaScript you can test with SimpleStateManager. A common example something you might want to test could be whether the device supports touch events.</p>
+
+                <h2>Custom config options</h2>
+
+                <p>The first way we can extend SimpleStateManager is simply adding a custom config option. A custom config option allows us to define a test and then use this as an option when configuring our states.</p>
+
+                <p>A simple example of where we might want to use a custom configuration option is to only target our state towards touch devices. To do this we need to write a test that allows us to test for touch devices. In this example to determine whether the device is a touch device or not we will use Modernizr.</p>
+                <pre><code>ssm.addConfigOption({name:"touch", test: function(){
+	if(typeof this.state.touch === "boolean" && this.state.touch === Modernizr.touch){
+		return true;
+	}
+	else{
+		return false;
+	}
+}});</code></pre>
+
+                <!--<p>A number of developers have written small snippets</p>-->
+
+                <h2>Plugins</h2>
+
+                <p>Aside from simply using a test snippet, there are also a number of plugins available for SimpleStateManager which add new functionality to the library. To get started writing a SimpleStateManager plugin you can use the below template:</p>
+
+                <pre>;(function ( $, window, document, undefined ) {
+    var pluginName = "defaultPluginName",
+        expectedType = "number";
+
+    if (typeof window.ssm === "object") {
+        ssm.addConfigOption({
+            name: pluginName,
+            test: function(){
+                if(typeof this.state[pluginName] === expectedType && this.state[pluginName] >= this.browserWidth){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        });
+    }
+})( jQuery, window, document );</pre>
+
+                <p>If you decide to distribute your plugins and you add them to bower, please prefix the name of your plugin with <code>ssm-</code> so that they are easy to find.</p>
+
+                <h3>Official Plugins</h3>
+                <p>There are a growing number of official plugins for SimpleStateManager</p>
+                <ul id="plugins">
+                    <li>Loading plugins...</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>Simple State Manager is an Open Source Project licenced under the MIT licence</p>
+            </div>
+        </footer>
+
+        <script src="_ssm/dist/ssm.min.js"></script>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/bootstrap-collapse.js"></script>
+        <script src="js/script.js"></script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-42981349-1', 'simplestatemanager.com');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

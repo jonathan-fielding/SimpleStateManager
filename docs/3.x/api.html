@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SimpleStateManager - Responsive state manager for JavaScript</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="js/vendor/respond.min.js"></script>
+
+    </head>
+    <body data-spy="scroll" data-target=".navbar" id="home">
+        <a class="github-ribbon visible-desktop" href="https://github.com/SimpleStateManager/SimpleStateManager">
+            <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
+        </a>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="index.html">SimpleStateManager 3.2.0</a>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="">
+                                <a href="index.html">Get started</a>
+                            </li>
+                            <li class="active">
+                                <a href="api.html">API</a>
+                            </li>
+                            <li class="">
+                                <a href="debug.html">Debug Tool</a>
+                            </li>
+                            <li class="">
+                                <a href="releases.html">Releases</a>
+                            </li>
+                            <li class="">
+                                <a href="licence.html">Licence</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header id="hero">
+            <div class="container">
+                <h1>API</h1>
+            </div>
+        </header>
+
+
+        <section id="api">
+            <div class="container">
+                <p>The SimpleStateManager API enables developers to very quickly implement JavaScript that can be enabled and disabled based upon the state of the browser.</p>
+
+                <h2>States</h2>
+
+                <p>A state is the set of conditions of the browser at any given point, a condition might be whether a media query matches and/or the features the browser supports. Out of the box SimpleStateManager enables you to use media queries as conditions for states, you can also add your own conditions by adding <a href="#custom-option">custom state config options</a>.</p>
+
+                <h3>Adding states</h3>
+                <p>With SimpleStateManager you can add multiple states based on your needs, the most simple way to add a state is to simply pass the information about your state to SSM using <code>ssm.addState</code>. You are able to add as many states as you need, your states are able to overlap and your states can each have their own <code>onEnter</code>, <code>onLeave</code>, <code>onFirstRun</code>  and <code>onResize</code> events.</p>
+
+                <p>When calling the <code>.addState</code> method you are able to pass a variety of options to the method, these are:</p>
+
+                <ul>
+                    <li>id (optional) – An ID for the method, this is only needed if you want to reference the state somewhere else in your code, otherwise a ID will be automatically assigned to your state.</li>
+                    <li>query (required) – The media query that you want to match when this state is to be active</li>
+                    <li>onEnter (optional) – A method to fire when you enter the state</li>
+                    <li>onResize (optional) – A method to fire when you resize the state</li>
+                    <li>onLeave (optional) – A method to fire when you leave the state (perhaps to clean up after the state)</li>
+                    <li>onFirstRun (optional) – A method that runs when the state is first activated</li>
+                </ul>
+
+                <h3>Example of adding states</h3>
+
+                <p>In the below example we are adding three states, one for mobile devices, one for tablet and one for desktop. We have defined these using a media query that checks the width of the browser.</p>
+
+                <pre>ssm.addState({
+    id: 'mobile',
+    query: '(max-width: 767px)',
+    onEnter: function(){
+        console.log('enter mobile');
+    }
+});
+
+ssm.addState({
+    id: 'tablet',
+    query: '(min-width: 768px) and (max-width: 1023px)',
+    onEnter: function(){
+        console.log('enter tablet');
+    }
+});
+
+ssm.addState({
+    id: 'desktop',
+    query: '(min-width: 1024px)',
+    onEnter: function(){
+        console.log('enter desktop');
+    }
+});</pre>
+
+                <p>Alternatively you can add these states in a single command by passing them as an array of states to the <code>ssm.addStates</code> method. This same example is shown again below but using the addStates method instead.</p>
+
+<pre>ssm.addStates([
+{
+    id: 'mobile',
+    query: '(max-width: 767px)',
+    onEnter: function(){
+        console.log('enter mobile');
+    }
+},
+{
+    id: 'tablet',
+    query: '(min-width: 768px) and (max-width: 1023px)',
+    onEnter: function(){
+        console.log('enter tablet');
+    }
+},
+{
+    id: 'desktop',
+    uery: '(min-width: 1024px)',
+    onEnter: function(){
+        console.log('enter desktop');
+    }
+}
+]);</pre>
+                <h4 class="h4">Note:</h4>
+
+                <p>It is important to remember that the if you do not pass a media query using the <code>query</code> parameter the query will always match. This is useful for when you simply want to toggle whether a state should be active or not using custom config options you have added.</p>
+
+                <h3>Remove States</h3>
+
+                <p>Sometimes it may be necessary to remove a state, if we have the <strong>id</strong> for the state we can easily remove the state, to remove the mobile state from our above example we simply use:</p>
+
+                <pre>ssm.removeState('mobile');</pre>
+
+                <p>Or if you want to remove multiple at the same time</p>
+
+                <pre>ssm.removeStates(['tablet', 'mobile']);</pre>
+                
+                <h2 id="custom-option">Custom state configuration options</h2>
+
+                <p>Custom state configuration options enable you to add custom tests for conditions. This means you can enable your states to only be active for many different situations such as when the users browser supports a particular feature.</p>
+
+                <h3>Add a custom config option</h3>
+                <p>In SimpleStateManager options we pass to our states are called config options, we are able to add new config options to SimpleStateManager using <code>ssm.addConfigOption</code></p>
+
+                <pre>ssm.addConfigOption({
+    name: "touch", 
+    test: function(){
+        if(typeof this.state.touch === "boolean" && this.state.touch === Modernizr.touch){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+});</pre>
+                <p>By default the <code>addConfigOption</code> method will run when the browser is resized. If you want to customise this behaviour you can do so by using the <code>when</code> property of your config option.</p>
+
+                <p>The <code>when</code> property has the following supported values:</p>
+
+                <ul>
+                    <li>resize (default): Run the test whenever the browser is resized</li>
+                    <li>match: Run the test whenever the query attached to the state becomes matched/unmatched</li>
+                    <li>once: Run the test once on the state it has been applied to, if the value is not what is expected then the state is not added.</li>
+                </ul>
+
+                <p>An example of where you might set the value of <code>when</code> to <code>once</code> would be a feature test such as determining if the users device supports touch events. An example of how this might work is below:</p>
+
+
+                <pre>ssm.addConfigOption({
+    name: "touch", 
+    when: "once",
+    test: function(){
+        if(typeof this.state.touch === "boolean" && this.state.touch === Modernizr.touch){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+});</pre>
+    
+                <h2>Full API</h2>
+
+                <table  class="api-table table table-hover table-condensed table-bordered">
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>ssm.addState</td>
+                        <td>Add a new state, expects an object literal, properties avaliable -  id (optional), minWidth (optional), maxWidth (optional), onEnter (optional), onResize (optional), onLeave (optional)</td>
+                    </tr>
+                    <tr>
+                        <td>ssm.addStates</td>
+                        <td>Add multiple new states, expects an array of object literals, properties avaliable -  id (optional), minWidth (optional), maxWidth (optional), onEnter (optional), onResize (optional), onLeave (optional)</td>
+                    </tr>
+                    <tr>
+                        <td>ssm.removeState</td>
+                        <td>Remove a state, expects one property, the id of the state to be removed.</td>
+                    </tr>
+                    <tr>
+                        <td>ssm.removeStates</td>
+                        <td>Remove multiple states, expects an array of strings</td>
+                    </tr>
+                    <tr>
+                        <td>ssm.removeAllStates</td>
+                        <td>Clears all states from SSM</td>
+                    </tr>
+                    <tr>
+                        <td>ssm.getState</td>
+                        <td>
+                            <code>ssm.getState()</code> takes a single parameter
+                            <pre><code>ssm.getState('mobile');</code></pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ssm.getStates</td>
+                        <td>
+                            By default <code>ssm.getStates()</code> will return all the states added to SSM however you optionally can pass an array of ID's of the states you want e.g
+                            <pre><code>ssm.getStates([
+    'mobile',
+    'desktop'
+]);</code></pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ssm.isActive</td>
+                        <td>Check if a state is active using the ID you assigned.</td>
+                    </tr>
+                    <tr>
+                        <td>ssm.addConfigOption</td>
+                        <td>SSM allows you to define new rules by which a state can be enabled and disabled using <code>ssm.addConfigOption</code>. The method takes an object with 2 values as the parameter, firstly the name of the config option and secondly the method to test the option. Please note the test must return true or false to allow SSM to know if the test has passed or failed.  A typical example of how you can add a test.
+                            <pre><code>ssm.addConfigOption({
+    name: "minHeight",
+    test: function(){
+        return true;
+    }
+});</code></pre></td>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <p>SimpleStateManager is an Open Source Project licenced under the MIT licence</p>
+            </div>
+        </footer>
+
+        <script src="_ssm/dist/ssm.min.js"></script>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/bootstrap-collapse.js"></script>
+        <script src="js/script.js"></script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-42981349-1', 'simplestatemanager.com');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

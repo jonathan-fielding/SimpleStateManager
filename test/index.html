@@ -122,11 +122,11 @@
             test("Add a config option (addConfigOption)", function() {
                 ssm.addConfigOption({name:'minHeight', test: function(){}});
 
-                ok(ssm.getConfigOption().length === 1, "Adding a single config option successful");
+                ok(ssm.getConfigOptions().length === 1, "Adding a single config option successful");
 
                 ssm.removeConfigOption('minHeight');
 
-                ok(ssm.getConfigOption().length === 0, "Remove a single config option successful");
+                ok(ssm.getConfigOptions().length === 0, "Remove a single config option successful");
             });
 
             test("Get a config option (getConfigOption)", function() {
@@ -134,26 +134,24 @@
 
                 ssm.addConfigOption({name: name, test: function(){}});
 
-                var configOption = ssm.getConfigOption(name);
-
-                ok(ssm.getConfigOption(name).name === name, "Retrive a single config option successfully");
+                ok(ssm.getConfigOptions(name)[0].name === name, "Retrive a single config option successfully");
 
                 ssm.removeConfigOption(name);
             });
 
             test("Remove config option (removeConfigOption)", function() {
-                var configOptions = ssm.getConfigOption().length;
+                var configOptions = ssm.getConfigOptions().length;
 
                 ssm.addConfigOption({
                     name: 'test',
                     test: function(){}
                 });
 
-                ok(ssm.getConfigOption().length === (configOptions + 1), "Added config option successfully");
+                ok(ssm.getConfigOptions().length === (configOptions + 1), "Added config option successfully");
 
                 ssm.removeConfigOption('test');
 
-                ok(ssm.getConfigOption().length === configOptions, "Removed config option successfully");
+                ok(ssm.getConfigOptions().length === configOptions, "Removed config option successfully");
             });
 
             test("Add a state that instantly matches (addState)", function() {

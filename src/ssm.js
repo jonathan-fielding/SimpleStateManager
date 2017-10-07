@@ -16,7 +16,6 @@ function Error(message) {
 
 //State Manager Constructor
 class StateManager {
-
     constructor(options) {
         this.states = [];
         this.resizeTimer = null;
@@ -39,8 +38,6 @@ class StateManager {
         for (var i = statesArray.length - 1; i >= 0; i--) {
             this.addState(statesArray[i]);
         }
-
-        return this;
     }
 
     getState(id) {
@@ -66,48 +63,32 @@ class StateManager {
             return this.states;
         }
         else {
-            idCount = idArr.length;
-            
-            for (var i = 0; i < idCount; i++) {
-                returnArr.push(this.getState(idArr[i]));
-            }
-
-            return returnArr;
+            return idArr.map((id) => {
+                return this.getState(id)
+            });
         }
     }
 
     removeState(id) {
-        for (var i = this.states.length - 1; i >= 0; i--) {
-            var state = this.states[i];
-
+        this.states.forEach((state, index) => {
             if (state.id === id) {
                 state.destroy();
-                this.states.splice(i, 1);
+                this.states.splice(index, 1);
             }
-        }
-
-        return this;
+        });
     }
 
     removeStates(idArray) {
-        for (var i = idArray.length - 1; i >= 0; i--) {
-            this.removeState(idArray[i]);
-        }
-
-        return this;
+        idArray.forEach((id) => this.removeState(id));
     }
 
     removeAllStates() {
-        for (var i = this.states.length - 1; i >= 0; i--) {
-            var state = this.states[i];
-            state.destroy();
-        }
-
+        this.states.forEach(state => state.destroy());
         this.states = [];
     }
 
     addConfigOption(options) {
-        var defaultOptions = {
+        const defaultOptions = {
             name: '', // name, this is used to apply to a state
             test: null, //function which will perform the test
             when: 'resize' // resize or match (match will mean that resize will never fire either), or once (which will test once, then delete state if test doesnt pass)
@@ -116,7 +97,7 @@ class StateManager {
         //Merge options with defaults
         options = Object.assign({}, defaultOptions, options);
 
-        if(options.name !== '' && options.test !== null){
+        if (options.name !== '' && options.test !== null) {
             State.addConfigOption(options);
         }
     }
@@ -125,32 +106,23 @@ class StateManager {
         State.removeConfigOption(name);
     }
 
-    getConfigOption(name) {
+    getConfigOptions(name) {
         var configOptions = State.getConfigOptions();
 
         if(typeof name === "string"){
-            for (var i = configOptions.length - 1; i >= 0; i--) {
-                if(configOptions[i].name === name){
-                    return configOptions[i];
-                }
-            }
+            return configOptions.filter(configOption =>  configOption.name === name);
         }
         else{
             return configOptions;
         }
     }
 
-    getConfigOptions() {
-        return State.getConfigOptions();
-    }
-
     resizeBrowser() {
-        var activeStates = filterStates(this.states, 'active', true);
-        var len = activeStates.length;
+        const activeStates = filterStates(this.states, 'active', true);
 
-        for (var i = 0; i < len; i++) {
-            activeStates[i].resizeState();
-        }
+        activeStates.forEach((state) => {
+            state.resizeState();
+        });
     }
 
     stateChange(func) {

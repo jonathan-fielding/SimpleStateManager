@@ -1,0 +1,122 @@
+---
+layout: default
+---
+
+<div class="jumbotron hero jumbotron-fluid">
+    <div class="container">
+        <img src="images/ssm-logo.png" class="logo">
+        <h1 class="display-3">SimpleStateManager 4.0.0</h1>
+        <p>SimpleStateManager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, has no dependencies, supports AMD (if thats your kinda thing) and aims to be really easy to simply drop into your project ready to use.</p>
+        <p><a class="btn btn-primary btn-lg" href="https://github.com/jonathan-fielding/SimpleStateManager/archive/master.zip" role="button">Download <span class="hide-xs hide-sm">SimpleStateManager</span></a></p>
+    </div>
+</div>
+
+<div class="old-version">
+    <div class="container">
+        <p class="text-align-center">Are you looking for an old version? <a href="/2.x" class="btn">SimpleStateManager 2.x</a> <a href="/3.x" class="btn">SimpleStateManager 3.x</a></p>
+    </div>
+</div>
+
+<section id="intro">
+    <div class="container">
+        <p>SimpleStateManager is built around the concept of states, a state being the conditions of the browser at any given point, a condition might be whether a media query matches and/or the features the browser supports. With SimpleStateManager you can define a state and a series of conditions that must be met for it to be active. Each of these states can then have an onEnter, onLeave and onResize event.</p>
+
+        <h2>Why should I use SSM</h2>
+
+        <ul>
+            <li>You want to target functionality at a particular browser state</li>
+            <li>You require different javascript events dependant on the state of your browser e.g mobile, tablet or desktop</li>
+            <li>You need to provide a different resize event to different states of your site</li>
+            <li>You need to adjust your site using JS after it switches between states (mobile, tablet, desktop), potentially cleaning up after a state or adding extra functionality specific to a state</li>
+        </ul>
+    </div>
+</section>
+<section id="getstarted">
+    <div class="container">
+        <h2>Getting started</h2>
+        <p>To get started with SimpleStageManager the first step is to include it in your project, you can do this in three ways</p>
+        <ul>
+            <li>Download and add the ssm.js (or the minified ssm.min.js) file to your site</li>
+            <li>Use Bower to add to your project using <code>bower install simplestatemanager</code></li>
+            <li>Use NPM to add to your project using <code>npm install simplestatemanager --save</code></li>
+        </ul>
+
+        <p>Having downloaded SimpleStateManager you will next need to include the JavaScript file in your page. It is recommended that this is at the end of the body before your main JavaScript file.</p>
+
+        <pre><code>&lt;script src="bower_components/simplestatemanager/dist/ssm.min.js"&gt;&lt;/script&gt;</code></pre>
+
+        <h3 class="h4">Defining your first state</h3>
+
+        <p>The next step is to add our first state using SimpleStateManager, to do this we use the <code>ssm.addState</code> method. This method takes a single argument which is a object containing the state configuration options.</p>
+
+        <p>For this example we will add a state named "mobile" which has a maximum width of 767px. To do this we will set the value of <code>maxWidth</code> to 767 and we will define an onEnter method which will log to the console "enter mobile" when the state is entered.</p>
+
+        <pre><code>ssm.addState({
+id: 'mobile',
+query: '(max-width: 767px)',
+onEnter: function(){
+console.log('enter mobile');
+}
+});</code></pre>
+
+        <p>As soon as you have added the state, SimpleStageManager will check whether the conditions you specified have been matched, that being the case it will run the onEnter and onFirstRun methods if they have been specified.</p>
+
+    </div>
+</section>
+
+<section id="browsers">
+    <div class="container">
+        <h2>FAQs</h2>
+
+        <h3 class="h4">Why would I use SimpleStateManager rather than Media Queries?</h3>
+        
+        <p>Media Queries allow you to change the way a site looks based upon a number of conditions, in contrast, SimpleStateManager allows you to change the functionality of your site. In this way, both Media Queries and SimpleStateManager compliment one another, as in the situation where you are changing the look of your site you might also be changing functionality.</p>
+
+        <h3 class="h4">What does SimpleStateManager offer me over simply using the MatchMedia API?</h3>
+        
+        <p>The MatchMedia API is incredibly powerful as it allows us to use media queries in our JavaScript, when the media query is matched or unmatched a callback method is run. SimpleStateManager puts this functionality on steroids, providing you with a simple API to attach enter, leave and resize events to a state. In addition to using the matchMedia API it also allows you to specify additional rules your state must meet to be active.</p>
+        
+        <h3 class="h4">What browsers does SimpleStateManager support?</h3>
+
+        <p>Version 3.x of SimpleStateManager and above supports the following browsers:</p>
+
+        <ul>
+            <li>Internet Explorer 10+ (Should work in IE9 if you provide a matchMedia polyfill)</li>
+            <li>Google Chrome</li>
+            <li>Mozilla Firefox</li>
+            <li>Opera</li>
+            <li>Apple Safari</li>
+        </ul> 
+
+        <p>The library has a suite of unit tests covering the core functionality, after every commit these are run in all browsers we support using a combination of TravisCI and BrowserStack. Aside from the unit tests, the library is also tested manually prior to each release.</p>
+
+        <p>If you need to support Internet Explorer 8 or below their are two options available:</p>
+
+        <ul>
+            <li>Use a matchMedia polyfill and a bind polfill</li>
+            <li>Use SimpleStateManager 2.X.X branch</li>
+        </ul>
+
+    </div>
+</section>
+
+<section id="contribute">
+    <div class="container">
+        <h2>Contribute</h2>
+
+        <p>SimpleStateManager is an open source project maintained by a small group of contributors, as such we are always looking for new people who want to get involved.</p>
+
+
+        <p>In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using Grunt.</p>
+
+        <h3>Contributors</h3>
+        <ul>
+            <li><a href="http://www.jonathanfielding.com">Jonathan Fielding</a></li>
+            <li><a href="http://www.kevinsweeney.info/">Kevin Sweeney</a></li>
+            <li><a href="http://koenpasman.nl/">Koen Pasman</a></li>
+            <li><a href="http://iszak.net/">Iszak Bryan</a></li>
+            <li><a href="http://mearso.com/">Kevin Mears</a></li>
+            <li><a href="https://twitter.com/pianomansam">Samuel Oltz</a></li>
+        </ul>
+    </div>
+</section>

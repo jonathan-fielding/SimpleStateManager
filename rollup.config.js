@@ -1,15 +1,19 @@
 import babel from 'rollup-plugin-babel';
 import babelrc from 'babelrc-rollup';
 import uglify from 'rollup-plugin-uglify';
+import { minify } from 'uglify-es';
 
 const babelConfig = {
-  'presets': [
-    ['env', {
-      'targets': {
-        'browsers': ['last 2 versions']
-      },
-      'loose': true
-    }]
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "external-helpers"
   ]
 };
 

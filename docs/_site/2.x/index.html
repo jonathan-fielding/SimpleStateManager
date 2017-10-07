@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SimpleStateManager - Responsive state manager for JS</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="js/vendor/respond.min.js"></script>
+
+    </head>
+    <body data-spy="scroll" data-target=".navbar" id="home">
+        <a class="github-ribbon visible-desktop" href="https://github.com/SimpleStateManager/SimpleStateManager">
+            <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
+        </a>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="index.html">Simple State Manager</a>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="index.html">Get started</a>
+                            </li>
+                            <li class="">
+                                <a href="api.html">API</a>
+                            </li>
+                            <li class="">
+                                <a href="extend.html">Extend</a>
+                            </li>
+                            <li class="">
+                                <a href="debug.html">Debug Tool</a>
+                            </li>
+                            <li class="">
+                                <a href="releases.html">Releases</a>
+                            </li>
+                            <li class="">
+                                <a href="licence.html">Licence</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header id="hero">
+            <div class="container">
+                <img src="images/ssm-logo.png" class="logo">
+
+                <h1>Simple State Manager 2.5.0</h1>
+
+                <p class="lead">Simple State Manager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, has no dependencies, supports AMD (if thats your kinda thing) and aims to be really easy to simply drop into your project ready to use.</p>
+                <a class="btn btn-large btn-secondary" href="https://github.com/SimpleStateManager/SimpleStateManager/archive/2.4.1.zip">Download <span class="hidden-mobile">SimpleStateManager</span></a>
+            </div>
+        </header>
+
+        <section id="intro">
+            <div class="container">
+                <p>SimpleStateManager is built around the concept of states, a state being the conditions of the browser at any given point, example conditions being the dimensions of the viewport and the features it supports. With SimpleStateManager you can define a state and a series of conditions that must be met for it to be active. Each of these states can then have an onEnter, onLeave and onResize event.</p>
+
+                <h2>Why should I use SSM</h2>
+
+                <ul>
+                    <li>You want to target functionality at a particular browser state</li>
+                    <li>You require different javascript events dependant on the state of your browser e.g mobile, tablet or desktop</li>
+                    <li>You need to provide a different resize event to different states of your site</li>
+                    <li>You need to adjust your site using JS after it switches between states (mobile, tablet, desktop), potentially cleaning up after a state or adding extra functionality specific to a state</li>
+                </ul>
+            </div>
+        </section>
+        <section id="getstarted">
+            <div class="container">
+                <h2>Getting started</h2>
+                <p>To get started with SimpleStageManager the first step is to include it in your project, you can do this in two ways</p>
+                <ul>
+                    <li>Download and add the ssm.js (or the minified ssm.min.js) file to your site</li>
+                    <li>Use Bower to add to your project using <code>bower install SimpleStateManager</code></li>
+                </ul>
+
+                <p>Having downloaded SimpleStateManager you will next need to include the JavaScript file in your page. It is recommended that this is at the end of the body before your main JavaScript file.</p>
+
+                <pre><code>&lt;script src="bower_components/SimpleStateManager/dist/ssm.min.js"&gt;&lt;/script&gt;</code></pre>
+
+                <p>The next step is to add our first state using SimpleStateManager, to do this we use the <code>ssm.addState</code> method. This method takes a single argument which is a object containing the state configuration options.</p>
+
+                <p>For this example we will add a state named "mobile" which has a maximum width of 767px. To do this we will set the value of <code>maxWidth</code> to 767 and we will define an onEnter method which will log to the console "enter mobile" when the state is entered.</p>
+
+                <pre><code>ssm.addState({
+    id: 'mobile',
+    maxWidth: 767,
+    onEnter: function(){
+        console.log('enter mobile');
+    }
+});</code></pre>
+
+                <p>Once we have finished adding our states to SimpleStateManager we can run the tests using the <code>ssm.ready()</code> method.</code></p>
+
+                <pre><code>ssm.ready();</code></pre>
+            </div>
+        </section>
+
+        <section id="browsers">
+            <div class="container">
+                <h2>FAQs</h2>
+
+                <h3 class="h4">Why would I use SimpleStateManager rather than Media Queries?</h3>
+                <p>Media Queries allow you to change the way a site looks based upon a number of conditions, in contrast, SimpleStateManager allows you to change the functionality of your site. In this way, both Media Queries and SimpleStateManager compliment one another, as in the situation where you are changing the look of your site you might also be changing functionality.</p>
+
+                <h3 class="h4">What does SimpleStateManager offer me over simply using the MatchMedia API?</h3>
+                <p>The MatchMedia API is incredibly powerful as it allows us to use media queries in our JavaScript, when the media query is matched or unmatched a callback method is run. SimpleStateManager states offers similar functionality by attaching itself to the browsers <code>onresize</code> method and allowing you to define different browser states. The benefit of this approach is that along with the matching and unmatching callbacks of a state you can also add an on resize method to the state.</p>
+
+                <h3 class="h4">What browsers does SimpleStateManager support?</h3>
+                <p>Currently SimpleStateManager supports Chrome, Firefox, Internet Explorer 7+, Safari, Opera. If your site only needs to support Internet Explorer 9 and above it is advised that you use <a href="/">SimpleStateManager 3.0.0</a> which offers a broader feature set.</p>
+            </div>
+        </section>
+
+        <section id="contribute">
+            <div class="container">
+                <h2>Contribute</h2>
+
+                <p>SimpleStateManager is an open source project maintained by a small group of contributors, as such we are always looking for new people who want to get involved.</p>
+
+                <p>In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using Grunt.</p>
+
+                <h3>Contributors</h3>
+                <ul>
+                    <li><a href="http://www.jonathanfielding.com">Jonathan Fielding</a></li>
+                    <li><a href="http://www.kevinsweeney.info/">Kevin Sweeney</a></li>
+                    <li><a href="http://koenpasman.nl/">Koen Pasman</a></li>
+                    <li><a href="http://iszak.net/">Iszak Bryan</a></li>
+                    <li><a href="http://mearso.com/">Kevin Mears</a></li>
+                    <li><a href="https://twitter.com/pianomansam">Samuel Oltz</a></li>
+                </ul>
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <p>Simple State Manager is an Open Source Project licenced under the MIT licence</p>
+            </div>
+        </footer>
+
+        <script src="_ssm/dist/ssm.min.js"></script>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/bootstrap-collapse.js"></script>
+        <script src="js/script.js"></script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-42981349-1', 'simplestatemanager.com');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

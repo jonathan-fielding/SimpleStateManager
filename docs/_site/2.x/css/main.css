@@ -1,0 +1,75 @@
+body {
+    font-size: 0.87500em;
+    line-height: 1.21429em;
+    margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+article {
+    max-width: 944px;
+    margin: auto;
+}
+h1 {
+    font-size: 2.6em;
+    line-height: 1.11475em;
+    margin: 0px;
+    color: #fff;
+    font-weight: normal;
+}
+h2 {
+    font-size: 2.07143em;
+    line-height: 1.17241em;
+    margin-top: 1.1724em;
+    margin-bottom: 0.5862em;
+}
+h3 {
+    font-size: 1.42857em;
+    line-height: 1.70000em;
+    margin-top: 0.85em;
+    margin-bottom: 0em;
+}
+p, ul, pre {
+    margin-top: 0em;
+    margin-bottom: 1.2143em;
+}
+small, aside {
+    font-size: 0.71429em;
+}
+
+.container{
+	max-width: 940px;
+	padding: 10px 20px;
+	margin: 0 auto;
+}
+
+table{
+    margin: 20px 0;
+	width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,th{
+	border: 1px solid #f8c2b7;
+    padding: 5px;
+}
+
+tr:nth-child(even){
+    background: #fbe1db;
+}
+
+header{
+	padding: 15px;
+	background-color: #EF5131;
+	border-bottom: #EF8570 10px solid;
+	margin-bottom: 20px;
+}
+
+.github-ribbon {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: 0;
+	z-index: 1;
+	max-width: 30%;
+}

@@ -1,0 +1,42 @@
+---
+---
+@charset "utf-8";
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+    "bootstrap/functions",
+    "bootstrap/variables",
+    "bootstrap/mixins",
+    "bootstrap/print",
+    "bootstrap/reboot",
+    "bootstrap/type",
+    "bootstrap/images",
+    "bootstrap/code",
+    "bootstrap/grid",
+    "bootstrap/tables",
+    "bootstrap/forms",
+    "bootstrap/buttons",
+    "bootstrap/transitions",
+    "bootstrap/dropdown",
+    "bootstrap/button-group",
+    "bootstrap/input-group",
+    "bootstrap/custom-forms",
+    "bootstrap/nav",
+    "bootstrap/navbar",
+    "bootstrap/card",
+    "bootstrap/breadcrumb",
+    "bootstrap/pagination",
+    "bootstrap/badge",
+    "bootstrap/jumbotron",
+    "bootstrap/alert",
+    "bootstrap/progress",
+    "bootstrap/media",
+    "bootstrap/list-group",
+    "bootstrap/close",
+    "bootstrap/modal",
+    "bootstrap/tooltip",
+    "bootstrap/popover",
+    "bootstrap/carousel",
+    "bootstrap/utilities",
+    "main"
+;

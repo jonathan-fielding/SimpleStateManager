@@ -1,43 +1,19 @@
 export function filterStates(states, key, value) {
-    var len = states.length;
-    var returnStates = [];
-
-    for (var i = 0; i < len; i++) {
-        var state = states[i];
-
-        if (state[key] && state[key] === value) {
-            returnStates.push(state);
-        }
-    }
-
-    return returnStates;
+    return states.filter((state) => {
+        return state[key] && state[key] === value;
+    });
 }
 
 export function makeID() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for (var i = 0; i < 10; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
+    return Math.random().toString(36).substr(2, 9);
 }
 
 export function fireAllMethodsInArray(arr) {
-    var arrLength = arr.length;
-
-    for (var i = 0; i < arrLength; i++) {
-        arr[i]();
-    }
+    arr.forEach(method => method());
 }
 
 export function funcToArray(func) {
-    if (typeof func === 'function') {
-        return [func];
-    }
-    else {
-        return func;
-    }
+    return typeof func === 'function' ? [func] : func;
 }
 
 export function debounce(func, wait, immediate) {

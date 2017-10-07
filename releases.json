@@ -1,5 +1,13 @@
 [
-    {
+	{
+        "version" : "4.0.0",
+        "date" : "2017",
+        "items" : [
+		  "Full ES6 Rewrite",
+		  "getConfigOption has been removed, replaced with calling getConfigOptions with a param to get a single entry"
+		]
+    },
+	{
         "version" : "3.2.0",
         "date" : "August 24th, 2016",
         "items" : [
