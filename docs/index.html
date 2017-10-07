@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="jumbotron hero jumbotron-fluid margin-bottom-0">
+<div class="jumbotron hero jumbotron-fluid">
     <div class="container">
         <img src="images/ssm-logo.png" class="logo">
         <h1 class="display-4">SimpleStateManager 4.0.0</h1>
@@ -37,7 +37,7 @@ layout: default
 
         <p>Having downloaded SimpleStateManager you will next need to include the JavaScript file in your page. It is recommended that this is at the end of the body before your main JavaScript file.</p>
 
-        <pre><code>&lt;script src="bower_components/simplestatemanager/dist/ssm.min.js"&gt;&lt;/script&gt;</code></pre>
+        <pre><code>&lt;script src="dist/ssm.min.js"&gt;&lt;/script&gt;</code></pre>
 
         <h3 class="h4">Defining your first state</h3>
 
@@ -46,11 +46,11 @@ layout: default
         <p>For this example we will add a state named "mobile" which has a maximum width of 767px. To do this we will set the value of <code>maxWidth</code> to 767 and we will define an onEnter method which will log to the console "enter mobile" when the state is entered.</p>
 
         <pre><code>ssm.addState({
-id: 'mobile',
-query: '(max-width: 767px)',
-onEnter: function(){
-console.log('enter mobile');
-}
+    id: 'mobile',
+    query: '(max-width: 767px)',
+    onEnter: function(){
+        console.log('enter mobile');
+    }
 });</code></pre>
 
         <p>As soon as you have added the state, SimpleStageManager will check whether the conditions you specified have been matched, that being the case it will run the onEnter and onFirstRun methods if they have been specified.</p>
