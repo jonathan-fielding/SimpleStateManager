@@ -52,17 +52,17 @@
         
                 <div class="collapse navbar-collapse" id="navbarsExample07">
                     <ul class="navbar-nav mr-auto my-2 my-md-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Get Started <span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link {% if "/index.html" == page.url %}active{% endif %}" href="index.html">Get Started<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">API</a>
+                            <a class="nav-link {% if "/api.html" == page.url %}active{% endif %}" href="api.html">API</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Releases</a>
+                            <a class="nav-link {% if "/releases.html" == page.url %}active{% endif %}" href="releases.html">Releases</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Licence</a>
+                            <a class="nav-link {% if "/licence.html" == page.url %}active{% endif %}" href="licence.html">Licence</a>
                         </li>
                     </ul>
                 </div>
@@ -76,6 +76,16 @@
             <p>SimpleStateManager is an Open Source Project licenced under the MIT licence</p>
         </div>
     </footer>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-42981349-1', 'simplestatemanager.com');
+        ga('send', 'pageview');
+    </script>
 </body>
 
 </html>

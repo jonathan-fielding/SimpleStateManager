@@ -4,3 +4,4 @@ docs/bower_components
 .idea
 BrowserStackLocal
 .sass-cache
+docs/_site
