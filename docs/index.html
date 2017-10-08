@@ -5,8 +5,8 @@ layout: default
 <div class="jumbotron hero jumbotron-fluid">
     <div class="container">
         <img src="images/ssm-logo.png" class="logo">
-        <h1 class="display-4">SimpleStateManager 4.0.0</h1>
-        <p>SimpleStateManager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, has no dependencies, supports AMD (if thats your kinda thing) and aims to be really easy to simply drop into your project ready to use.</p>
+        <h1 class="display-4 ">SimpleStateManager 4.0.0</h1>
+        <p>SimpleStateManager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, is written in ES6, has no dependencies, supports AMD (if thats your kinda thing) and aims to be really easy to simply drop into your project ready to use.</p>
         <p><a class="btn btn-lg btn-light" href="https://github.com/jonathan-fielding/SimpleStateManager/archive/master.zip" role="button">Download <span class="hide-xs hide-sm">SimpleStateManager</span></a></p>
     </div>
 </div>
@@ -25,26 +25,30 @@ layout: default
         </ul>
     </div>
 </section>
+
 <section id="getstarted">
     <div class="container">
-        <h2>Getting started</h2>
-        <p>To get started with SimpleStageManager the first step is to include it in your project, you can do this in three ways</p>
-        <ul>
-            <li>Download and add the ssm.js (or the minified ssm.min.js) file to your site</li>
-            <li>Use Bower to add to your project using <code>bower install simplestatemanager</code></li>
-            <li>Use NPM to add to your project using <code>npm install simplestatemanager --save</code></li>
-        </ul>
+        <h2>Installing SimpleStageManager</h2>
+        <p>To get started with SimpleStageManager the first step is to include it in your project, you can do this in two ways:</p>
 
+        <h3>NPM</h3>
+        <p>The preferred method for installing SimpleStateManager is through NPM.</p>
+        <pre><code>npm i simplestatemanager --save</code></pre>
+
+        <pre><code>const ssm = require('simplestatemanager');</code></pre>
+
+        <h3>Script</h3>
         <p>Having downloaded SimpleStateManager you will next need to include the JavaScript file in your page. It is recommended that this is at the end of the body before your main JavaScript file.</p>
 
         <pre><code>&lt;script src="dist/ssm.min.js"&gt;&lt;/script&gt;</code></pre>
+    </div>
+</section>
 
-        <h3 class="h4">Defining your first state</h3>
-
+<section id="getstarted">
+    <div class="container">
+        <h2>Defining your first state</h2>
         <p>The next step is to add our first state using SimpleStateManager, to do this we use the <code>ssm.addState</code> method. This method takes a single argument which is a object containing the state configuration options.</p>
-
-        <p>For this example we will add a state named "mobile" which has a maximum width of 767px. To do this we will set the value of <code>maxWidth</code> to 767 and we will define an onEnter method which will log to the console "enter mobile" when the state is entered.</p>
-
+        <p>For this example we will add a state named "mobile" which has a maximum width of 767px. To do this we will set our query to <code>(max-width: 767px)</code> and we will define an onEnter method which will log to the console "enter mobile" when the state is entered.</p>
         <pre><code>ssm.addState({
     id: 'mobile',
     query: '(max-width: 767px)',
@@ -52,9 +56,7 @@ layout: default
         console.log('enter mobile');
     }
 });</code></pre>
-
-        <p>As soon as you have added the state, SimpleStageManager will check whether the conditions you specified have been matched, that being the case it will run the onEnter and onFirstRun methods if they have been specified.</p>
-
+        <p>As soon as you have added the state, SimpleStageManager will check whether the conditions you specified have been matched, that being the case it will run the onEnter and onFirstRun methods if they have been specified.</p> 
     </div>
 </section>
 
