@@ -1,13 +1,10 @@
 import {
-    debounce,
-    funcToArray,
     fireAllMethodsInArray,
     makeID,
-    filterStates,
 } from './utils';
 
 const configOptions = [];
-let stateChangeMethod = function(){};
+let stateChangeMethod = function () { };
 
 export default class State {
     constructor(options) {
@@ -17,40 +14,40 @@ export default class State {
         // we merge these into default options.
         delete options.id;
         delete options.query;
-    
+
         var defaultOptions = {
             onEnter: [],
             onLeave: [],
             onResize: [],
             onFirstRun: []
         };
-    
+
         //Merge options with defaults to make the state
         this.options = Object.assign({}, defaultOptions, options);
-    
+
         //Migrate methods into an array, this is to enable future functionality of adding extra methods to an existing state
         if (typeof this.options.onEnter === "function") {
             this.options.onEnter = [this.options.onEnter];
         }
-    
+
         if (typeof this.options.onLeave === "function") {
             this.options.onLeave = [this.options.onLeave];
         }
-    
+
         if (typeof this.options.onResize === "function") {
             this.options.onResize = [this.options.onResize];
         }
-    
+
         if (typeof this.options.onFirstRun === "function") {
             this.options.onFirstRun = [this.options.onFirstRun];
         }
-    
+
         //Test the one time tests first, if the test is invalid we wont create the config option
         if (this.testConfigOptions('once') === false) {
             this.valid = false;
             return false;
         }
-    
+
         this.valid = true;
         this.active = false;
         this.init();
@@ -151,7 +148,7 @@ export default class State {
     static getConfigOptions() {
         return configOptions;
     }
-    
+
     static removeConfigOption(name) {
         configOptions.forEach((item, index) => {
             if (item.name === name) {
@@ -168,4 +165,4 @@ export default class State {
             throw new Error('Not a function');
         }
     }
-};
+}

@@ -128,6 +128,6 @@ class StateManager {
     stateChange(func) {
         State.setStateChangeMethod(func);
     }
-};
+}
 
 export default new StateManager();

@@ -1,5 +1,12 @@
 {
     "extends": ["eslint:recommended"],
+    "parser": "babel-eslint",
     "rules": {
+    },
+    "globals": {
+        "window": false,
+        "document": false,
+        "sessionStorage": false,
+        "QUnit": false
     }
   }
