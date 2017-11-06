@@ -27,7 +27,7 @@ export default {
       config: babelConfig,
       exclude: 'node_modules/**'
     })),
-    uglify()
+    uglify({}, minify)
   ],
   output: {
     file: 'dist/ssm.min.js',
