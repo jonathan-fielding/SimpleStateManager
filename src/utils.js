@@ -16,18 +16,20 @@ export function funcToArray(func) {
     return typeof func === 'function' ? [func] : func;
 }
 
-export function debounce(func, wait, immediate) {
+export function debounce(func) {
     var timeout;
     
     return function() {
-        var context = this, args = arguments;
-        var later = function() {
+        var args = arguments;
+        var later = () => {
             timeout = null;
-            if (!immediate) func.apply(context, args);
+            func.apply(this, args);
         };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
+
+        if (timeout) {
+            window.cancelAnimationFrame(timeout);
+        }
+
+        timeout =  window.requestAnimationFrame(later);
     };
 }
