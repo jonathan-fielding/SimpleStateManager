@@ -1,32 +1,22 @@
 import State from './state';
 import {
     debounce,
-    funcToArray,
-    fireAllMethodsInArray,
-    makeID,
     filterStates,
 } from './utils';
 
-var resizeTimeout = 25;
-
-function Error(message) {
-    this.message = message;
-    this.name = "Error";
-}
-
-//State Manager Constructor
+// State Manager Constructor
 class StateManager {
-    constructor(options) {
+    constructor() {
         this.states = [];
         this.resizeTimer = null;
         this.configOptions = [];
 
-        window.addEventListener("resize", debounce(this.resizeBrowser.bind(this), resizeTimeout), true);    
+        window.addEventListener('resize', debounce(this.resizeBrowser.bind(this), 25), true);
     }
 
     addState(options) {
-        var newState = new State(options);
-        
+        const newState = new State(options);
+
         if (newState.valid) {
             this.states.push(newState);
         }
@@ -35,38 +25,27 @@ class StateManager {
     }
 
     addStates(statesArray) {
-        for (var i = statesArray.length - 1; i >= 0; i--) {
-            this.addState(statesArray[i]);
-        }
+        statesArray.forEach(state => this.addState(state));
     }
 
     getState(id) {
-        for (var i = this.states.length - 1; i >= 0; i--) {
-            var state = this.states[i];
+        const selectedState = this.states.filter(state => state.id === id);
 
-            if(state.id === id){
-                return state;
-            }
-        }
+        return selectedState[0] || false;
     }
 
     isActive(id) {
-        var selectedState = this.getState(id) || {};
+        const selectedState = this.getState(id) || {};
 
         return selectedState.active || false;
     }
 
-    getStates(idArr)  {
-        var idCount = null, returnArr = [];
-
-        if (typeof(idArr) === "undefined") {
+    getStates(idArr) {
+        if (typeof (idArr) === 'undefined') {
             return this.states;
         }
-        else {
-            return idArr.map((id) => {
-                return this.getState(id)
-            });
-        }
+
+        return idArr.map(id => this.getState(id));
     }
 
     removeState(id) {
@@ -79,7 +58,7 @@ class StateManager {
     }
 
     removeStates(idArray) {
-        idArray.forEach((id) => this.removeState(id));
+        idArray.forEach(id => this.removeState(id));
     }
 
     removeAllStates() {
@@ -87,18 +66,17 @@ class StateManager {
         this.states = [];
     }
 
-    addConfigOption(options) {
-        const defaultOptions = {
-            name: '', // name, this is used to apply to a state
-            test: null, //function which will perform the test
-            when: 'resize' // resize or match (match will mean that resize will never fire either), or once (which will test once, then delete state if test doesnt pass)
-        };
-
-        //Merge options with defaults
-        options = Object.assign({}, defaultOptions, options);
-
-        if (options.name !== '' && options.test !== null) {
-            State.addConfigOption(options);
+    addConfigOption({
+        name = '', // name, this is used to apply to a state
+        test = null, // function which will perform the test
+        when = 'resize', // resize or match (match will mean that resize will never fire either), or once (which will test once, then delete state if test doesnt pass)
+    }) {
+        if (name !== '' && test !== null) {
+            State.addConfigOption({
+                name,
+                test,
+                when,
+            });
         }
     }
 
@@ -107,14 +85,13 @@ class StateManager {
     }
 
     getConfigOptions(name) {
-        var configOptions = State.getConfigOptions();
+        const configOptions = State.getConfigOptions();
 
-        if(typeof name === "string"){
-            return configOptions.filter(configOption =>  configOption.name === name);
+        if (typeof name === 'string') {
+            return configOptions.filter(configOption => configOption.name === name);
         }
-        else{
-            return configOptions;
-        }
+
+        return configOptions;
     }
 
     resizeBrowser() {

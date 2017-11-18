@@ -10,39 +10,35 @@ export default class State {
     constructor(options) {
         this.id = options.id || makeID();
         this.query = options.query || 'all';
-        // These are exposed as part of the state, not options so delete before
-        // we merge these into default options.
-        delete options.id;
-        delete options.query;
 
-        var defaultOptions = {
+        const defaultOptions = {
             onEnter: [],
             onLeave: [],
             onResize: [],
-            onFirstRun: []
+            onFirstRun: [],
         };
 
-        //Merge options with defaults to make the state
+        // Merge options with defaults to make the state
         this.options = Object.assign({}, defaultOptions, options);
 
-        //Migrate methods into an array, this is to enable future functionality of adding extra methods to an existing state
-        if (typeof this.options.onEnter === "function") {
+        // Migrate methods into an array, this is to enable future functionality of adding extra methods to an existing state
+        if (typeof this.options.onEnter === 'function') {
             this.options.onEnter = [this.options.onEnter];
         }
 
-        if (typeof this.options.onLeave === "function") {
+        if (typeof this.options.onLeave === 'function') {
             this.options.onLeave = [this.options.onLeave];
         }
 
-        if (typeof this.options.onResize === "function") {
+        if (typeof this.options.onResize === 'function') {
             this.options.onResize = [this.options.onResize];
         }
 
-        if (typeof this.options.onFirstRun === "function") {
+        if (typeof this.options.onFirstRun === 'function') {
             this.options.onFirstRun = [this.options.onFirstRun];
         }
 
-        //Test the one time tests first, if the test is invalid we wont create the config option
+        // Test the one time tests first, if the test is invalid we wont create the config option
         if (this.testConfigOptions('once') === false) {
             this.valid = false;
             return false;
@@ -60,8 +56,8 @@ export default class State {
             this.enterState();
         }
 
-        this.listener = function (test) {
-            var changed = false;
+        this.listener = (test) => {
+            let changed = false;
 
             if (test.matches) {
                 if (this.testConfigOptions('match')) {
@@ -76,12 +72,12 @@ export default class State {
             if (changed) {
                 stateChangeMethod();
             }
-        }.bind(this);
+        };
 
         this.test.addListener(this.listener);
     }
 
-    //Handle entering a state
+    // Handle entering a state
     enterState() {
         fireAllMethodsInArray(this.options.onFirstRun);
         fireAllMethodsInArray(this.options.onEnter);
@@ -89,35 +85,37 @@ export default class State {
         this.active = true;
     }
 
-    //Handle leaving a state
+    // Handle leaving a state
     leaveState() {
         fireAllMethodsInArray(this.options.onLeave);
         this.active = false;
     }
 
-    //Handle the user resizing the browser
+    // Handle the user resizing the browser
     resizeState() {
         if (this.testConfigOptions('resize')) {
             fireAllMethodsInArray(this.options.onResize);
         }
     }
 
-    //When the StateManager removes a state we want to remove the event listener
+    // When the StateManager removes a state we want to remove the event listener
     destroy() {
         this.test.removeListener(this.listener);
     }
 
     attachCallback(type, callback, runIfActive) {
         switch (type) {
-            case 'enter':
-                this.options.onEnter.push(callback);
-                break;
-            case 'leave':
-                this.options.onLeave.push(callback);
-                break;
-            case 'resize':
-                this.options.onResize.push(callback);
-                break;
+        case 'enter':
+            this.options.onEnter.push(callback);
+            break;
+        case 'leave':
+            this.options.onLeave.push(callback);
+            break;
+        case 'resize':
+            this.options.onResize.push(callback);
+            break;
+        default:
+            break;
         }
 
         if (type === 'enter' && runIfActive && this.active) {
@@ -126,19 +124,17 @@ export default class State {
     }
 
     testConfigOptions(when) {
-        var totalConfigOptions = configOptions.length;
+        let test = true;
 
-        for (var j = 0; j < totalConfigOptions; j++) {
-            var configOption = configOptions[j];
-
-            if (typeof this.options[configOption.name] !== "undefined") {
+        configOptions.forEach((configOption) => {
+            if (typeof this.options[configOption.name] !== 'undefined') {
                 if (configOption.when === when && configOption.test.bind(this)() === false) {
-                    return false;
+                    test = false;
                 }
             }
-        }
+        });
 
-        return true;
+        return test;
     }
 
     static addConfigOption(configOption) {
@@ -158,10 +154,9 @@ export default class State {
     }
 
     static setStateChangeMethod(func) {
-        if (typeof func === "function") {
+        if (typeof func === 'function') {
             stateChangeMethod = func;
-        }
-        else {
+        } else {
             throw new Error('Not a function');
         }
     }

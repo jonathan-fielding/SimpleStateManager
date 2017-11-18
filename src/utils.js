@@ -1,7 +1,5 @@
 export function filterStates(states, key, value) {
-    return states.filter((state) => {
-        return state[key] && state[key] === value;
-    });
+    return states.filter(state => state[key] && state[key] === value);
 }
 
 export function makeID() {
@@ -17,11 +15,10 @@ export function funcToArray(func) {
 }
 
 export function debounce(func) {
-    var timeout;
-    
-    return function() {
-        var args = arguments;
-        var later = () => {
+    let timeout;
+
+    return (...args) => {
+        const later = () => {
             timeout = null;
             func.apply(this, args);
         };
@@ -30,6 +27,6 @@ export function debounce(func) {
             window.cancelAnimationFrame(timeout);
         }
 
-        timeout =  window.requestAnimationFrame(later);
+        timeout = window.requestAnimationFrame(later);
     };
 }
