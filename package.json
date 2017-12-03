@@ -5,7 +5,8 @@
   "main": "src/ssm.js",
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -c -w"
+    "watch": "rollup -c -w",
+    "test": "npx babel-node --presets es2015 -- test/utils.test.js"
   },
   "repository": {
     "type": "git",
@@ -29,19 +30,20 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-tape-runner": "^2.0.1",
     "babelrc-rollup": "^3.0.0",
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "rollup": "0.48.0",
     "rollup-plugin-babel": "^3.0.2",
-    "tape": "^4.8.0"
-  },
-  "dependencies": {
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0",
     "babel-eslint": "^8.0.1",
     "rollup-plugin-uglify": "^2.0.1",
     "uglify-es": "^3.1.2"

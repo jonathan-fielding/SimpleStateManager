@@ -4,7 +4,7 @@ import {
 } from './utils';
 
 const configOptions = [];
-let stateChangeMethod = function () { };
+let stateChangeMethod = () => { };
 
 export default class State {
     constructor(options) {
