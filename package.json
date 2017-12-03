@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c -w",
-    "test": "npx babel-node --presets es2015 -- test/utils.test.js"
+    "test": "npx babel-node --presets es2015 -- test/utils.test.js",
+    "travis": "npm build && npm test"
   },
   "repository": {
     "type": "git",
