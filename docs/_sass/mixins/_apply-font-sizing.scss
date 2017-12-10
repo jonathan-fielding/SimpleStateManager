@@ -1,0 +1,25 @@
+@mixin apply-font-sizing($size-map, $line-heights) {
+    $global-base-font-size: map-get($base-font-size, xs);
+    $size-map-base-font-size: map-get($size-map, xs);
+
+    $line-height-base-size-px: map-get($line-heights, xs);
+
+    $rem: ($size-map-base-font-size / $global-base-font-size);
+    font-size: #{$rem}rem;
+    line-height: $line-height-base-size-px / $size-map-base-font-size;
+
+    @each $property, $value in $size-map {
+        @if $property != xs {
+            $media-query-min-width: map-get($grid-breakpoints, $property);
+            $media-query-base-font-size: map-get($base-font-size, $property);
+
+            $media-query-line-height-size: map-get($line-heights, $property);
+
+            @media only screen and (min-width: $media-query-min-width) {
+                $rem: ($value / $media-query-base-font-size);
+                font-size: #{$rem}rem;
+                line-height: ($media-query-line-height-size / $value);
+            }
+        }
+    }
+}
