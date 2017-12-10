@@ -1,4 +1,4 @@
-# Simple State Manager 3.3.0
+# Simple State Manager 4
 
 [![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager) [![Code Climate](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager.png)](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager)
 
@@ -35,7 +35,7 @@ If you need to support Internet Explorer 8 or below their are two options availa
 ##Release Log
 
 ### 4.0.0 - 10th December 2017</h2>
-In SimpleStateManager 4.0.0 the library is completely rewritten into ES6. I also updated the API so that there is less duplication.
+In SimpleStateManager 4 the library is completely rewritten into ES6. I also updated the API so that there is less duplication.
 
 * Updated whole codebase to ES6
 * Seperated out the `utils` into a seperate file
