@@ -1,6 +1,6 @@
 # Simple State Manager 4
 
-[![Build Status](https://travis-ci.org/SimpleStateManager/SimpleStateManager.png?branch=master)](https://travis-ci.org/SimpleStateManager/SimpleStateManager) [![Code Climate](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager.png)](https://codeclimate.com/github/SimpleStateManager/SimpleStateManager)
+[![Build Status](https://travis-ci.org/jonathan-fielding/SimpleStateManager.png?branch=master)](https://travis-ci.org/jonathan-fielding/SimpleStateManager) [![Code Climate](https://codeclimate.com/github/jonathan-fielding/SimpleStateManager.png)](https://codeclimate.com/github/jonathan-fielding/SimpleStateManager)
 
 Simple State Manager (SSM for short) is a javascript state manager for responsive websites. It is built to be light weight, has no dependencies (except javascript of course) and aims to be really easy to simply drop into your project ready to use.
 
