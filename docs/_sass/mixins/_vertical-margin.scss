@@ -1,0 +1,15 @@
+@mixin vertical-margin($margins-map) {
+    $base-margin: map-get($margins-map, base);
+
+    margin: #{$base-margin}px 0;
+
+    @each $property, $value in $margins-map {
+        @if $property != xs {
+            $media-query-min-width: map-get($grid-breakpoints, $property);
+
+            @media only screen and (min-width: $media-query-min-width) {
+                margin: #{$value}px 0;
+            }
+        }
+    }
+}

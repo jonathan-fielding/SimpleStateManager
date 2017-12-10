@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>SimpleStateManager</title>
+        <meta name="description" content="A One-Day Developer Event Focussing on Progressive Webapps and Emerging Web APIs">
+
+        <meta property="og:title" content="Web Progressions">
+        <meta property="og:site_name" content="Web Progressions">
+        <meta property="og:url" content="https://webprogressions.org">
+        <meta property="og:description" content="A One-Day Developer Event Focussing on Progressive Webapps and Emerging Web APIs">
+        <meta property="fb:app_id" content="">
+        <meta property="og:type" content="website">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+
+       
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">SimpleStateManager</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarsExample07">
+                    <ul class="navbar-nav mr-auto my-2 my-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link {% if "/" == page.url %}active{% endif %}" href="index.html">Get Started<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if "/api.html" == page.url %}active{% endif %}" href="api.html">API</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if "/releases.html" == page.url %}active{% endif %}" href="releases.html">Releases</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if "/licence.html" == page.url %}active{% endif %}" href="licence.html">Licence</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+      {{ content }}
+
+    <footer>
+        <div class="container">
+            <p>SimpleStateManager is an Open Source Project licenced under the MIT licence</p>
+        </div>
+    </footer>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-42981349-1', 'simplestatemanager.com');
+        ga('send', 'pageview');
+    </script>
+</body>
+
+</html>

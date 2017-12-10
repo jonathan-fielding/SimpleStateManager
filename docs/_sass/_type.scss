@@ -1,0 +1,385 @@
+//
+// Bootstrap Type
+// Beautiful typography optimised for Bootstrap 
+// 
+// by Jonathan Fielding
+// Licenced under MIT Licence
+//
+
+@import "mixins/apply-font-sizing";
+@import "mixins/vertical-margin";
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+) !default;
+
+$base-font-size: (
+    xs: 16,
+    sm: 16,
+    md: 16,
+    lg: 16,
+    xl: 18,
+) !default;
+
+$base-line-height: (
+    xs: 24,
+    sm: 24,
+    md: 24,
+    lg: 26,
+    xl: 28,
+) !default;
+
+$base-vertical-margin: (
+    xs: 20,
+    md: 25,
+) !default;
+
+$base-font-color: #444 !default;
+$base-link-color: #663399 !default;
+
+// Use the operating systems default font as base font as it will look better than any font I choose on that system
+$base-font: -apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Helvetica Neue", sans-serif !default;
+$heading-font: "Lato", -apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Helvetica Neue", sans-serif !default;
+$quote-font: $base-font !default;
+
+// Option to individually change to a different font for a heading, I normally avoid loading more than one custom font for perf reasons
+$h1-heading-font: $heading-font !default;
+$h2-heading-font: $heading-font !default;
+$h3-heading-font: $heading-font !default;
+$h4-heading-font: $heading-font !default;
+$h5-heading-font: $heading-font !default;
+$h6-heading-font: $heading-font !default;
+
+$h1-font-size: (
+    xs: 30,
+    md: 40,
+    lg: 48,
+    xl: 56,
+) !default;
+
+$h1-line-height: (
+    xs: 40,
+    md: 45,
+    lg: 52,
+    xl: 70,
+) !default;
+$h1-weight: normal !default;
+$h1-margin: (
+    xs: 30px,
+    lg: 40px,
+) !default;
+
+$h2-font-size: (
+    xs: 26,
+    md: 32,
+    lg: 36,
+    xl: 36,
+) !default;
+$h2-line-height: (
+    xs: 30,
+    md: 40,
+    lg: 45,
+    xl: 45,
+) !default;
+$h2-weight: normal !default;
+$h2-margin: (
+    xs: 30px,
+    lg: 40px,
+) !default;
+
+$h3-font-size: (
+    xs: 22,
+    md: 24,
+    lg: 28,
+    xl: 28,
+) !default;
+$h3-line-height: (
+    xs: 25,
+    md: 30,
+    lg: 35,
+    xl: 35,
+) !default;
+$h3-weight: normal !default;
+$h3-margin: (
+    xs: 30px,
+    lg: 40px,
+) !default;
+
+$h4-font-size: (
+    xs: 20,
+    md: 20,
+    lg: 22,
+    xl: 22,
+) !default;
+$h4-line-height: (
+    xs: 24,
+    md: 24,
+    lg: 26,
+    xl: 26,
+) !default;
+$h4-weight: normal !default;
+$h4-margin: (
+    xs: 30px,
+    lg: 40px,
+) !default;
+
+$h5-font-size: (
+    xs: 14,
+    md: 14,
+    lg: 16,
+    xl: 16,
+) !default;
+$h5-line-height: (
+    xs: 16,
+    md: 18,
+    lg: 20,
+    xl: 20,
+) !default;
+$h5-weight: bold !default;
+$h5-margin: (
+    xs: 30px,
+    lg: 40px,
+) !default;
+
+$h6-font-size: (
+    xs: 14,
+    md: 14,
+    lg: 16,
+    xl: 16,
+) !default;
+$h6-line-height: (
+    xs: 16,
+    md: 18,
+    lg: 20,
+    xl: 20,
+) !default;
+$h6-weight: bold !default;
+$h6-margin: (
+    xs: 30px,
+    lg: 40px,
+) !default;
+
+$super-font-size: (
+    xs: 36,
+    md: 48,
+    lg: 56,
+    xl: 64,
+) !default;
+$super-line-height: (
+    xs: 44,
+    md: 54,
+    lg: 62,
+    xl: 70,
+) !default;
+$super-weight: normal !default;
+
+$blockquote-font-size: (
+    xs: 20,
+    md: 24,
+    xl: 24,
+) !default;
+$blockquote-line-height: (
+    xs: 28,
+    md: 35,
+    xl: 35,
+) !default;
+$blockquote-vertical-margin: (
+    xs: 30,
+    md: 40,
+) !default;
+
+$small-font-size: (
+    xs: 14,
+    lg: 14,
+    xl: 14,
+) !default;
+$small-line-height: (
+    xs: 20,
+    lg: 22,
+    xl: 22,
+) !default;
+
+$footnote-font-size: (
+    xs: 13,
+    xl: 13,
+) !default;
+$footnote-line-height: (
+    xs: 18,
+    xl: 18,
+) !default;
+
+
+$leading: 1.5 * 1rem;
+
+html {
+    $base-font-size-px: map-get($base-font-size, xs);
+    $base-line-height-px: map-get($base-line-height, xs);
+
+    // Apply default font size and line height
+    font-size: #{$base-font-size-px}px;
+    line-height: $base-line-height-px / $base-font-size-px;
+
+    // Apply a base font
+    font-family: $base-font;
+    color: $base-font-color;
+    -webkit-font-smoothing: antialiased;
+
+    @each $property, $value in $base-font-size {
+        @if $property != base {
+            $media-query-min-width: map-get($grid-breakpoints, $property);
+
+            @media only screen and (min-width: $media-query-min-width) {
+                font-size: #{$value}px;
+            }
+        }
+    }
+}
+
+/* Copy & Lists */
+
+p {
+    line-height: $leading;
+    margin-top: $leading;
+    margin-bottom: 0;
+}
+
+ul,
+ol {
+    margin-top: $leading;
+    margin-bottom: $leading;
+
+    li {
+        line-height: $leading;
+    }
+    ul,
+    ol {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+/* Headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    /* Change heading typefaces here */
+    font-family: $heading-font;
+    margin-top: $leading;
+    margin-bottom: 0;
+    line-height: $leading;
+    font-weight: 300;
+}
+
+h1,
+.h1 {
+    font-family: $h1-heading-font;
+    font-weight: $h1-weight;
+    @include apply-font-sizing($h1-font-size, $h1-line-height);
+    @include vertical-margin($h1-margin);
+}
+
+h2,
+.h2 {
+    font-family: $h2-heading-font;
+    font-weight: $h2-weight;
+    @include apply-font-sizing($h2-font-size, $h2-line-height);
+    @include vertical-margin($h2-margin);
+}
+
+h3,
+.h3 {
+    font-family: $h3-heading-font;
+    font-weight: $h3-weight;
+    @include apply-font-sizing($h3-font-size, $h3-line-height);
+    @include vertical-margin($h3-margin);
+}
+
+h4,
+.h4 {
+    font-family: $h4-heading-font;
+    font-weight: $h4-weight;
+    @include apply-font-sizing($h4-font-size, $h4-line-height);
+    @include vertical-margin($h4-margin);
+}
+
+h5,
+.h5 {
+    font-family: $h5-heading-font;
+    font-weight: $h5-weight;
+    @include apply-font-sizing($h5-font-size, $h5-line-height);
+    @include vertical-margin($h5-margin);
+}
+
+h6,
+.h6 {
+    font-family: $h6-heading-font;
+    font-weight: $h6-weight;
+    @include apply-font-sizing($h6-font-size, $h6-line-height);
+    @include vertical-margin($h6-margin);
+}
+
+p,
+img {
+    @include vertical-margin($base-vertical-margin);
+}
+
+blockquote {
+    font-family: $quote-font;
+    margin: 1em 0;
+    @include apply-font-sizing($blockquote-font-size, $blockquote-line-height);
+    @include vertical-margin($blockquote-vertical-margin);
+
+    &::before {
+        content: "\0022";
+    }
+
+    &::after {
+        content: "\0022";
+    }
+}
+
+.footnote {
+    @include apply-font-sizing($footnote-font-size, $footnote-line-height);
+}
+
+.super {
+    @include apply-font-sizing($super-font-size, $super-line-height);
+    font-weight: $super-weight;
+}
+
+small,
+.small {
+    @include apply-font-sizing($small-font-size, $small-line-height);
+}
+
+a {
+    color: $base-link-color;
+}
+
+/* Tables */
+
+table {
+    margin-top: $leading;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 0;
+}
+
+/* Code blocks */
+
+code {
+    // Forces text to constrain to the line-height. Not ideal, but works.
+    vertical-align: bottom;
+}

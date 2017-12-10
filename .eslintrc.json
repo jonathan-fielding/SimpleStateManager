@@ -1,0 +1,28 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "max-len": [
+            "error", 200
+        ],
+        "class-methods-use-this": 0,
+        "import/extensions": [
+            "error",
+            "always",
+            {
+              "js": "never",
+              "jsx": "never",
+              "mjs": "never"
+            }
+          ]
+    },
+    "globals": {
+        "window": false,
+        "document": false,
+        "sessionStorage": false,
+        "QUnit": false
+    }
+}
