@@ -17,7 +17,7 @@ To get started with SSM the first step is to include it in your project, you can
 Documentation can be found at http://www.simplestatemanager.com
 
 ##Browser Support
-Version 3.x of SimpleStateManager and above supports the following browsers:
+Version 4.x of SimpleStateManager is built in ES6 so for the majority of browsers will require being transpiled to work accross different browsers. In its transpiled form SimpleStateManager supports:
 
 * Internet Explorer 10+ (Internet Explorer 9 should work if you use a matchMedia polyfill)
 * Google Chrome
