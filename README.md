@@ -34,6 +34,14 @@ If you need to support Internet Explorer 8 or below their are two options availa
 
 ##Release Log
 
+### 4.0.0 - 10th December 2017</h2>
+In SimpleStateManager 4.0.0 the library is completely rewritten into ES6. I also updated the API so that there is less duplication.
+
+* Updated whole codebase to ES6
+* Seperated out the `utils` into a seperate file
+* Seperated out `state` into a seperate file
+* Use requestAnimationFrame for debounce [Issue #41]
+ 
 ###3.2.0 - August 24th, 2016
 * Add method to enable developers to attach multiple callbacks to a state
 
