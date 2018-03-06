@@ -79,22 +79,22 @@ export default class State {
 
     // Handle entering a state
     enterState() {
-        fireAllMethodsInArray(this.options.onFirstRun);
-        fireAllMethodsInArray(this.options.onEnter);
+        fireAllMethodsInArray(this.options.onFirstRun, this.eventData('firstRun'));
+        fireAllMethodsInArray(this.options.onEnter, this.eventData('enter'));
         this.options.onFirstRun = [];
         this.active = true;
     }
 
     // Handle leaving a state
     leaveState() {
-        fireAllMethodsInArray(this.options.onLeave);
+        fireAllMethodsInArray(this.options.onLeave, this.eventData('leave'));
         this.active = false;
     }
 
     // Handle the user resizing the browser
     resizeState() {
         if (this.testConfigOptions('resize')) {
-            fireAllMethodsInArray(this.options.onResize);
+            fireAllMethodsInArray(this.options.onResize, this.eventData('resize'));
         }
     }
 
@@ -135,6 +135,13 @@ export default class State {
         });
 
         return test;
+    }
+
+    eventData(eventType) {
+        return {
+            eventType,
+            state: this,
+        };
     }
 
     static addConfigOption(configOption) {
