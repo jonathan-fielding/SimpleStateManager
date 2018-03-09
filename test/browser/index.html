@@ -361,6 +361,26 @@
                 });
 
                 ok(switchedStates === true, "Switched states now");
+
+                ssm.removeState('tiny');
+            });
+
+             test("State events should receive state information", function() {
+                var eventOutput = null;
+                ssm.addState({
+                    id: 'tiny',
+                    query: '(max-width: 320px)',
+                    onEnter: function(event) {
+                        eventOutput = event;
+                    }
+                });
+
+                window.matchMedia.set({
+                    width: 300
+                });
+
+                ok(eventOutput.eventType === 'enter', 'Event Type should be Enter');
+                ok(eventOutput.state.id === 'tiny', 'Event state id should be "tiny"');
             });
         </script>
     </body>

@@ -6,8 +6,8 @@ export function makeID() {
     return Math.random().toString(36).substr(2, 9);
 }
 
-export function fireAllMethodsInArray(arr) {
-    arr.forEach(method => method());
+export function fireAllMethodsInArray(arr, event) {
+    arr.forEach(method => method(event));
 }
 
 export function funcToArray(func) {
