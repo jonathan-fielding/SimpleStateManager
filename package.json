@@ -1,6 +1,6 @@
 {
   "name": "simplestatemanager",
-  "description": "SimpleStateManager is a library that allows you to enable and disable JavaScript based on the characteristics by the device.",
+  "description": "SimpleStateManager is a library that allows you to enable and disable JavaScript based on the characteristics of the device.",
   "version": "4.1.0",
   "main": "src/ssm.js",
   "scripts": {
