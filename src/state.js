@@ -119,7 +119,7 @@ export default class State {
         }
 
         if (type === 'enter' && runIfActive && this.active) {
-            callback();
+            callback(this.eventData(type));
         }
     }
 

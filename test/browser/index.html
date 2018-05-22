@@ -381,6 +381,24 @@
 
                 ok(eventOutput.eventType === 'enter', 'Event Type should be Enter');
                 ok(eventOutput.state.id === 'tiny', 'Event state id should be "tiny"');
+
+                ssm.removeState('tiny');
+            });
+
+            test("State events should happen on immediately invoked events", function() {
+                var eventOutput = null;
+
+                var state = ssm.addState({
+                    id: 'attachCallback',
+                    query: '(max-width: 99999px)',
+                });
+                
+                state.attachCallback('enter', function(event) {
+                    eventOutput = event;
+                }, true);
+
+                ok(eventOutput.eventType === 'enter', 'Event Type should be Enter');
+                ok(eventOutput.state.id === 'attachCallback', 'Event state id should be "firstRun"');
             });
         </script>
     </body>
