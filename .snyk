@@ -1,0 +1,37 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - babel-cli > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
+        patched: '2019-07-23T13:51:53.700Z'
+  'npm:extend:20180424':
+    - babel-cli > chokidar > fsevents > node-pre-gyp > request > extend:
+        patched: '2019-07-23T13:51:53.700Z'
+  'npm:hoek:20180212':
+    - babel-cli > chokidar > fsevents > node-pre-gyp > hawk > hoek:
+        patched: '2019-07-23T13:51:53.700Z'
+    - babel-cli > chokidar > fsevents > node-pre-gyp > hawk > boom > hoek:
+        patched: '2019-07-23T13:51:53.700Z'
+    - babel-cli > chokidar > fsevents > node-pre-gyp > hawk > sntp > hoek:
+        patched: '2019-07-23T13:51:53.700Z'
+    - babel-cli > chokidar > fsevents > node-pre-gyp > request > hawk > hoek:
+        patched: '2019-07-23T13:51:53.700Z'
+    - babel-cli > chokidar > fsevents > node-pre-gyp > hawk > cryptiles > boom > hoek:
+        patched: '2019-07-23T13:51:53.700Z'
+    - babel-cli > chokidar > fsevents > node-pre-gyp > request > hawk > boom > hoek:
+        patched: '2019-07-23T13:51:53.700Z'
+    - babel-cli > chokidar > fsevents > node-pre-gyp > request > hawk > sntp > hoek:
+        patched: '2019-07-23T13:51:53.700Z'
+    - babel-cli > chokidar > fsevents > node-pre-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-07-23T13:51:53.700Z'
+  'npm:lodash:20180130':
+    - tap-spec > lodash:
+        patched: '2019-07-23T13:51:53.700Z'
+  'npm:stringstream:20180511':
+    - babel-cli > chokidar > fsevents > node-pre-gyp > request > stringstream:
+        patched: '2019-07-23T13:51:53.700Z'
+  'npm:tough-cookie:20170905':
+    - babel-cli > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2019-07-23T13:51:53.700Z'
