@@ -41,7 +41,7 @@
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "rollup": "0.48.0",
+    "rollup": "2.55.1",
     "rollup-plugin-babel": "^3.0.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0",
